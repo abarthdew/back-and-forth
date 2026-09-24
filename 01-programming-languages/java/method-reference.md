@@ -1,10 +1,3 @@
----
-title: JAVA Method Reference
-date: 2021-03-16
-categories: [Back, Java]
-tags: [Back, Java]
----
-
 # 메서드 레퍼런스
 
 ## Overview of Method References

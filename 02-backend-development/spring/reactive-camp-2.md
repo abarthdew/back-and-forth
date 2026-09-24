@@ -41,12 +41,12 @@ tags: [Back, Spring]
 
 - `A → B, B → C, C → A` 두 개의 오브젝트가 있고, 하나의 오브젝트가 다른 오브젝트를 의존하고 있는 상황에서, 항상 제 3의 오브젝트가 그 의존 관계를 설정.
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/19.jpg)
+![](./images/19.jpg)
 
-![[동기와 비동기] - 1](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/20.jpg)
+![[동기와 비동기] - 1](./images/20.jpg)
 _[동기와 비동기] - 1_
 
-![[동기와 비동기] - 2](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/21.png)
+![[동기와 비동기] - 2](./images/21.png)
 _[동기와 비동기] - 2_
 
 > 💡 동기 / 비동기를 설명할 때는<br>

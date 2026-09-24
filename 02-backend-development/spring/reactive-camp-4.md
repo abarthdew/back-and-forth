@@ -31,7 +31,7 @@ tags: [Back, Spring]
 
 ### 🔰 LoadBalancer in Cloud Service
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/22.png)
+![](./images/22.png)
 
 - 이론적 : 각 Host에 App1, 2, 3...등과 같이 어플리케이션을 늘리고 줄이는 방법.
 - 실제 : App1이 서로 다른 호스트에서 동작하게 됨.
@@ -42,18 +42,18 @@ tags: [Back, Spring]
 
 - 각각의 스레드를 굳이 요청에 필요한 숫자만큼 만들지 않고도 작업을 처리할 수 있을까?
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/23.png)
+![](./images/23.png)
 
 - 요청 : 서버 내에서 발생하는 일종의 Publishing 동작
 - 각각의 Worker : Subscriber
 - 요청을 받을 때 계속 스레드 풀을 만들어서 할당하고 요청을 처리하는 데 포커싱하기 보다는, 가용한 스레드에 일종의 Pub/Sub 구조처럼 던져줌.
 - 중간에서 워커가 받기 전에는 일종의 버퍼, 또는 큐가 존재하게 됨 → 비동기 형태로 일을 처리하는 것 ⇒ 동일한 리소스로 더 많은 요청을 처리함.
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/24.png)
+![](./images/24.png)
 
 ### 🔰Reactive Manifesto
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/25.png)
+![](./images/25.png)
 
 - `응답성` : 리액티브 시스템은 가능한 모든 요청에 대해 적시에 응답할 수 있어야 함. 또한, 발생한 문제에 대해 빠르고 효율적으로 대응할 수 있어야 함.
 - `탄력성` : 시스템은 변화하는 부하에 의해 자원의 변경이 빈번하게 발생하는 상황에서도 응답성을 유지해야 함.
@@ -83,7 +83,7 @@ tags: [Back, Spring]
 
 ## 4) 리액티브 스트림
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/26.jpg)
+![](./images/26.jpg)
 
 ### [1] 목적
 
@@ -175,7 +175,7 @@ public interface ReactiveCrudRepository<T, ID> extends Repository<T, ID> {
 }
 ```
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/27.png)
+![](./images/27.png)
 
 - Publisher.java
 
@@ -282,7 +282,7 @@ public interface Processor<T, R> extends Subscriber<T>, Publisher<R> {
 
 ### [7] 흐름
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/28.png)
+![](./images/28.png)
 
 1. Subscriber 가 subscribe 메소드를 통해 Publisher 에게 구독을 요청.
 2. Publisher 는 `onSubscribe` 메소드로 Subscriber 에게 Subscription 를 전달.
@@ -291,13 +291,13 @@ public interface Processor<T, R> extends Subscriber<T>, Publisher<R> {
 4-1. Subscriber 내부에 Subscription를 set하였기 때문 (2번)
 5. 전달이 잘 끝났으면, `onComplete`, 오류났다면 `onError` 로 종료.
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/29.png)
+![](./images/29.png)
 
 > 💡 Publisher가 어떤 작업 처리를 위해 Subscriber에 메세지를 던짐. 이 때 작업 지연이 발생한 경우 : mx 큐에 메세지를 저장함. 그 사이에 subscriber를 더 확장시킨다던지 하는 방법으로 작업 처리 가능.
 
 ### [8] Processor : Publisher 와 Subscriber 를 혼합
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/30.png)
+![](./images/30.png)
 
 - 이 둘 사이에서 몇 가지 처리 단계를 유연하게 추가할 수 있다.
 - 하나의 subscriber 의 결과물을 다른 subscriber 에 그대로 전달하거나, 변형할 때도 사용할 수있다. 마치 새로운 Publisher 처럼 행동하는 것이다.
@@ -313,7 +313,7 @@ public interface Processor<T, R> extends Subscriber<T>, Publisher<R> {
 
 ### 🔰 Reactive Streams : Mono - sequence of 0...1
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/31.png)
+![](./images/31.png)
 
 - 하나의 id값을 가지고 이것을 reactive repository에 검색해서 리턴을 받고자 함
 - 하나의 값 또는 true/false
@@ -341,7 +341,7 @@ Mono<String> toUpperCase(Mono<String> mono) {
 
 ### 🔰 Reactive Streams Flux - sequence of 0...N
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/32.png)
+![](./images/32.png)
 
 - 데이터를 연속적으로 받고자 하는 경우
 - 0개 이상의 next 신호 발행, complete나 error 신호를 발행하거나 발행하지 않을 수 있음.
@@ -377,11 +377,11 @@ Flux<String> toUpperCase(Flux<String> flux) {
 
 - `**map` : 각각의 item 들이 동기적, non-blocking 방식으로 적용됨. 단일 스트림 안의 요소를 원하는 특정 형태로 변환할 수 있음.**
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/33.png)
+![](./images/33.png)
 
 - `**flatMap` : 비동기적, non-blocking 방식으로 적용됨. 스트림의 형태가 배열과 같을 때, 모든 원소를 단일 원소 스트림으로 반환할 수 있음.**
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/34.png)
+![](./images/34.png)
 
 ### 🔰 Reactive Repository
 

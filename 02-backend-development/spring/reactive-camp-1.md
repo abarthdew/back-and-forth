@@ -28,56 +28,56 @@ tags: [Back, Spring]
 
 프로그램은 현재 실행되지 않고 하드디스크 등 주기억 장치에 존재, 컴파일이 되면 아래와 같이 파일의 섹션 단위로 영역이 나뉨.
 
-![[유저 영역과 커널 영역]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/1.png)
+![[유저 영역과 커널 영역]](./images/1.png)
 _[유저 영역과 커널 영역]_
 
 - 유저 영역 : 힙, 스택, 데이터, 코드 영역
 - 커널 영역 : 프로그램이 제어할 수 없는 OS영역
 
-![[운영체제에서 제공하는 메모리 공간]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/2.png)
+![[운영체제에서 제공하는 메모리 공간]](./images/2.png)
 _[운영체제에서 제공하는 메모리 공간]_
 
-![[운영체제에서 제공하는 메모리 공간]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/3.png)
+![[운영체제에서 제공하는 메모리 공간]](./images/3.png)
 _[[운영체제에서 제공하는 메모리 공간]](https://junghn.tistory.com/entry/%EC%BB%B4%ED%93%A8%ED%84%B0-%EA%B8%B0%EC%B4%88-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%9DStack-%ED%9E%99Heap-%EB%8D%B0%EC%9D%B4%ED%84%B0Data%EC%98%81%EC%97%AD)_
 
 - CODE 영역 : CPU가 이해할 수 있는 바이너리(0101010) 명령어들이 있는 영역
 - DATA 영역 : 컴파일 시점에 INTEGER, LONG같은 크기가 정해져 있는 전역변수들이 미리 영역을 확보해 놓음
 
-![[C++ 스택 영역 및 변수 저장 과정]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/4.png)
+![[C++ 스택 영역 및 변수 저장 과정]](./images/4.png)
 _[C++ 스택 영역 및 변수 저장 과정]_
 
-![[프로세스와 스레드]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/5.png)
+![[프로세스와 스레드]](./images/5.png)
 _[[프로세스와 스레드]](https://smjeon.dev/etc/process-thread/)_
 
 - **프로세스** : 컴퓨터에서 연속적으로 `실행되고 있는 컴퓨터 프로그램`. 스케줄링의 대상이 되는 작업(task)이라는 용어와 거의 같은 의미로 쓰임. 여러 개의 프로세서를 사용하는 것을 멀티 프로세싱이라고 하며, 같은 시간에 여러 개의 프로그램을 띄우는 시분할 방식을 멀티태스킹이라고 함.
 
-![[프로세스의 구조]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/6.png)
+![[프로세스의 구조]](./images/6.png)
 _[프로세스의 구조]_
 
 - **스레드** : 어떠한 프로그램 내에서, 특히 `프로세스 내에서 실행되는 흐름의 단위`를 말함. 일반적으로 한 프로그램은 하나의 스레드를 가지고 있지만, 프로그램 환경에 따라 둘 이상의 스레드를 동시에 실행할 수 있음. 이런 실행 방식을 멀티 스레드라고 함.
 
-![[스레드 구조]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/7.png)
+![[스레드 구조]](./images/7.png)
 _[스레드 구조]_
 
 - 프로세스 내 스레드는 각각 스택만 따로 있고, Code, Data, Heap 영역은 공유. 같은 프로세스 내 있는 다른 스레드들은 서로 Code, Data, Heap을 공유하지만, 프로세스는 다른 프로세스의 메모리에 직접 접근할 수 없음.
 
 ### 🔰 멀티 스레드와 싱글 스레드
 
-![[멀티 프로세스]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/8.png)
+![[멀티 프로세스]](./images/8.png)
 _[멀티 프로세스]_
 
 - 싱글 프로세스 : 프로세스가 스레드를 생성하게 되면, 새로운 스레드를 만들 때 테스크 구조체를 만들고 새로운 스레드가 사용할 스택 영역을 만들게 됨. `스택`은 스택 트레이스로 함수들이 연결되는 과정이나, 로컬 변수들이 스코프 지정이 일어나는 영역. `힙`은 스레드들이 서로 공유할 수 있는 영역.
 - 스레드 생성에는 태스크 구조체와 스택 영역을 확보하고 기타 OS 자원을 확보하는 등의 비용이 필요하지만, 프로세스 하나를 통째로 만드는 것보다 더 가벼움. 멀티프로세스 모델보다 성능이 좋음.
 
-![[멀티 스레드 모델]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/9.png)
+![[멀티 스레드 모델]](./images/9.png)
 _[멀티 스레드 모델]_
 
-![[싱글스레드 프로세스 모델과 멀티스레드 프로세스 모델]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/10.gif)
+![[싱글스레드 프로세스 모델과 멀티스레드 프로세스 모델]](./images/10.gif)
 _[싱글스레드 프로세스 모델과 멀티스레드 프로세스 모델]_
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/11.png)
+![](./images/11.png)
 
-![](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/12.png)
+![](./images/12.png)
 
 - Context Switch : 스케줄러에 의해 스레드는 time slice만큼 CPU를 사용한 후 작업을 멈추고 CPU를 다음 스레드가 점유하는 것.
 
@@ -97,12 +97,12 @@ _[싱글스레드 프로세스 모델과 멀티스레드 프로세스 모델]_
 - 스레드를 미리 만들어 놓고 재사용하는 것.
 - 이유 : 비용 감소(스레드 생성 비용 - CPU, Memory)
 
-![[스레드 풀 구조]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/13.png)
+![[스레드 풀 구조]](./images/13.png)
 _[스레드 풀 구조]_
 
 ### 🔰 스레드 in JVM
 
-![[JVM 구조]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/14.png)
+![[JVM 구조]](./images/14.png)
 _[JVM 구조]_
 
 - JVM 스레드 비용 : 스레드 생성비용(OS+JVM), 콘텍스트 스위칭, Garbage Collection
@@ -118,7 +118,7 @@ _[JVM 구조]_
     - HDD, network card등 I/O 작업의 완료를 대기한다
     - 대기하면서 스레드 자원 낭비
 
-![[동기 / 비동기]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/15.png)
+![[동기 / 비동기]](./images/15.png)
 _[동기 / 비동기]_
 
 ### 🔰 JAVA 비동기 API
@@ -468,7 +468,7 @@ public class TestApplication {
 
 ✔ 네이티브 : 기존 데이터는 JVM의 heap메모리 공간에 카피를 해야 했음. 카피한 것으로 핸들링을 해야 했지만, 네이티브는 원래 네이티브 데이터를 가지고 핸들링할 수 있음. 카피 비용이 줄어들기 때문에 성능적으로 월등함.
 
-![[Non Blocking IO]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/16.png)
+![[Non Blocking IO]](./images/16.png)
 _[Non Blocking IO]_
 
 > 💡 (1) client - selector 에 붙는 단위를 channel이라고 함.<br>
@@ -502,10 +502,10 @@ _[Non Blocking IO]_
 > - 이벤트가 발생한다는 전체를 깔고 이벤트를 처리하는 코드를 작성
 > - 이벤트가 올 거라고 예상하고 그에 대응하는 반응을 만드는 코드
 
-![[이벤트 드리븐 패턴]](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/17.jpg)
+![[이벤트 드리븐 패턴]](./images/17.jpg)
 _[이벤트 드리븐 패턴]_
 
-![Servlet Request도 이벤트라고 할 수 있음](https://raw.githubusercontent.com/abarthdew/trouble-shooting-references/main/images/java/18.jpg)
+![Servlet Request도 이벤트라고 할 수 있음](./images/18.jpg)
 _Servlet Request도 이벤트라고 할 수 있음_
 
 > 💡 소스 → 이벤트를 발생시킴<br>

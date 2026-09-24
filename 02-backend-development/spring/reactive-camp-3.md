@@ -1,10 +1,3 @@
----
-title: 1-3. Spring Reactive - Spring WebFlux
-date: 2021-03-15
-categories: [Back, Spring]
-tags: [Back, Spring]
----
-
 # 1-3. Spring Web Flux
 
 > 💡 Spring 5.0<br>

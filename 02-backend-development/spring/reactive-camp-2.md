@@ -1,10 +1,3 @@
----
-title: 1-2. Spring Reactive - Async, Spring
-date: 2021-03-15
-categories: [Back, Spring]
-tags: [Back, Spring]
----
-
 # 1-2. Async & Spring
 
 > 📌 들어가기 전에 - 발표 내용<br>

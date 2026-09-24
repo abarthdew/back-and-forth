@@ -1,10 +1,3 @@
----
-title: 1-1. Spring Reactive - Process, Thread, Reactive
-date: 2021-03-15
-categories: [Back, Spring]
-tags: [Back, Spring]
----
-
 # 1-1. 프로세스, 스레드, 리액티브
 
 ## 1) 프로세스, 스레드

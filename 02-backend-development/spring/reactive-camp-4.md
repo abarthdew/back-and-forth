@@ -1,10 +1,3 @@
----
-title: 2-1. Spring Reactive - Reactive Spring
-date: 2021-03-15
-categories: [Back, Spring]
-tags: [Back, Spring]
----
-
 # 2-1. Reactive Spring
 
 ## 1) 리액티브가 왜 필요한가?

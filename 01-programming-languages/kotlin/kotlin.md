@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 # 1. 환경변수 설정
 ![](images/kotlin-env-setup-1.png)
 ![](images/kotlin-env-setup-2.png)
@@ -42,7 +41,7 @@ class PersonKotlin(
 fun main() {
     val person = PersonKotlin("Bob", true);
 		// new 키워드를 사용하지 않고 생성자를 호출함
-    
+
     // 프로퍼티 이름을 직접 사용해도 코틀린이 자동으로 getter 호출함
     println(person.name)
     println(person.isMarried)

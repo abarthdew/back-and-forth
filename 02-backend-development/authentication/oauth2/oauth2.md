@@ -656,7 +656,7 @@ PS D:\test\oauth-in-action-code\exercises\ch-3-ex-1> npm install
 		    } else if (req.query && req.query.access_token) { // [세번째 방법] 질의 파라미터로 전달되는 토큰 처리
 		        inToken = req.query.access_token
 		    }
-    
+
 		    // ...
 		```
 		1. 헤더에서 토큰 값 추출

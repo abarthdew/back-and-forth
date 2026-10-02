@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 # 1. 자바스크립트 기본 개요
 ## 자바스크립트의 핵심 개념
 ### 객체
@@ -125,14 +124,14 @@ console.log(nullVar === null); // true
 	1. 기본 제공 Object() 객체 생성자 함수 이용
 		1. 자바 스크립트에서는 객체를 생성할 때, 내장 Object() 생성자 함수를 이용함
 		```javascript
-var foo = new Object();
+		var foo = new Object();
 
-foo.name = 'foo';
-foo.age = 30;
-foo.gender = 'male';
+		foo.name = 'foo';
+		foo.age = 30;
+		foo.gender = 'male';
 
-console.log(typeof foo); // object
-console.log(foo); // {name: 'foo', age: 30, gender: 'male'}
+		console.log(typeof foo); // object
+		console.log(foo); // {name: 'foo', age: 30, gender: 'male'}
 		```
 	2. 객체 리터럴 이용
 		1. 리터럴: 표기법
@@ -142,14 +141,14 @@ console.log(foo); // {name: 'foo', age: 30, gender: 'male'}
 		5. 프로퍼티 값으로는 어떤 표현식도 가능하며, 이 값이 함수일 경우 `메서드`라고 부름
 		6. \{\}안이 비어있으면 빈 객체 생성됨
 		```javascript
-var foo = {
-	name: 'foo',
-  age: 30,
-  gender: 'male'
-};
+		var foo = {
+			name: 'foo',
+		  age: 30,
+		  gender: 'male'
+		};
 
-console.log(typeof foo); // object
-console.log(foo); // {name: 'foo', age: 30, gender: 'male'}
+		console.log(typeof foo); // object
+		console.log(foo); // {name: 'foo', age: 30, gender: 'male'}
 		```
 	3. 생성자 함수 이용
 		1. 함수를 통해서도 객체 생성 가능 ⇒ 생성자 함수
@@ -159,29 +158,29 @@ console.log(foo); // {name: 'foo', age: 30, gender: 'male'}
 	1. 대괄호(\[\]) 표기법
 	2. 마침표(.) 표기법
 	```javascript
-// 객체 리터럴 방식을 통한 foo 객체 생성
-var foo = {
+	// 객체 리터럴 방식을 통한 foo 객체 생성
+	var foo = {
 	name: 'foo',
-  major: 'computer science'
-};
+	  major: 'computer science'
+	};
 
-// 객체 프로퍼티 읽기
-console.log(foo.name); // foo
-console.log(foo['name']); // foo
-console.log(foo[name]); // undefined
+	// 객체 프로퍼티 읽기
+	console.log(foo.name); // foo
+	console.log(foo['name']); // foo
+	console.log(foo[name]); // undefined
 
-// 객체 프로퍼티 갱신
-foo.major = 'electronics';
-console.log(foo.major); // electronics
-console.log(foo['major']); // electronics
+	// 객체 프로퍼티 갱신
+	foo.major = 'electronics';
+	console.log(foo.major); // electronics
+	console.log(foo['major']); // electronics
 
-// 프로퍼티 동적 생성
-foo.age = 30;
+	// 프로퍼티 동적 생성
+	foo.age = 30;
 
-// 대괄호 표기법만을 사용해야 할 경우
-foo['full-name'] = 'foo bar';
-console.log(foo['full-name']); // foo bar
-console.log(foo.full-name); // NaN
+	// 대괄호 표기법만을 사용해야 할 경우
+	foo['full-name'] = 'foo bar';
+	console.log(foo['full-name']); // foo bar
+	console.log(foo.full-name); // NaN
 	```
 	- NaN: 수치 연산을 했을 때 정상적인 값을 못해 출력 되는 값
 ### for in 문과 객체 프로퍼티 출력
@@ -272,7 +271,7 @@ var objA = { value:100 };
 function changeArg(num, obj) { // obj: objA가 참조하는 객체 위치 값이 그대로 전달됨
 	num = 200;
   obj.value = 200; // 실제 객체의 value 프로퍼티값이 changeArg() 호출 후에도 적용됨
-  
+
   console.log(num); // 200
   console.log(obj); // {value: 200}
 }
@@ -424,11 +423,11 @@ colorsObj.push('red'); // TypeError: colorsObj.push is not a function
 - 객체의 프로토타입과 배열의 프로토타입 관계도
 	![\[객체의 프로토타입과 배열의 프로토타입\]](images/js1-object-array-prototype.png)
 	```javascript
-var emptyArray = [];
-var emptyObj = {};
+	var emptyArray = [];
+	var emptyObj = {};
 
-console.dir(emptyArray.__proto__); // 배열의 프로토타입 출력
-console.dir(emptyObj.__proto__); // 객체의 프로토타입 출력
+	console.dir(emptyArray.__proto__); // 배열의 프로토타입 출력
+	console.dir(emptyObj.__proto__); // 객체의 프로토타입 출력
 	```
 	![\[크롬 브라우저 실행 결과\]](images/js1-chrome-proto-1.png)
 	- emptyArray.__proto__는 Array 객체를 가리킴 ⇒ Array.prototype 객체를 나타냄
@@ -507,42 +506,42 @@ console.log(arr.length); // 3
 	- 호출 인자가 1개, 숫자일 경우: 호출된 인자를 length로 갖는 빈 배열 생성
 	- 그 외: 호출된 인자를 요소로 갖는 배열 생성
 	```javascript
-var foo = new Array(3);
-console.log(foo); // [empty × 3]
-console.log(foo.length); // 3
+	var foo = new Array(3);
+	console.log(foo); // [empty × 3]
+	console.log(foo.length); // 3
 
-var bar = new Array(1,2,3);
-console.log(bar); // [1, 2, 3]
-console.log(bar.length); // 3
+	var bar = new Array(1,2,3);
+	console.log(bar); // [1, 2, 3]
+	console.log(bar.length); // 3
 	```
 ### 유사 배열 객체
 - 유사 배열 객체:
 	- 일반 객체에 length 프로퍼티가 있을 때, 유사 배열 객체라고 함
 	- 객체임에도 불구하고, 자바스크립트의 표준 배열 메서드를 사용하는 게 가능할 때
 	```javascript
-var arr = ['bar'];
-var obj = {
+	var arr = ['bar'];
+	var obj = {
 	name: 'foo',
-  length: 1
-};
+	  length: 1
+	};
 
-arr.push('baz');
-console.log(arr); // ['bar', 'baz']
+	arr.push('baz');
+	console.log(arr); // ['bar', 'baz']
 
-obj.push('baz'); // TypeError: obj.push is not a function: 객체지 배열이 아니므로 에러
+	obj.push('baz'); // TypeError: obj.push is not a function: 객체지 배열이 아니므로 에러
 	```
 	```javascript
-var arr = ['bar'];
-var obj = {
+	var arr = ['bar'];
+	var obj = {
 	name: 'foo',
-  length: 1
-};
+	  length: 1
+	};
 
-arr.push('baz');
-console.log(arr); // ['bar', 'baz']
+	arr.push('baz');
+	console.log(arr); // ['bar', 'baz']
 
-Array.prototype.push.apply(obj, ['baz']);
-console.log(obj); // {1: 'baz', name: 'foo', length: 2}
+	Array.prototype.push.apply(obj, ['baz']);
+	console.log(obj); // {1: 'baz', name: 'foo', length: 2}
 	```
 	- `Array.prototype.push.apply(obj, ['baz']);`: 
 		- 유사 배열 객체인 obj에 대해 push() 메서드 호출, ‘baz’ 원소 추가
@@ -555,12 +554,12 @@ console.log(obj); // {1: 'baz', name: 'foo', length: 2}
 		→ 메서드 처리 순간에 기본 값은 객체로 변환됨
 		→ 각 타입별 표준 메서드 호출 → 호출 종료 후 다시 가본값 복귀
 	```javascript
-// 숫자 메서드 호출
-var num = 0.5;
-console.log(num.toExponential(1)); // 5.0e-1 // 숫자를 지수 형태의 문자열로 변환
+	// 숫자 메서드 호출
+	var num = 0.5;
+	console.log(num.toExponential(1)); // 5.0e-1 // 숫자를 지수 형태의 문자열로 변환
 
-// 문자 메서드 호출
-console.log("test".charAt(2)); // s
+	// 문자 메서드 호출
+	console.log("test".charAt(2)); // s
 	```
 	- 숫자, 문자열 등 기본 타입도 객체처럼 표준 메서드를 호출할 수 있음
 ## 연산자
@@ -590,4 +589,4 @@ console.log(!!undefined); // false
 console.log(!![1,2,3]); // true
 console.log(!!{}); // true (*주의 - {} 값이 비어있어도 true)
 ```
-<empty-block/>
+

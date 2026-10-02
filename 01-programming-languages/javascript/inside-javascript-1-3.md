@@ -40,7 +40,7 @@
 - 생략
 # 3. 자바스크립트 데이터 타입과 연산자
 - 자바스크립트의 값들은 크게 기본 타입과 참조 타입으로 분류됨
-![\[자바스크립트의 데이터 타입\]]()
+![\[자바스크립트의 데이터 타입\]](images/js1-data-types.png)
 ## 자바스크립트 기본 타입
 - 그 자체가 하나의 값을 나타냄
 - 느슨한 타입 체크 언어: var라는 한 가지 키워드로만 변수 선언
@@ -240,7 +240,7 @@ console.log(objB.val); // 50
 ```
 - objA는 실제 객체를 참조하는 값을 저장할 뿐 실제 객체를 나타내지 않음
 - 즉, objA객체는 참조 변수 objA가 가리키고 있는 객체를 나타냄(그림 표기 주의)
-	![\[objA와 odjB 모두 동일한 객체를 참조하고 있음\]]()
+	![\[objA와 odjB 모두 동일한 객체를 참조하고 있음\]](images/js1-refA-refB.png)
 ### 객체 비교
 ```javascript
 var a = 100;
@@ -282,7 +282,7 @@ changeArg(a, objA);
 console.log(a); // 100
 console.log(objA); // {value: 200}
 ```
-![\[call by value와 call by reference 동작 차이\]]()
+![\[call by value와 call by reference 동작 차이\]](images/js1-call-by-value-reference.png)
 ## 프로토타입
 - 자바스크립트의 모든 객체는 자신의 부모 역할을 하는 객체와 연결됨
 - 객체지 향의 상속 개념과 같이, 부모 객체의 프로퍼티를 자신의 것처럼 사용 가능
@@ -300,12 +300,12 @@ console.dir(foo); // > Object
 	- foo 객체의 프로토타입에 toString() 메서드가 정의됨
 	- foo 객체가 상속처럼 toString() 메서드 호출함
 - foo 객체 출력 결과
-	![\[크롬 브라우저에서의 foo 객체 출력 결과\]]()
+	![\[크롬 브라우저에서의 foo 객체 출력 결과\]](images/js1-foo-object-output.png)
 	- **\[\[Prototype\]\]**: foo 객체의 부모인 `프로토타입 객체`이며, 안에 toString 메서드가 정의된 것을 확인 가능
 - ECMAScript 명세서에서는 자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 \[\[Prototype\]\] 라는 숨겨진 프로퍼티를 가진다고 설명함
 - 즉, 위 예와 같이 객체 리터럴 방식으로 생성된 객체의 경우, `Object.prototype 객체`가 `프로토타입 객체`가 됨
 - foo.toString()과 같이 자신의 프로토타입인 Object.prototype 객체에 포함된 다양한 메서드를 자신의 프로퍼티인 것처럼 상속 받아 사용 가능
-	![\[foo 객체와 Object.prototype 객체의 관계\]]()
+	![\[foo 객체와 Object.prototype 객체의 관계\]](images/js1-foo-object-prototype.png)
 - 객체 생성 시 결정된 프로토타입 객체는 임의의 다른 객체로 변경 가능
 - 즉, 부모 객체 동적으로 변경 가능
 - 자바스크립트에서는 이런 특징을 활용해 객체 상속 등의 기능 구현
@@ -422,7 +422,7 @@ colorsObj.push('red'); // TypeError: colorsObj.push is not a function
 	- 배열: Array.prototype 객체 - push(), pop() 같은 표준 메서드를 포함
 		⇒ 또한, Array.prototype 객체의 프로토타입은 Object.prototype 객체가 됨
 - 객체의 프로토타입과 배열의 프로토타입 관계도
-	![\[객체의 프로토타입과 배열의 프로토타입\]]()
+	![\[객체의 프로토타입과 배열의 프로토타입\]](images/js1-object-array-prototype.png)
 	```javascript
 var emptyArray = [];
 var emptyObj = {};
@@ -430,11 +430,11 @@ var emptyObj = {};
 console.dir(emptyArray.__proto__); // 배열의 프로토타입 출력
 console.dir(emptyObj.__proto__); // 객체의 프로토타입 출력
 	```
-	![\[크롬 브라우저 실행 결과\]]()
+	![\[크롬 브라우저 실행 결과\]](images/js1-chrome-proto-1.png)
 	- emptyArray.__proto__는 Array 객체를 가리킴 ⇒ Array.prototype 객체를 나타냄
 	- 객체 내 push() 메서드를 비롯한 자바스크립트 표준 배열 메서드 존재
 	- Array.prototype 객체 역시 부모 프로토타입을 가지고 있으며, 이것이 Object.prototype를 가리키고 있음
-	![\[크롬 브라우저 실행 결과\]]()
+	![\[크롬 브라우저 실행 결과\]](images/js1-chrome-proto-2.png)
 ### 배열의 프로퍼티 동적 생성
 - 배열 또한 자바스크립트 객체이므로, 인덱스 배열 원소 이외에도 객체처럼 동적 프로퍼티 추가 가능
 ```javascript
@@ -569,8 +569,8 @@ console.log("test".charAt(2)); // s
 - 문자열 연결 연산
 ### 연산자 `typeof`
 - 피연산자의 타입을 문자열 형태로 리턴
-	![\[각 타입별 typeof 연산자 결과\]]()
-	![]()
+	![\[각 타입별 typeof 연산자 결과\]](images/js1-typeof-result-1.png)
+	![](images/js1-typeof-result-2.png)
 ### 동등 연산자 `==` 와 일치 연산자 `===`
 - == : 비교하려는 피연산자의 타입이 다른 경우 타입 변환을 거친 다음 비교
 - === : 피연산자의 타입이 다를 경우 타입을 변경하지 않고 비교

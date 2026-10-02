@@ -45,7 +45,7 @@ console.log(plus(5, 6)); // 11
 	- add() 함수를 표현식 형태로 생성(add는 변수이며, 함수 이름이 아님)
 	- 함수 리터럴로 두 값을 더하는 함수 생성 → add 변수에 저장
 	- 함수 변수 add는 함수의 참조값을 가지므로 또 다른 변수 plus에도 그 값을 그대로 할당 가능
-		![\[add와 plus 함수 변수는 두 개의 인자를 도하는 동일한 익명 함수를 참조함\]]()
+		![\[add와 plus 함수 변수는 두 개의 인자를 도하는 동일한 익명 함수를 참조함\]](images/inside-js-4-fig-01.png)
 	- 함수 표현식으로 생성된 함수를 호출하려면 함수 변수를 사용해 add(3, 4)와 같이 호출
 	- 함수 리터럴로 생성한 함수는 함수명이 없으므로 익명함수임
 		⇒ 함수 변수 add가 실제로 참조하는 두 수를 더하는 함수의 이름이 없음
@@ -78,7 +78,7 @@ var add = function add (x, y) {
 }
 ```
 - 함수 이름과 함수 변수의 이름이 add로 같음 → 함수 이름으로 함수가 호출되는 것처럼 보이나, 실제로는 add 함수 변수로 함수 외부에서 호출이 가능하게 됨
-	![\[add() 함수 선언문의 실제 구조\]]()
+	![\[add() 함수 선언문의 실제 구조\]](images/inside-js-4-fig-02.png)
 ### ‼️ 함수 이름을 이용하면 함수 코드 내부에서 함수 이름으로 함수의 재귀적인 호출 처리 가능
 ```javascript
 var factorialVar = function factorial(n) {
@@ -94,7 +94,7 @@ console.log(factorial(3)); // Uncaught ReferenceError: factorial is not defined
 - 함수 외부에서는 함수 변수 factorialVar()로 함수 호출
 - 함수 내부에서 이뤄지는 재귀 호출은 factorial() 함수 이름으로 처리
 - 함수 외부에서는 factorial() 함수를 호출하지 못해 에러 발생
-![\[팩토리얼 값을 재귀적인 방식으로 구현한 함수 구조\]]()
+![\[팩토리얼 값을 재귀적인 방식으로 구현한 함수 구조\]](images/inside-js-4-fig-03.png)
 ### ‼️ function statement와 function expression에서의 세미콜론
 - 함수 선언문 방식으로 선언된 함수: 세미콜론 생략 가능
 - 함수 표현식 방식으로 선언된 함수: 세미콜론 권장
@@ -238,8 +238,8 @@ function add (x, y) {
 console.dir(add);
 ```
 - 실행결과: arguments, caller, length 등과 같은 다양한  프로퍼티가 기본적으로 생성됨
-	![\[크롬 브라우저에서 실행한 결과 화면 - 기본\]]()
-	![\[크롬 브라우저에서 실행한 결과 화면 - 확장\]]()
+	![\[크롬 브라우저에서 실행한 결과 화면 - 기본\]](images/inside-js-4-fig-05.png)
+	![\[크롬 브라우저에서 실행한 결과 화면 - 확장\]](images/inside-js-4-fig-06.png)
 	⇒ 이러한 프로퍼티들이 함수를 생성할 때 포함되는 표준 프로퍼티임
 - ECMA5 스크립트 명세서에서는 모든 함수가 length와 prototype 프로퍼티를 가져야 한다고 기술함
 - name, caller, arguments, \[\[Prototype\]\] 프로퍼티는 ECMA 표준이 아님
@@ -461,7 +461,7 @@ child(); // Uncaught ReferenceError: child is not defined
 	- `child(); // Uncaught ReferenceError: child is not defined`: 함수가 정의되어 있지 않다는 에러
 		⇒ 함수 내부에 선언된 변수는 함수 외부에서 접근 불가 → 자바스크립트의 함수 스코핑
 		⇒ 부모 함수인 parent() 안에 선언된 child() 내부 함수 호출은 가능 → 내부 함수를 호출하는 부분과 내부 함수가 정의된 부분이 모두 부모 함수 내부에 있기 때문
-	![\[예제의 동작을 나타낸 그림\]]()
+	![\[예제의 동작을 나타낸 그림\]](images/inside-js-4-fig-13.png)
 	- 함수를 둘러싼 박스 부분이 함수 스코프 의미
 	- 기본적으로 함수 스코프 밖에서는 함수 스코프 안에 선언된 모든 변수나 함수에 접근 불가능
 - 자바스크립트 스코프 체이닝 때문에, 함수 내부에서는 함수 밖에서 선언된 변수나 함수 접근 가능
@@ -487,7 +487,7 @@ inner(); // 100
 	- parent() 함수의 리턴값으로 내부 함수의 참조값을 가진 child 함수 변수 리턴
 	- parent() 함수가 호출되면 inner 변수에 child 함수 변수 값이 리턴
 	- child 함수 변수는 내부 함수의 참조값이 있으므로, inner 변수도 child() 내부 함수를 참조
-	![\[예제의 동작을 나타낸 그림\]]()
+	![\[예제의 동작을 나타낸 그림\]](images/inside-js-4-fig-14.png)
 	- 때문에, inner 변수에 함수 호출 연산자 ()를 붙여 함수 호출 구문을 만들면, parent() 함수 스코프 밖에서도 내부 함수 child() 가 호출됨
 	- 호출하는 내부 함수에는 a 변수가 정의되어 있지 않음 ⇒ 스코프 체이닝으로 부모 함수에 a변수가 정의되어 있는지 확인하고, 그렇다면 그 값 출력
 	- 실행이 끝난 parent() 와 같은 부모 함수 스코프의 변수를 참조하는 inner()와 같은 함수를 **클로저**라고 함
@@ -511,7 +511,7 @@ self(); // b
 	- 다시 self 함수 변수에 self() 함수 호출 리턴값으로 내보낸 함수가 저장됨
 	- 두 번째로 self() 함수가 호출됐을 때는 ‘b’가 출력됨
 	- 즉, self() 함수 호출 후에, self 함수 변수가 가리키는 함수가 원래 함수에서 리턴받은 새로운 함수로 변경됨
-		![\[예제의 동작을 나타낸 그림\]]()
+		![\[예제의 동작을 나타낸 그림\]](images/inside-js-4-fig-15.png)
 ## 함수 호출과 this
 - 함수의 기본적인 기능은 함수를 호출해 코드를 실행하는 것
 - 자바스크립트 언어 자체가 C, C++ 같은 엄격한 문법 체크를 하지 않는 자유로운 특성
@@ -546,7 +546,7 @@ console.log(add(1)); // NaN
 console.log(add(1,2)); // 3
 console.log(add(1,2,3)); // 3
 	```
-	![\[arguments 객체 출력을 크롬 브라우저에서 실행한 결과값\]]()
+	![\[arguments 객체 출력을 크롬 브라우저에서 실행한 결과값\]](images/inside-js-4-fig-16.png)
 	- arguments 객체의 구성(\[\[Prototype\]\] 제외)
 		1. 함수를 호출할 때 넘겨진 인자(배열 형태): 함수를 호출할 때 첫 번째 인자는 0번 인덱스
 		2. length 프로퍼티: 호출할 때 넘겨진 인자의 개수를 의미
@@ -600,7 +600,7 @@ myObject.sayName(); // foo
 otherObject.sayName(); // bar
 	```
 	- sayName() 메서드에서 사용된 this는 자신을 호출한 객체에 바인딩됨
-	![\[동작을 나타낸 그림\]]()
+	![\[동작을 나타낸 그림\]](images/inside-js-4-fig-17.png)
 ### 함수를 호출할 때 this 바인딩
 - 자바스크립트에서 함수를 호출하면, 해당 함수 내부 코드에서 사용된 this는 전역 객체에 바인딩됨
 - 브라우저에서 자바스크립트를 실행하는 경우 전역 객체는 window 객체가 됨
@@ -671,7 +671,7 @@ myObject.func1();
 // func2: 3
 // func3: 4
 		```
-		![\[원래 의도한 내부 함수의 this 바인딩\]]()
+		![\[원래 의도한 내부 함수의 this 바인딩\]](images/inside-js-4-fig-18.png)
 	- 자바스크립트에서는 내부 함수 호출 패턴을 정의해 놓지 않음
 	- 내부 함수도 결국 함수이므로 이를 호출할 때는 함수 호출로 취급됨
 	- 따라서, 함수 호출 패턴 규칙에 따라 내부 함수의 this는 전역 객체 window에 바인딩 됨
@@ -684,7 +684,7 @@ myObject.func1();
 // func2: 3
 // func3: 4
 		```
-		![\[실제 내부 함수의 this 바인딩\]]()
+		![\[실제 내부 함수의 this 바인딩\]](images/inside-js-4-fig-19.png)
 - 내부 함수가 this를 참조하는 자바스크립트의 한계를 극복하려면 부모 함수(func1() 메서드)의 this를 내부 함수가 접근 가능한 다른 변수에 저장하는 방법이 사용됨
 	⇒ 보통 관례상 this 값을 저장하는 변수 이름을 that 이라고 지음
 	⇒ 이렇게 되면 내부 함수에서는 that 변수로 부모 함수의 this 가 가리키는 객체에 접근 가능
@@ -726,7 +726,7 @@ myObject.func1();
 	- func2(), func3() 도 that 변수로 func1() 의 this가 바인딩된 객체인 myObject에 접근 가능
 	- func1() 함수의 this는 myObject를 가리키므로, myObject.value 값이 1 증가
 	- 부모 함수 func1()의 that 변수에도 myObject 객체의 참조값이 저장되어 있으므로, myObject.value 값이 각각 1씩 증가
-	![\[변수 that을 통해 내부 함수의 this 바인딩 한계 극복하기\]]()
+	![\[변수 that을 통해 내부 함수의 this 바인딩 한계 극복하기\]](images/inside-js-4-fig-20.png)
 	⇒ 기존 부모 함수 func1() 메서드의 this를 that이라는 변수에 저장하고, 내부 변수에서는 that으로 부모 함수의 this 가 가리키는 객체에 접근
 - 자바스크립트에서는 이와 같은 this 바인딩의 한계를 극복하려고, this 바인딩을 명시적으로 할 수 있도록 call과 apply 메서드를 제공
 - jQuery, underscore.js 등과 같은 자바스크립트 라이브러리의 경우 bind라는 이름의 메서드를 통해, 사용자가 원하는 this에 바인딩할 수 있는 기능을 제공하고 있음
@@ -884,7 +884,7 @@ var foo = {};
 Person.apply(foo, ['foo', 30, 'man']);
 console.dir(foo);
 	```
-	![\[실행 결과\]]()
+	![\[실행 결과\]](images/inside-js-4-fig-23.png)
 	- apply() 메서드를 사용해 Person() 함수를 호출
 	- 첫 번째 인자로 넘긴 foo가 Person() 함수에서 this로 바인딩됨
 	- 두 번째 인자로 넘긴 배열 `['foo', 30, 'man']`은 호출하려는 Person() 함수의 인자 name, age, gender로 각각 전달됨
@@ -906,7 +906,7 @@ function myFuntion() {
 
 myFuntion(1,2,3);
 	```
-	![\[실행 결과\]]()
+	![\[실행 결과\]](images/inside-js-4-fig-24.png)
 	- apply() 메서드로 arguments 객체에 마치 배열 메서드가 있는 것처럼 처리 가능
 	- `Array.prototype.slice.apply(arguments);`: 
 		1. Array.prototype.slice() 메서드로 호출한다
@@ -947,7 +947,7 @@ function Person(name, age, gender) {
 var foo = new Person('foo', 30, 'man');
 console.dir(foo);
 			```
-			![](images/inside-js-4-fig-23.png)
+			![](images/inside-js-4-fig-25.png)
 			- `return {name:'bar', age:20, gender:'woman'};`: 생성자 함수의 리턴값을 새로 생성한 객체가 아닌, 객체 리터럴 방식의 특정 객체로 지정한 경우
 				⇒ Person() 생성자 함수를 호출해서 새로운 객체를 생성하더라도, 리턴값에서 명시적으로 넘긴 객체나 배열 리턴
 				⇒ 이 부분이 없다면, `var foo = new Person('foo', 30, 'man');`에서는 새로 생성되는 foo 객체가 리턴됨
@@ -963,7 +963,7 @@ function Person(name, age, gender) {
 var foo = new Person('foo', 30, 'man');
 console.log(foo);
 			```
-			![\[실행 결과\]]()
+			![\[실행 결과\]](images/inside-js-4-fig-26.png)
 ## 프로토타입 체이닝
 ### 프로토타입의 두 가지 의미
 - 자바스크립트는 기존 C++, 자바 같은 객체지향 프로그래밍 언어와는 다른 프로토타입 기반 객체지향 프로그래밍 지원
@@ -993,9 +993,9 @@ console.dir(foo);
 	- `[[Prototype]] 링크`는 객체의 입장에서 **자신의 부모 객체인 프로토타입 객체**를 내부에 숨겨진 링크로 가리킴
 	- 결국, 자바스크립트에서 객체를 생성하는 건 생성자 함수의 역할
 	- **생성된 객체의 실제 부모 역할**을 하는 건 생성자 자신이 아닌 **생성자의 prototype 프로퍼티가 가리키는 프로토타입 객체**임
-	![\[객체, 생성자 함수, 프로토타입 객체의 관계\]]()
-	![실행 결과 - Person]()
-	![실행 결과 - foo]()
+	![\[객체, 생성자 함수, 프로토타입 객체의 관계\]](images/inside-js-4-fig-27.png)
+	![실행 결과 - Person](images/inside-js-4-fig-28.png)
+	![실행 결과 - foo](images/inside-js-4-fig-29.png)
 	- Person() 생성자 함수의 prototype 프로퍼티, foo 객체의 \[\[Prototype\]\] 프로퍼티 ⇒ **같은 프로토타입 객체를 가리킴**
 	- 해당 프로토타입 객체는 constructor 프로퍼티가 Person() 생성자 함수를 가리킴
 	- \[\[Prototype\]\] 프로퍼티는 모든 객체에 존재하는 숨겨진 프로퍼티 ⇒ 객체 자신의 프로토타입 객체를 가리키는 참조 링크 정보
@@ -1047,10 +1047,10 @@ console.dir(Person.prototype);
 	- 즉, foo 객체의 프로토타입 객체는 Person.prototype이 됨
 	- foo.hasOwnProperty() 메서드는 프로토타입 체이닝으로 foo의 부모 객체인 Person.prototype 객체에서 찾은 것
 	- Person.prototype 객체 출력 결과, constructor 프로퍼티만 있는 것을 확인 가능
-	![\[실행 결과\]]()
+	![\[실행 결과\]](images/inside-js-4-fig-31.png)
 	- Person.protototype 역시 자바스크립트 객체이므로, Object.prototype을 프로토타입 객체로 가짐
 	- 프로토타입 체이닝은 Person.prototype에서 끝나는 게 아니라, Object.prototype 객체로 계속 이어짐 ⇒ hasOwnProperty()은 Object.prototype 객체의 메서드 이므로 에러 발생 없이 ture 출력
-	![\[생성자 함수 방식에서의 객체와 프로토타입 객체의 관계\]]()
+	![\[생성자 함수 방식에서의 객체와 프로토타입 객체의 관계\]](images/inside-js-4-fig-32.png)
 ### 프로토타입 체이닝의 종점
 - Object.prototype 객체는 프로토타입 체이닝의 종점
 - 객체 리터럴 방식이나 생성자 함수 방식에 상관없이 모든 자바스크립트 객체는 프로토타입 체이닝으로 Object.prototype 객체가 가진 프로퍼티와 메서드에 접근하고, 서로 공유 가능
@@ -1070,7 +1070,7 @@ function Person(name, age, hobby) {
 }
 var foo = new Person('foo', 30, 'tennis');
 ```
-![\[두 예제의 프로토타입 체이닝을 합친 그림\]]()
+![\[두 예제의 프로토타입 체이닝을 합친 그림\]](images/inside-js-4-fig-33.png)
 - 때문에, 자바스크립트 표준 빌트인 객체인 Object.prototype에는 hasOwnProperty()나 isPrototypeOf() 등과 같이 모든 객체가 호출 가능한 표준 메서드들이 정의되어 있음
 ### 기본 데이터 타입 확장
 - 숫자, 문자열, 배열 등에서 사용되는 표준 메서드들의 경우, 이들의 프로토타입인 Number.prototype, String.prototype, Array.prototype 등에 정의되어 있음
@@ -1089,8 +1089,8 @@ console.dir(String.prototype);
 	```
 	- str 변수에 문자열을 생성한 후 testMethod() 호출 시, 프로토타입 체이닝으로 String.prototype에 정의한 testMethod()가 호출됨
 	- 본 예제처럼 String.prototype 객체에 testMethod() 메서드를 추가하면, 이 메서드는 일반 문자열 표준 메서드처럼 모든 문자열에서 접근 가능
-		![\[실행 결과\]]()
-		![\[String.prototype 객체를 통한 사용자 정의 문자열 메서드 추가\]]()
+		![\[실행 결과\]](images/inside-js-4-fig-34.png)
+		![\[String.prototype 객체를 통한 사용자 정의 문자열 메서드 추가\]](images/inside-js-4-fig-35.png)
 ### 프로토타입도 자바스크립트 객체다
 - 함수가 생성될 때, 자신의 prototype 프로퍼티에 연결되는 프로토타입 객체는 디폴트로 constructor 프로퍼티만을 가진 객체임
 - 프로토타입 객체 역시 자바스크립트 객체이므로 일반 객체처럼 동적으로 프로퍼티 추가, 삭제 가능
@@ -1139,7 +1139,7 @@ console.log(Person.prototype.getName()); // person
 	- `var foo = new Person('foo');`: foo 객체에서 getName()을 찾을 수 없으므로 프로토타입 체이닝 발생, Person.prototype의 getName() 사용
 		⇒ 이 때, getName()을 호출한 객체는 foo 이므로 this는 foo 객체에 바인딩
 	- `Person.prototype.name = 'person';`: Person.prototype 객체에 바로 접근해서 getName() 메서드 호출 시, 메서드를 호출한 객체 Person.prototype에 this 바인딩
-	![\[프로토타입 메서드와 this 바인딩\]]()
+	![\[프로토타입 메서드와 this 바인딩\]](images/inside-js-4-fig-36.png)
 ### 디폴트 프로토타입은 다른 객체로 변경이 가능
 - 디폴트 프로토타입 객체는 함수가 생성될 때 같이 생성됨
 - 함수의 prototype 프로퍼티에 연결됨
@@ -1183,7 +1183,7 @@ console.log(foo.constructor);
 */
 console.log(bar.constructor); // ƒ Object() { [native code] }
 	```
-	![\[예제 동작 구조\]]()
+	![\[예제 동작 구조\]](images/inside-js-4-fig-37.png)
 	1. Person() 함수 생성 시 디폴트로 같이 생성되는 Person.prototype 객체는 자신과 연결된 Person() 생성자 함수를 가리키는 constructor 프로퍼티만을 가짐
 		⇒ 때문에, Person.prototype.constructor는 Person() 생성자 함수를 가리킴
 	2. foo 객체 생성: 객체 생성 규칙에 따라 foo 객체는 Person.prototype 객체를 자신의 프로토타입으로 연결
@@ -1226,5 +1226,5 @@ console.log(bar.country); // korea
 	1. foo.country에 접근하려 했을 때, foo 객체는 name 프로퍼티밖에 없으므로 프로토타입 체이닝 ⇒ foo의 프로토타입 객체인 Person.prototype의 country 프로퍼티값이 출력
 	2. foo.country 값에 ‘usa’ 를 저장하면, 프로토타입 체이닝이 동작하지 않고, foo 객체에 country 프로퍼티값이 동적으로 생성
 	3. foo.country는 프로토타입 체이닝 없이 값이 출력, bar 객체는 프로토타입 체이닝을 거침
-	![\[동작 그림\]]()
+	![\[동작 그림\]](images/inside-js-4-fig-38.png)
 <empty-block/>

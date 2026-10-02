@@ -64,7 +64,7 @@ var plus = add;
 console.log(add(3, 4)); // 7
 console.log(plus(5, 6)); // 11
 	```
-![\[add와 plus 함수 변수는 두 개의 인자를 도하는 동일한 익명 함수를 참조함\]]()
+![\[add와 plus 함수 변수는 두 개의 인자를 도하는 동일한 익명 함수를 참조함\]](images/js-summary-01.png)
 - length 프로퍼티
 	- 배열 객체: 배열의 원소 개수
 	- 함수 객체: 인자의 개수

@@ -1,9 +1,7 @@
-<table_of_contents color="gray"/>
 ## OAuth
-<callout icon="💡" color="gray_bg">
-	**정의**
-	OAuth 프로토콜: 클라이언트가 액세스 토큰을 획득하고, 그것을 이용해 리소스 소유자의 보호된 리소스에 접근하기 위한 것
-</callout>
+> 💡 **정의**  
+> OAuth 프로토콜: 클라이언트가 액세스 토큰을 획득하고, 그것을 이용해 리소스 소유자의 보호된 리소스에 접근하기 위한 것
+
 - 대기업, 규모가 작은 스타트업이 제공하는 전 세계의 수많은 웹 api를 보호하기 위해 사용되는 보안 프로토콜
 - 웹 사이트 간 연결, 네이티브 애플리케이션과 모바일 애플리케이션을 클라우드 서비스에 연결하는 데 사용
 ### OAuth 2.0
@@ -28,9 +26,8 @@
 - 리소스 소유자를 대신해 서드파티 애플리케이션에게 리소스에 대한 접근을 허용해주는 방식으로 http 서비스에 대한 서드파티 애플리케이션의 접근을 가능하게 함
 - 즉, 인가 프레임워크로서, OAuth는 시스템의 어떤 구성 요소가 다른 시스템의 어떤 구성 요소에 대한 접근 권한을 얻을 수 있게 함
 - 특히, OAuth가 적용된 클라이언트 애플리케이션은 리소스 소유자(엔드 유저)를 대신해 리소스 소유자의 보호된 리소스에 대한 접근 권한을 얻길 원함
-<callout icon="💡" color="gray_bg">
-	OAuth는 보호하고자 하는 리소스의 종류가 무엇인지에는 관심이 없음 ⇒ 그러나, 현재의 RESTful 웹 서비스와 웹/네이티브 클라이언트 애플리케이션 모두에 맞는 프로토콜임
-</callout>
+> 💡 OAuth는 보호하고자 하는 리소스의 종류가 무엇인지에는 관심이 없음 ⇒ 그러나, 현재의 RESTful 웹 서비스와 웹/네이티브 클라이언트 애플리케이션 모두에 맞는 프로토콜임
+
 ### OAuth의 구성요소
 - 리소스 소유자: api에 대한 접근 권한을 갖고 있으며, 그것을 위임 가능
 	- 보통 리소스 소유자 = 서비스 사용자, 웹 브라우저를 이용한다고 가정함
@@ -42,9 +39,8 @@
 	- “클라이언트”라는 이름이 마치 웹 브라우저를 의미하는 것으로 들릴 수 있지만, OAuth에서는 아님
 	- OAuth 에서 클라이언트는 보호된 리소스를 구성하는 api를 이용하는 소프트웨어
 	- 이 책에서는 클라이언트를 기어가 화면에 보이는 컴퓨터로 표현됨
-<callout icon="💡" color="gray_bg">
-	OAuth를 통해 클라이언트는 리소스 소유자 대신 보호된 리소스에 대한 접근 권한을 획득한다
-</callout>
+> 💡 OAuth를 통해 클라이언트는 리소스 소유자 대신 보호된 리소스에 대한 접근 권한을 획득한다
+
 ### 예시) OAuth의 구성요소
 ![](images/oauth2-01.png)
 - 저장 사이트에 업로드한 사진을 인화하고 싶다고 가정
@@ -69,9 +65,8 @@
 	- 이를 해결하기 위한 방법
 		1. 사용자에게 물어봄: 사진 인화 서비스가 사용자의 사진에 접근하기 위해, 사용자가 이용하는 사진 저장 사이트의 이름과 비밀번호를 입력하라고 요청
 			⇒ 계정 정보를 저장할 시, 클라이언트가 침해되면 사용자 계정 또한 같이 침해될 수 있기에 위험함
-			<callout icon="💡" color="gray_bg">
-				예시로 LDAP 인증이 있음
-			</callout>
+			> 💡 예시로 LDAP 인증이 있음
+
 		2. 개발자 키를 클라이언트에 발급하고, 클라이언트는 그것을 이용해 보호된 리소스를 직접 요청
 			- 개발자 키는 사용자를 나타내는 범용 키의 역할을 함
 			- 또한, 호출하는 api에 대한  파라미터로 전달됨
@@ -109,32 +104,29 @@
 - 사용자는 액세스 토큰을 직접 보거나 처리할 필요 없음
 - OAuth 프로토콜은 클라이언트가 토큰을 요청하고, 사용자는 해당 클라이언트를 인가하는 방식으로 클라이언트에게 접근 권한을 부여함
 - 클라이언트는 발급받은 토큰을 관리하고, 사용자는 클라이언트 애플리케이션을 관리함
-<callout icon="💡" color="gray_bg">
-	클라이언트가 OAuth 를 이용해 엑세스 토큰을 발급받는 데에는 여러 가지 방법이 있음
-</callout>
+> 💡 클라이언트가 OAuth 를 이용해 엑세스 토큰을 발급받는 데에는 여러 가지 방법이 있음
+
 ### http basic과 비밀번호 공유 방식을 넘어
 - http api가 비밀번호를 보호하는 방법
 	- http basic auth
 	- http digest auth 등
 - http는 상태가 유지되는 프로토콜이 아니므로 매번 자격 증명 정보가 함께 전달되어야 함 → http 가 문서 접근을 위한 프로토콜이기 때문
-<callout icon="💡" color="gray_bg">
-	http 프로토콜이 사용자 서비스를 위한 api에 직접적으로 사용되기 시작하며, 그것의 보안 매커니즘 또한 빠르게 채택됨
-	- 웹 브라우저에서는 쿠키나 세션 관리 기술을 사용할 수 있지만, 웹 api에 접근하는 http 클라이언트의 유형에는 일반적으로 해당하지 않음
-	- OAuth는 원래 api를 사용하기 위해 설계됨 → OAuth를 사용하면 보다 강력하고 안전한 방법으로 http basic 프로토콜의 개념과 가능성을 넘어설 수 있음
-</callout>
+> 💡 http 프로토콜이 사용자 서비스를 위한 api에 직접적으로 사용되기 시작하며, 그것의 보안 매커니즘 또한 빠르게 채택됨
+> - 웹 브라우저에서는 쿠키나 세션 관리 기술을 사용할 수 있지만, 웹 api에 접근하는 http 클라이언트의 유형에는 일반적으로 해당하지 않음
+> - OAuth는 원래 api를 사용하기 위해 설계됨 → OAuth를 사용하면 보다 강력하고 안전한 방법으로 http basic 프로토콜의 개념과 가능성을 넘어설 수 있음
+
 ### 권한 위임: 중요성과 사용 방법
 - OAuth 힘의 기반은 권한 위임이라는 개념
 - 자주 인가 프로토콜로 불리지만, 실은 권한 위임 프로토콜이라고 할 수 있음
 - 일반적으로 OAuth를 통해 사용자의 일부 권한이 위임하지만, OAuth 자체가 그런 인가를 수행하는 것은 아님
 - OAuth는 클라이언트가 사용자에게 사용자의 일부 권한을 위임해달라고 요청할 수 있는 수단을 제공함
 - 그럼 사용자는 클라이언트의 요청을 승인하고, 승인 받은 클라이언트는 승인된 결과에 따라 원하는 작업 수행
-<callout icon="💡" color="gray_bg">
-	**예시**
-	- 사진 전화 서비스 → 사용자
-	- “사진 저장 사이트에 저장된 사진을 인화할 것인지”를 질문
-	- “사진 인화 서비스가 당신의 사진에 접근하는 것을 요청합니다. 승인할까요?”를 질문
-	- 사용자가 요청 승인, 사진 인화 서비스가 사용자의 사진에 접근하는 권한을 위임할 것인지 결정
-</callout>
+> 💡 **예시**
+> - 사진 전화 서비스 → 사용자
+> - “사진 저장 사이트에 저장된 사진을 인화할 것인지”를 질문
+> - “사진 인화 서비스가 당신의 사진에 접근하는 것을 요청합니다. 승인할까요?”를 질문
+> - 사용자가 요청 승인, 사진 인화 서비스가 사용자의 사진에 접근하는 권한을 위임할 것인지 결정
+
 - OAuth 토큰에 의해 수행되는 인가는 대부분의 시스템에서 명확하지 않기 때문에, 위임 프로토콜과 인가 프로토콜을 구별하는 것은 중요
 - 보호된 리소스만이 어떤 형태의 인가인지 알 필요가 있음
 - 그것을 토큰이나 어떤 문맥으로부터 알아낼 수 있다면, 필요한 api 제공 가능
@@ -186,20 +178,18 @@
 	- OAuth 2.0은 다양한 경우를 위한 보안 아키텍처 설계에 사용될 수 있기 때문에, 보안 프로토콜 생성기로 묘사되기도 함
 	- 이런 다양한 시스템은 서로 호환돼야 할 필요가 없음
 - OAuth는 일체형 프로토콜이 아닌, 한 부분에 초첨을 맞추고 나머지 부분은 비워둔 프로토콜임
-<callout icon="💡" color="gray_bg">
-	**요약**
-	- OAuth는 널리 사용되는 보안 표준으로서 친숙한 웹 api를 이용해 보호된 리소스에 안전하게 접근할 수 있게 해 줌
-	- OAuth는 토큰을 어떻게 획득하고 그것을 어떻게 사용하는지에 대한 스펙
-	- OAuth는 인가 접근 시스템을 위한 권한 위임 프로토콜
-	- OAuth는 보다 안전하고 유용한 권한 위임 프로토콜 → 비밀번호 공유 패턴을 대체
-	- OAuth는 작은 문제들을 해결하는 것에 초첨을 맞춤 → 이를 통해 보다 큰 보안 시스템에서 적합한 구성 요소가 될 수 있음
-</callout>
+> 💡 **요약**
+> - OAuth는 널리 사용되는 보안 표준으로서 친숙한 웹 api를 이용해 보호된 리소스에 안전하게 접근할 수 있게 해 줌
+> - OAuth는 토큰을 어떻게 획득하고 그것을 어떻게 사용하는지에 대한 스펙
+> - OAuth는 인가 접근 시스템을 위한 권한 위임 프로토콜
+> - OAuth는 보다 안전하고 유용한 권한 위임 프로토콜 → 비밀번호 공유 패턴을 대체
+> - OAuth는 작은 문제들을 해결하는 것에 초첨을 맞춤 → 이를 통해 보다 큰 보안 시스템에서 적합한 구성 요소가 될 수 있음
+
 ## OAuth 2.0의 기본
-<callout icon="💡" color="gray_bg">
-	**들어가기 전에**
-	- OAuth 트랜잭션을 만드려면 어떤 단계를 거쳐야 하나?
-	- 그 이후에는 무엇을 해야 하며, 어떻게 하면 OAuth를 안전하게 만들 수 있을까?
-</callout>
+> 💡 **들어가기 전에**
+> - OAuth 트랜잭션을 만드려면 어떤 단계를 거쳐야 하나?
+> - 그 이후에는 무엇을 해야 하며, 어떻게 하면 OAuth를 안전하게 만들 수 있을까?
+
 ### OAuth 2.0 프로토콜의 개요: 토큰의 획득과 사용
 - OAuth 트랜잭션의 2가지 중요한 단계
 	- 토큰을 발급
@@ -213,12 +203,11 @@
 	4. 클라이언트는 인가 서버로부터 토큰을 전달받음
 	5. 클라이언트는 보호된 리소스에 접근하기 위해 토큰을 사용
 ### OAuth 2.0 인가 그랜트
-<callout icon="💡" color="gray_bg">
-	**OAuth의 인가 그랜트 절차**
-	- 각 단계의 http 요청과 응답 내용 살펴보기
-	- 특히, 웹 기반의 클라이언트 애플리케이션을 이용해 인가 코드 그랜트가 수행되는 과정을 살펴보기
-	- 해당 클라이언트는 리소스 소유자와 직접 상호 작용해 권한을 부여받음
-</callout>
+> 💡 **OAuth의 인가 그랜트 절차**
+> - 각 단계의 http 요청과 응답 내용 살펴보기
+> - 특히, 웹 기반의 클라이언트 애플리케이션을 이용해 인가 코드 그랜트가 수행되는 과정을 살펴보기
+> - 해당 클라이언트는 리소스 소유자와 직접 상호 작용해 권한을 부여받음
+
 - `인가 코드 그랜트`: 리소스 소유자가 클라이언트에게 접근 권한을 위임했다는 것을 나타내기 위해, 임시 자격 증명인 인가 코드를 사용
 	![](images/oauth2-07.png)
 	1. 리소스 소유자는 클라이언트에게 자신을 대신해 어떤 특정한 보호된 리소스에 접근해 작업을 수행하라고 함
@@ -280,13 +269,13 @@
 			⇒ 인가 코드가 유효하고, 이전에 사용된 적이 없으며, 질의를 요청한 클라이언트가 원래 권한을 요청한 클라이언트와 같다고 판단될 시
 	- 토큰은 json 객체 형태로 http 응답 안에 포함되어 전달됨
 		```javascript
-HTTP 200 OK
-Date: Fri, 31 Jul ...
-Content-type: application/json
-{
-	"access_token": "234SDfsdf34dsfsfsd", // OAuth Bearer 토큰이 전달됨
-	"token_type": "Bearer"
-}
+		HTTP 200 OK
+		Date: Fri, 31 Jul ...
+		Content-type: application/json
+		{
+			"access_token": "234SDfsdf34dsfsfsd", // OAuth Bearer 토큰이 전달됨
+			"token_type": "Bearer"
+		}
 		```
 		![](images/oauth2-16.png)
 - 클라이언트는 토큰 응답을 분석, 엑세스 토큰 값 추출 ⇒ 보호된 리소스에 접근
@@ -294,18 +283,17 @@ Content-type: application/json
 	- 리프레시 토큰(권한 위임을 다시 받지 않고 새로운 엑세스 토큰을 얻기 위해 사용됨) 
 	- 토큰의 권한 범위나 만료 시간을 알 수 있는 엑세스 토큰에 대한 추가 정보 등
 - 클라이언트는 엑세스 토큰을 자신이 원하는 기간 동안 안전한 장소에 저장 가능
-<callout icon="💡" color="gray_bg">
-	**Bearer 토큰**
-	- 주요 OAuth 스펙에서도 Bearer 토큰을 다루며, 해당 토큰을 가진 누구나 제약 없이 해당 리소스에 접근 가능
-</callout>
+> 💡 **Bearer 토큰**
+> - 주요 OAuth 스펙에서도 Bearer 토큰을 다루며, 해당 토큰을 가진 누구나 제약 없이 해당 리소스에 접근 가능
+
 - 토큰 획득 후, 클라이언트는 보호된 리소스에 해당 토큰 전달 가능
 	- 여러가지 방법 중 Authorization 헤더를 이용하는 방법 예시
 		```javascript
-GET /resource HTTP/1.1
-Host: localhost:9002
-Accept: application/json
-Connection: keep-alive
-Authorization: Bearer 23423dfDF3423l2340mf
+		GET /resource HTTP/1.1
+		Host: localhost:9002
+		Accept: application/json
+		Connection: keep-alive
+		Authorization: Bearer 23423dfDF3423l2340mf
 		```
 	- 보호된 리소스는 헤더에서 전달된 토큰을 추출
 		→ 유효한 토큰인지 확인
@@ -316,10 +304,9 @@ Authorization: Bearer 23423dfDF3423l2340mf
 		- 인가 서버는 새로운 토큰이 만들어지만 그것을 저장소에 저장, 리소스 서버는 저장소에서 토큰을 읽어 전달된 토큰 확인
 		![](images/oauth2-17.png)
 ### OAuth의 구성원: 클라이언트, 인가 서버, 리소스 소유자 그리고 보호된 리소스
-<callout icon="💡" color="gray_bg">
-	**OAuth 시스템의 4개 구성원**
-	- 클라이언트, 리소스 소유자, 인가 서버, 보호된 리소스
-</callout>
+> 💡 **OAuth 시스템의 4개 구성원**
+> - 클라이언트, 리소스 소유자, 인가 서버, 보호된 리소스
+
 - OAuth 클라이언트: 리소스 소유자를 대신해 보호된 리소스에 접근하고자 하는 소프트웨어
 	- OAuth 프로토콜 설계상에서 클라이언트는 가장 단순한 OAuth 시스템의 구성 요소
 	- 인가 서버로부터 액세스 토큰을 획득하고 이 토큰을 이용해 보호된 리소스에 접근하는 역할 담당
@@ -347,9 +334,8 @@ Authorization: Bearer 23423dfDF3423l2340mf
 	- 인가 결정을 기억하거나 토큰에 대한 자기 검증을 제공하는 경우도 있음
 	- `(ex) 사진 저장 사이트가 보호된 리소스를 위한 인가 서버를 운영`
 ### OAuth의 구성 요소: 토큰, 범위 그리고 인가 그랜트
-<callout icon="💡" color="gray_bg">
-	OAuth의 생태계는 구성원 뿐만 아니라 개념적이고 물리적인 몇 가지 다른 메커니즘에 의존하며, 이 메커니즘들은 구성원을 연결하는 역할을 담당
-</callout>
+> 💡 OAuth의 생태계는 구성원 뿐만 아니라 개념적이고 물리적인 몇 가지 다른 메커니즘에 의존하며, 이 메커니즘들은 구성원을 연결하는 역할을 담당
+
 - 엑세스 토큰
 	- 클라이언트에게 권한이 위임됐다는 것을 나타내기 위해 인가 서버가 클라이언트에게 발급
 	- 토큰의 포맷이나 내용을 정의하지 않음
@@ -396,10 +382,9 @@ Authorization: Bearer 23423dfDF3423l2340mf
 			⇒ “인가 그랜트”
 		- 즉, 토큰을 획득하기 위한 방법
 ### OAuth의 구성원과 구성 요소 간의 상호 작용
-<callout icon="💡" color="gray_bg">
-	**백 채널, 프런트 채널, 엔드 포인트**
-	- OAuth는 http 기반 프로토콜이지만, 대부분과 달리 OAuth 통신은 항상 단순한 http 요청과 응답으로 이뤄지지 않음
-</callout>
+> 💡 **백 채널, 프런트 채널, 엔드 포인트**
+> - OAuth는 http 기반 프로토콜이지만, 대부분과 달리 OAuth 통신은 항상 단순한 http 요청과 응답으로 이뤄지지 않음
+
 - 백 채널 통신
 	- OAuth 프로세스의 많은 부분에서 일반적인 http 요청과 응답으로 구성 요소 간의 통신이 이뤄짐
 	- 이는 보통 리소스 소유자와 사용자 에이전트 범위 밖에서 이뤄지는 통신이므로 백 채널 통신이라고 함
@@ -412,9 +397,8 @@ Authorization: Bearer 23423dfDF3423l2340mf
 		- 인가 서버는 json 객체 형식의 토큰을 응답으로 전달
 	- 클라이언트가 보호된 리소스에 접근할 때도 백 채널 통신으로 http를 직접 호출함
 		- 전달되는 내용: 보호된 리소스에 따라 결정됨
-	<callout icon="💡" color="gray_bg">
-		백 채널 통신에서 클라이언트는 OAuth 토큰을 전달하고 보호된 리소스는 자신에게 전달된 토큰과 그것이 갖고 있는 권한을 이해할 수 있어야 함
-	</callout>
+	> 💡 백 채널 통신에서 클라이언트는 OAuth 토큰을 전달하고 보호된 리소스는 자신에게 전달된 토큰과 그것이 갖고 있는 권한을 이해할 수 있어야 함
+
 - 프런트 채널 통신
 	- 일반적인 http 통신에서 http 클라이언트는 헤더와 질의 파라미터, 질의 내용, 서버에 직접 전달할 정보 포함 요청을 보냄
 	- 서버는 전달된 정보의 내용을 확인 → 해당 요청에 대해 어떻게 응답할 것인지 결정
@@ -435,8 +419,8 @@ Authorization: Bearer 23423dfDF3423l2340mf
 			⇒ 이를 위해 클라이언트는 웹 브라우저에게 http 리다이렉트를 전달해야 함
 		- 리다이렉트되는 목적지: 서버의 url에 질의 파라미터가 포함된 주소
 		```javascript
-HTTP 302 Found
-Location: http://localhost:9001/authorize?client_id=oauth-client-1&response_type=code&state=843hi4234234tggg
+		HTTP 302 Found
+		Location: http://localhost:9001/authorize?client_id=oauth-client-1&response_type=code&state=843hi4234234tggg
 		```
 		![](images/oauth2-21.png)
 		- 인가 서버는 다른 http 요청과 마찬가지로 인입되는 url을 파싱 → 클라이언트가 파라미터로 전달한 정보 추출
@@ -447,42 +431,39 @@ Location: http://localhost:9001/authorize?client_id=oauth-client-1&response_type
 			⇒ 이 때, 리다이렉트되는 목적지 주소가 클라이언트의 redirect_url이 됨
 			⇒ 인가 서버는 전달하는 리다이렉트 url에 질의 파라미터 포함시킴
 		```javascript
-HTTP 302 Found
-Location: http://localhost:9001/oauth_callback?code=432wer523rert&state=234df234df
+		HTTP 302 Found
+		Location: http://localhost:9001/oauth_callback?code=432wer523rert&state=234df234df
 		```
 		- 웹 브라우저가 인가 서버가 전달한 주소로 리다이렉트
 			→ 클라이언트 애플리케이션에는 http 요청이 전달됨
 			→ 클라이언트는 전달된 url 파라미터를 파싱
 	- 이런 식으로, 클라이언트와 인가 서버는 서로 직접 대화하지 않고 중개인을 통해 서로 메시지를 전달함
-	<callout icon="💡" color="gray_bg">
-		**만약 클라이언트가 웹 애플리케이션이 아니라면?**
-		- 웹 애플리케이션이나 네이티브 애플리케이션 모두 OAuth 이용 가능
-		- 인가 엔드포인트로부터 정보를 전달받기 위해, 모두 동일한 프런트 채널 메커니즘을 이용해야 함
-		- 프런트 채널은 항상 웹 브라우저와 http 리다이렉트를 이용함
-		- 반드시 일반적인 웹 서버를 이용해야 하는 것은 아니며, 내부 웹 서버나 애플리케이션을 위한 특정 url 체계나 백엔드 서비스로부터의 푸시 알림과 같은 트릭 사용 가능
-		- 웹 브라우저가 url을 호출할 수만 있다면 어쨌든 동작하는 데는 문제가 없음
-	</callout>
+	> 💡 **만약 클라이언트가 웹 애플리케이션이 아니라면?**
+	> - 웹 애플리케이션이나 네이티브 애플리케이션 모두 OAuth 이용 가능
+	> - 인가 엔드포인트로부터 정보를 전달받기 위해, 모두 동일한 프런트 채널 메커니즘을 이용해야 함
+	> - 프런트 채널은 항상 웹 브라우저와 http 리다이렉트를 이용함
+	> - 반드시 일반적인 웹 서버를 이용해야 하는 것은 아니며, 내부 웹 서버나 애플리케이션을 위한 특정 url 체계나 백엔드 서비스로부터의 푸시 알림과 같은 트릭 사용 가능
+	> - 웹 브라우저가 url을 호출할 수만 있다면 어쨌든 동작하는 데는 문제가 없음
+
 	- 프런트 채널을 통해 전달되는 모든 정보는 웹 브라우저가 접근 가능
 	- 해당 내용을 읽거나 질의가 전송되기 전에, 질의 내용이 조작될 잠재적인 가능성이 존재함
 	- OAuth 프로토콜은 프런트 채널을 통해 전달되는 정보의 종류를 제한, 프런트 채널에서 사용된 어떤 정보도 단독으로 권한 위임 작업을 위해 사용될 수 없도록 함
 	- 인가 코드는 웹 브라우저가 직접 사용할 수 없지만, 백 채널에서 클라이언트의 자격 증명과 함께 제시되어야 함
 	- OpenID 커넥트와 같은 프로토콜은 클라이언트나 인가 서버가 프런트 채널 메세지를 서명함으로써 보다 향상된 보안성 제공
-<callout icon="💡" color="gray_bg">
-	**요약**
-	- OAuth는 유동적인 부분을 가진 프로토콜이지만, 권한을 위임하기 위한 안전한 방법을 간단히 제공할 수 있도록 만들어짐
-	- OAuth의 구성 요소는 서로 간의 통신을 위해 다음 2가지 http 통신을 수행함
-		- 백 채널(직접적)
-		- 프런트 채널(간접적)
-</callout>
+> 💡 **요약**
+> - OAuth는 유동적인 부분을 가진 프로토콜이지만, 권한을 위임하기 위한 안전한 방법을 간단히 제공할 수 있도록 만들어짐
+> - OAuth의 구성 요소는 서로 간의 통신을 위해 다음 2가지 http 통신을 수행함
+>     - 백 채널(직접적)
+>     - 프런트 채널(간접적)
+
 ## 간단한 OAuth 클라이언트
-<callout icon="💡" color="gray_bg">
-	**들어가기 전에**
-	- 인가 서버에 OAuth 클라이언트를 등록하고, 인가 서버와 통신할 수 있도록 클라이언트 설정
-	- 인가 코드 그랜트 타입으로 접근 권한을 리소스 소유자에게 요청
-	- 인가 코드를 토큰으로 교환
-	- 보호된 리소스에 접근하기 위해 Bearer 액세스 토큰을 이용
-	- 엑세스 토큰 갱신
-</callout>
+> 💡 **들어가기 전에**
+> - 인가 서버에 OAuth 클라이언트를 등록하고, 인가 서버와 통신할 수 있도록 클라이언트 설정
+> - 인가 코드 그랜트 타입으로 접근 권한을 리소스 소유자에게 요청
+> - 인가 코드를 토큰으로 교환
+> - 보호된 리소스에 접근하기 위해 Bearer 액세스 토큰을 이용
+> - 엑세스 토큰 갱신
+
 - 인가 코드 그랜트 타입을 이용 → 인가 서버로부터 Bearer 액세스 토큰 획득 → 이를 이용해 보호된 리소스에 접근
 ### 인가 서버에 OAuth 클라이언트 등록
 - OAuth 클라이언트와 인가 서버는 통신 전, 상대방에 대해 몇 가지를 알 필요가 있음
@@ -490,7 +471,7 @@ Location: http://localhost:9001/oauth_callback?code=432wer523rert&state=234df234
 - OAuth 클라이언트는 클라이언트 식별자라는 특별한 문자열로 식별되며, 이 책에서는 보통 client_id 라는 이름으로 참조됨
 - 클라이언트 식별자는 인가 서버에서 볼 때 고유한 값이어야 함 → 인가 서버가 클라이언트에 할당함
 - 클라이언트 식별자 할당은 개발자 포털이나 동적 클라이언트 등록 또는 기타 다른 절차롤 통해 이뤄짐
-## \\exercises\\ch-3-ex-1
+## exercises/ch-3-ex-1
 - 여기서 다룰 OAuth 클라이언트는 Node.js에 의해 호스팅되는 웹 애플리케이션
 - 클라이언트가 서버의 역할도 수행하게 됨
 - Oauth 클라이언트는 인가 서버로부터 토큰을 받고, 그것을 이용해 보호된 리소스에 접근하는 소프트웨어
@@ -511,23 +492,23 @@ PS D:\test\oauth-in-action-code\exercises\ch-3-ex-1> npm install
 	- 클라이언트는 인가 서버로부터 자신을 인증받기 위해 client_secret 이라는 공유된 비밀정보를 저장해 가짐
 - http basic 이용: client_secret을 인가 서버의 토큰 엔드포인트에 전달 가능
 	```javascript
-// authorization server information
-// 클라이언트는 자신이 대화하는 서버가 무엇이고, 어떻게 대화해야 하는지 알아야 함
-// 서버의 인가 엔드포인트, 토큰 엔드포인트의 주소도 필요
-var authServer = {
-	authorizationEndpoint: 'http://localhost:9001/authorize',
-	tokenEndpoint: 'http://localhost:9001/token'
-};
+	// authorization server information
+	// 클라이언트는 자신이 대화하는 서버가 무엇이고, 어떻게 대화해야 하는지 알아야 함
+	// 서버의 인가 엔드포인트, 토큰 엔드포인트의 주소도 필요
+	var authServer = {
+		authorizationEndpoint: 'http://localhost:9001/authorize',
+		tokenEndpoint: 'http://localhost:9001/token'
+	};
 
-// client information
-// 신뢰할 수 있는 OAuth 클라이언트
-var client = {
-	"client_id": "oauth-client-1",
-	"client_secret": "oauth-client-secret-1", // 인가 서버가 할당
-	// 클라이언트가 인가 서버로부터 자기자신을 인증받기 위해 공유된 비밀번호를 가짐
-	// client_secret은 다양한 방법으로 인가 서버의 토큰 엔드포인트에 전달 가능: 여기서는 http basic 이용
-	"redirect_uris": ["http://localhost:9000/callback"]
-};
+	// client information
+	// 신뢰할 수 있는 OAuth 클라이언트
+	var client = {
+		"client_id": "oauth-client-1",
+		"client_secret": "oauth-client-secret-1", // 인가 서버가 할당
+		// 클라이언트가 인가 서버로부터 자기자신을 인증받기 위해 공유된 비밀번호를 가짐
+		// client_secret은 다양한 방법으로 인가 서버의 토큰 엔드포인트에 전달 가능: 여기서는 http basic 이용
+		"redirect_uris": ["http://localhost:9000/callback"]
+	};
 	```
 ### 인가 코드 그랜트 타입을 이용해 토큰 얻기
 - OAuth 클라이언트가 인가 서버로부터 토큰을 얻기 위해, 리소스 소유자로부터 어떤 형식으로든 권한을 위임받아야 함
@@ -541,11 +522,11 @@ var client = {
 		⇒ 인가 엔드포인트로 연결됨(자동 리다이렉트)
 	- `Get Protected Resource` 버튼: 클라이언트가 보호된 리소스에 접근하기 위함
 	```javascript
-var authorizeUrl = buildUrl(authServer.authorizationEndpoint, options);
-// 인가 프로세스를 시작하기 위해, 적당한 질의 파라미터를 url에 포함시킴 -> 사용자를 서버의 인가 엔드포인트로 리다이렉트
+	var authorizeUrl = buildUrl(authServer.authorizationEndpoint, options);
+	// 인가 프로세스를 시작하기 위해, 적당한 질의 파라미터를 url에 포함시킴 -> 사용자를 서버의 인가 엔드포인트로 리다이렉트
 	```
 	```javascript
-res.redirect(authorizeUrl); // 사용자의 웹 브라우저를 인가 엔드포인트로 리다이렉트 시킴
+	res.redirect(authorizeUrl); // 사용자의 웹 브라우저를 인가 엔드포인트로 리다이렉트 시킴
 	```
 	![왼쪽 - 클라이언트의 권한 위임 요청을 위한 인가 서버의 승인 페이지](images/oauth2-22.png)
 	- 리다이렉트 함수는 [localhost:9000/authorize](http://localhost:9000/authorize) 에 대한 요청의 응답으로 http 302 redirect 메세지 전달
@@ -558,8 +539,8 @@ res.redirect(authorizeUrl); // 사용자의 웹 브라우저를 인가 엔드포
 	- 동시에, 몇 개의 url 파라미터가 함께 전달됨
 	- 클라이언트로의 리다이렉트는 이 함수에 의해 수행됨: /callback
 	```javascript
-app.get('/callback', function(req, res){
-// ...
+	app.get('/callback', function(req, res){
+	// ...
 	```
 	- 액세스 토큰을 얻어 저장한 후: 웹 브라우저상에 사용자를 토큰 값을 표시하는 페이지로 이동
 	![](images/oauth2-23.png)
@@ -578,32 +559,31 @@ app.get('/callback', function(req, res){
 	- 보호된 리소스는 유효한 액세스 토큰을 기다리고 있다가, 유효한 토큰이 전달되면 어떤 유용한 정보를 전달해주는 역할을 함
 	- 클라이언트는 액세스 토큰을 이용해 보호된 리소스를 요청하기만 하면 됨
 	- 예제) Authorization http 헤더에 액세스 토큰을 담아 전달
-	<callout icon="💡" color="gray_bg">
-		**Bearer 토큰을 전달하는 방법**
-		- 지금까지 언급된 OAuth 액세스 토큰은 Bearer 토큰으로서, 누구나 그것을 갖고 있으면 보호된 리소스에 접근 가능
-		- OAuth Bearer 토큰의 사용법을 정의한 스펙의 세 가지 토큰 전달 방법
-			1. http Authorization 헤더 이용
-			2. 폼 인코딩된 요청 파라미터로 전달
-			3. url 인코딩된 질의 파라미터로 전달
-			⇒ 2, 3번은 한계가 있으므로, 가능하면 1번이 권장됨
-		- 질의  파라미터로 액세스 토큰을 전달할 때, 액세스 토큰이 url 질의에 포함되기 때문에 서버 로그에 액세스 토큰값이 유출될 수 있음
-		- 폼 인코딩된 파라미터로 액세스 토큰을 전달할 때, 보호된 리소스의 입력 유형이 폼 인코딩된 파라미터로 제한되고, post 전송만 사용할 수 있음
-		- Authorization 헤더를 이용할 때, 가장 유연하고 보안성이 좋으나, 일부 클라이언트에서는 사용하기 어려울 수 있음
-		- 견고하게 작성된 클라이언트나 서버 라이브러리는 세 가지 방법 모두 제공될 것
-	</callout>
+	> 💡 **Bearer 토큰을 전달하는 방법**
+	> - 지금까지 언급된 OAuth 액세스 토큰은 Bearer 토큰으로서, 누구나 그것을 갖고 있으면 보호된 리소스에 접근 가능
+	> - OAuth Bearer 토큰의 사용법을 정의한 스펙의 세 가지 토큰 전달 방법
+	>     1. http Authorization 헤더 이용
+	>     2. 폼 인코딩된 요청 파라미터로 전달
+	>     3. url 인코딩된 질의 파라미터로 전달
+	>     ⇒ 2, 3번은 한계가 있으므로, 가능하면 1번이 권장됨
+	> - 질의  파라미터로 액세스 토큰을 전달할 때, 액세스 토큰이 url 질의에 포함되기 때문에 서버 로그에 액세스 토큰값이 유출될 수 있음
+	> - 폼 인코딩된 파라미터로 액세스 토큰을 전달할 때, 보호된 리소스의 입력 유형이 폼 인코딩된 파라미터로 제한되고, post 전송만 사용할 수 있음
+	> - Authorization 헤더를 이용할 때, 가장 유연하고 보안성이 좋으나, 일부 클라이언트에서는 사용하기 어려울 수 있음
+	> - 견고하게 작성된 클라이언트나 서버 라이브러리는 세 가지 방법 모두 제공될 것
+
 - 버튼 2: `Get Protected Resource`
 	- 액세스 토큰으로 보호된 리소스 가져오기
 	- 보호된 리소스로부터 전달받은 데이터를 화면상에 출력
 		```javascript
-app.get('/fetch_resource', function(req, res) {
-// ...
+		app.get('/fetch_resource', function(req, res) {
+		// ...
 		```
 		![](images/oauth2-24.png)
-## \\exercises\\ch-3-ex-2
+## exercises/ch-3-ex-2
 - (ch-3-ex-1에 이어서) 엑세스 토큰 갱신
 	```javascript
-PS D:\test\oauth-in-action-code\exercises> cd .\ch-3-ex-2\
-PS D:\test\oauth-in-action-code\exercises\ch-3-ex-2> npm install
+	PS D:\test\oauth-in-action-code\exercises> cd .\ch-3-ex-2\
+	PS D:\test\oauth-in-action-code\exercises\ch-3-ex-2> npm install
 	```
 	- 액세스 토큰이 만료되는 경우라면? 
 		⇒ OAuth 2.0은 사용자 개입 없이 새로운 액세스 토큰을 얻을 수 있는 방법 제공
@@ -615,20 +595,20 @@ PS D:\test\oauth-in-action-code\exercises\ch-3-ex-2> npm install
 	![메인 화면에서 Get Protected Resource 버튼 클릭했을 때](images/oauth2-25.png)
 - 목표: 클라이언트가 리프레시 토큰을 사용해 새로운 액세스 토큰을 얻고, 새로 얻은 액세스 토큰으로 보호된 리소스를 다시 요청하도록 하기
 	```javascript
-var access_token = '987tghjkiu6trfghjuytrghj';
-var scope = null;
-var refresh_token = 'j2r3oj32r23rmasd98uhjrk2o3i';
+	var access_token = '987tghjkiu6trfghjuytrghj';
+	var scope = null;
+	var refresh_token = 'j2r3oj32r23rmasd98uhjrk2o3i';
 	```
 	- 인가 서버는 데이터베이스를 초기화한 후 시작할 때, 이전의 리프레시 토큰을 자동으로 삽입
 	- 액세스 토큰이 이미 만료됐어도 리프레시 토큰은 여전히 동작하는 환경을 만들고자 하기에, 이전의 액세스 토큰은 삽입하지 않음
 	- `Get Protected Resource`: /fetch_resouce 클릭 시 찍히는 콘솔 내용
 	```javascript
-Making request with access token 987tghjkiu6trfghjuytrghj
-Refreshing token j2r3oj32r23rmasd98uhjrk2o3i
-Got access token: ZeKXR0tO3QwIg8LSGIdV7xoKJVCwlo6y
-Got refresh token: j2r3oj32r23rmasd98uhjrk2o3i                   
-Got scope: undefined                                             
-Making request with access token ZeKXR0tO3QwIg8LSGIdV7xoKJVCwlo6y
+	Making request with access token 987tghjkiu6trfghjuytrghj
+	Refreshing token j2r3oj32r23rmasd98uhjrk2o3i
+	Got access token: ZeKXR0tO3QwIg8LSGIdV7xoKJVCwlo6y
+	Got refresh token: j2r3oj32r23rmasd98uhjrk2o3i                   
+	Got scope: undefined                                             
+	Making request with access token ZeKXR0tO3QwIg8LSGIdV7xoKJVCwlo6y
 	```
 	![](images/oauth2-26.png)
 	![](images/oauth2-27.png)
@@ -641,45 +621,43 @@ Making request with access token ZeKXR0tO3QwIg8LSGIdV7xoKJVCwlo6y
 - 지금까지 OAuth 클라이언트를 만들었음
 - 이젠 보호된 리소스를 만들어, 클라이언트가 액세스 토큰으로 해당 리소스에 대한 접근을 요청할 수 있게 할 예정
 - 클라이언트가 요청 보냄 → 인가 서버가 보호하는 간단한 리소스 서버 만들어보기
-<callout icon="💡" color="gray_bg">
-	**들어가기 전에**
-	- 인입되는 OAuth 토큰 요청 처리
-	- 토큰 에러 반환
-	- 요청된 권한 범위에 따른 처리
-	- 리소스 소유자에 따른 요청 처리
-</callout>
+> 💡 **들어가기 전에**
+> - 인입되는 OAuth 토큰 요청 처리
+> - 토큰 에러 반환
+> - 요청된 권한 범위에 따른 처리
+> - 리소스 소유자에 따른 요청 처리
+
 - 대부분 웹 기반 api의 경우, OAuth 보안 계층을 추가하는 것은 간단한 작업
 - OAuth 프로세스에서 리소스 서버는 인입된 http 요청에서 OAuth 토큰을 추출 → 그것을 검증 → 해당 토큰이 어떤 종류의 요청을 할 수 있는 것인지 판단
-<callout icon="💡" color="gray_bg">
-	**예제에서 제공하는 것**
-	- 데이터 보호를 위해 사용할 수 있는 리소스 엔드포인트와 데이터 객체 제공
-	- 각 예제에 포함된 클라이언트 애플리케이션은 위를 호출하도록 설정됨
-	- http get/post 요청에 대한 json 객체를 제공하기 위해 간단한 데이터 저장소 역할을 하는 리소스 서버를 만들 예정
-</callout>
+> 💡 **예제에서 제공하는 것**
+> - 데이터 보호를 위해 사용할 수 있는 리소스 엔드포인트와 데이터 객체 제공
+> - 각 예제에 포함된 클라이언트 애플리케이션은 위를 호출하도록 설정됨
+> - http get/post 요청에 대한 json 객체를 제공하기 위해 간단한 데이터 저장소 역할을 하는 리소스 서버를 만들 예정
+
 - OAuth 구조에서 보호된 리소스와 인가 서버는 개념적으로 분리된 구성 요소지만, 리소스 서버와 인가 서버가 같은 곳에 구현되는 경우가 많음
 	⇒ 두 시스템이 서로 밀접하게 연결돼 있다면 해당 구현 방식은 문제 없음
-## \\exercises\\ch-4-ex-1
+## exercises/ch-4-ex-1
 - http 요청에서 OAuth 토큰 피싱
 	- 보호된 리소스는 OAuth Bearer 토큰을 받아들임
 		⇒ 인가 서버가 Bearer 토큰을 발급할 것이기 때문
 	- 여러 개의 리소스 url에서 이를 수행하므로, 헬퍼 함수에서 토큰 스캔
 	- 핼퍼 함수에서 토큰 스캔하는 3가지 방법
 		```javascript
-var getAccessToken = function(req, res, next) { // next: 요청을 계속해서 처리
+		var getAccessToken = function(req, res, next) { // next: 요청을 계속해서 처리
 
-    // http 요청에 인가 헤더가 포함되어 있다면, OAuth Bearer 토큰이 포함돼 있는지 확인
-    var inToken = null;
-    var auth = req.headers['authorization'];
-    if (auth && auth.toLowerCase().indexOf('bearer') == 0) { // [첫번째 방법] authorization과 bearer 문자열이 존재한다면, 헤더에서 토큰 값 추출
-        inToken = auth.slice('bearer '.length);
-    } else if (req.body && req.body.access_token) { // [두번째 방법] 인코딩된 폼으로 토큰이 전달됨: 토큰 값이 존재하는지 확인
-        // not in the header, check in the form body
-        inToken = req.body.access_token;
-    } else if (req.query && req.query.access_token) { // [세번째 방법] 질의 파라미터로 전달되는 토큰 처리
-        inToken = req.query.access_token
-    }
+		    // http 요청에 인가 헤더가 포함되어 있다면, OAuth Bearer 토큰이 포함돼 있는지 확인
+		    var inToken = null;
+		    var auth = req.headers['authorization'];
+		    if (auth && auth.toLowerCase().indexOf('bearer') == 0) { // [첫번째 방법] authorization과 bearer 문자열이 존재한다면, 헤더에서 토큰 값 추출
+		        inToken = auth.slice('bearer '.length);
+		    } else if (req.body && req.body.access_token) { // [두번째 방법] 인코딩된 폼으로 토큰이 전달됨: 토큰 값이 존재하는지 확인
+		        // not in the header, check in the form body
+		        inToken = req.body.access_token;
+		    } else if (req.query && req.query.access_token) { // [세번째 방법] 질의 파라미터로 전달되는 토큰 처리
+		        inToken = req.query.access_token
+		    }
     
-    // ...
+		    // ...
 		```
 		1. 헤더에서 토큰 값 추출
 		2. 인코딩된 폼으로 토큰 전달 처리
@@ -706,26 +684,25 @@ var getAccessToken = function(req, res, next) { // next: 요청을 계속해서 
 	![](images/oauth2-31.png)
 - database.nosql
 	```javascript
-{"access_token":"iwZXL9faMmcfhQXUJUtTTxT7YBWAON6O","client_id":"oauth-client-1","scope":[]}
-{"refresh_token":"Ev6qk1t0VrztHWW7dXQHxU2CCp0zvVsN","client_id":"oauth-client-1","scope":[]}
+	{"access_token":"iwZXL9faMmcfhQXUJUtTTxT7YBWAON6O","client_id":"oauth-client-1","scope":[]}
+	{"refresh_token":"Ev6qk1t0VrztHWW7dXQHxU2CCp0zvVsN","client_id":"oauth-client-1","scope":[]}
 	```
-<callout icon="💡" color="gray_bg">
-	데이터베이스를 공유해 사용해야 할까?
-	- OAuth 구현에서 데이터베이스를 공유해 사용하는 것은 일반적인 패턴이나, 필수는 아님
-	- 토큰 인트로스펙션이라는 표준화된 웹 프로토콜:
-		- 이를 사용하면 리소스 서버는 토큰 상태를 런타임으로 체크 가능
-		- 리소스 서버는 더 많은 네트워크 트래픽이 필요, 클라이언트처럼 토큰 자체를 불명확한 것으로 취급할 수 있음
-		- 토큰 자체에 보호된 리소스가 직접 파싱하고 이해할 수 있는 정보 포함 가능
-		- 위의 예로, JWT(json web token)이 있으며, 암호로 보호된 json 객체에 여러 정보 저장해 전달
-	- 토큰 값을 그대로 데이터베이스에 저장ㅎ야 하는가?
-		- 일반적으로 그렇지만, 다른 방법도 있음
-		- 토큰 값 대신, 그것의 해시 값을 저장하는 방법도 있음
-		- 사용자의 비밀번호를 저장할 때, 일반적으로 사용되는 방법과 유사
-</callout>
+> 💡 데이터베이스를 공유해 사용해야 할까?
+> - OAuth 구현에서 데이터베이스를 공유해 사용하는 것은 일반적인 패턴이나, 필수는 아님
+> - 토큰 인트로스펙션이라는 표준화된 웹 프로토콜:
+>     - 이를 사용하면 리소스 서버는 토큰 상태를 런타임으로 체크 가능
+>     - 리소스 서버는 더 많은 네트워크 트래픽이 필요, 클라이언트처럼 토큰 자체를 불명확한 것으로 취급할 수 있음
+>     - 토큰 자체에 보호된 리소스가 직접 파싱하고 이해할 수 있는 정보 포함 가능
+>     - 위의 예로, JWT(json web token)이 있으며, 암호로 보호된 json 객체에 여러 정보 저장해 전달
+> - 토큰 값을 그대로 데이터베이스에 저장ㅎ야 하는가?
+>     - 일반적으로 그렇지만, 다른 방법도 있음
+>     - 토큰 값 대신, 그것의 해시 값을 저장하는 방법도 있음
+>     - 사용자의 비밀번호를 저장할 때, 일반적으로 사용되는 방법과 유사
+
 ### 토큰에 기반한 콘텐츠 제공
 - 대부분의 api는 접근 권한에 따라 다르게 행동하도록 설계됨
 - 여기서는 OAuth의 권한 범위 매커니즘과 리소스 소유자와 클라이언트에 대한 참조를 기반으로 몇 가지 설정이 필요함
-## \\exercises\\ch-4-ex-2
+## exercises/ch-4-ex-2
 ### 권한 범위에 따른 작업
 - 리소스 서버는 클라이언트가 갖고 있는 권한 범위에 따라 수행되는 기능을 나눌 수 있음
 - 단일 액세스 토큰을 단일 인가 서버와 연결된 여러 개의 리소스 서버에 적용하는 일반적인 방법
@@ -735,14 +712,14 @@ var getAccessToken = function(req, res, next) { // next: 요청을 계속해서 
 	- 전달된 토큰이 최소한 각각의 함수에 연관된 범위를 포함하고 있는지 확인 → 토큰 객체의 scope 멤버 값 확인
 	- GET 요청의 경우, 클라이언트는 read 범위를 가지고 있어야 함
 		```javascript
-app.get('/words', getAccessToken, requireAccessToken, function(req, res) {
-	if (__.contains(req.access_token.scope, 'read')) {
-		res.json({words: savedWords.join(' '), timestamp: Date.now()});
-	} else {
-		res.set('WWW-Authenticate', 'Bearer realm=localhost:9002, error="insufficient_scope", scope="read"');
-		res.status(403).end();
-	}
-});
+		app.get('/words', getAccessToken, requireAccessToken, function(req, res) {
+			if (__.contains(req.access_token.scope, 'read')) {
+				res.json({words: savedWords.join(' '), timestamp: Date.now()});
+			} else {
+				res.set('WWW-Authenticate', 'Bearer realm=localhost:9002, error="insufficient_scope", scope="read"');
+				res.status(403).end();
+			}
+		});
 		```
 		- 만약, 토큰에 필요한 권한 범위가 포함돼 있지 않으면, WWW-Authenticate 헤더를 통해 에러 반환
 			⇒ 리소스 서버는 클라이언트로부터 OAuth Bearer 토큰을 받아들이며, 클라이언트가 요청한 것을 성공적으로 수행하기 위해 최소한 read 범위를 갖고 있어야 한다는 의미
@@ -750,39 +727,39 @@ app.get('/words', getAccessToken, requireAccessToken, function(req, res) {
 	- 이런 식으로 다양한 조합의 권한 범위에 대해 클라이언트 애플리케이션 요청을 다시 한 번 인가
 	- 보호된 리소스와 클라이언트가 더 많은 권한 범위와 액세스 유형을 허용하도록 함
 		⇒ 인가 서버에서 클라이언트 등록 업데이트하는 것 잊지 말기
-## \\exercises\\ch-4-ex-3
+## exercises/ch-4-ex-3
 ### 권한 범위에 따른 데이터 반환
 - 전달된 토큰의 권한 범위에 따라 동일한 핸들러에서 반환되는 정보가 달라져야 함
 - 클라이언트 페이지에서 api를 호출 → 토큰 획득 → api를 호출 → 결과가 클라이언트 페이지에 출력됨
 - 코드는 권한별 개별적 핸들러가 아닌, 하나의 핸들러에서 모두 처리
 	```javascript
-app.get('/produce', getAccessToken, requireAccessToken, function(req, res) {
-	var produce = {fruit: [], veggies: [], meats: []};
-	if (__.contains(req.access_token.scope, 'fruit')) {
-		produce.fruit = ['apple', 'banana', 'kiwi'];
-	}
-	if (__.contains(req.access_token.scope, 'veggies')) {
-		produce.veggies = ['lettuce', 'onion', 'potato'];
-	}
-	if (__.contains(req.access_token.scope, 'meats')) {
-		produce.meats = ['bacon', 'steak', 'chicken breast'];
-	}
-	console.log('Sending produce: ', produce);
-	res.json(produce);
-});
+	app.get('/produce', getAccessToken, requireAccessToken, function(req, res) {
+		var produce = {fruit: [], veggies: [], meats: []};
+		if (__.contains(req.access_token.scope, 'fruit')) {
+			produce.fruit = ['apple', 'banana', 'kiwi'];
+		}
+		if (__.contains(req.access_token.scope, 'veggies')) {
+			produce.veggies = ['lettuce', 'onion', 'potato'];
+		}
+		if (__.contains(req.access_token.scope, 'meats')) {
+			produce.meats = ['bacon', 'steak', 'chicken breast'];
+		}
+		console.log('Sending produce: ', produce);
+		res.json(produce);
+	});
 	```
 - 객체를 유형별로 나눈 것을 확인할 수 있음
 	```javascript
-var produce = {fruit: [], veggies: [], meats: []};
-	if (__.contains(req.access_token.scope, 'fruit')) {
-		produce.fruit = ['apple', 'banana', 'kiwi'];
-	}
-	if (__.contains(req.access_token.scope, 'veggies')) {
-		produce.veggies = ['lettuce', 'onion', 'potato'];
-	}
-	if (__.contains(req.access_token.scope, 'meats')) {
-		produce.meats = ['bacon', 'steak', 'chicken breast'];
-	}
+	var produce = {fruit: [], veggies: [], meats: []};
+		if (__.contains(req.access_token.scope, 'fruit')) {
+			produce.fruit = ['apple', 'banana', 'kiwi'];
+		}
+		if (__.contains(req.access_token.scope, 'veggies')) {
+			produce.veggies = ['lettuce', 'onion', 'potato'];
+		}
+		if (__.contains(req.access_token.scope, 'meats')) {
+			produce.meats = ['bacon', 'steak', 'chicken breast'];
+		}
 	```
 - 결과: fruits, veggies, meats 모두 허용했으므로 모든 리소스가 반환됨
 	![](images/oauth2-34.png)
@@ -790,7 +767,7 @@ var produce = {fruit: [], veggies: [], meats: []};
 	- OAuth 에서는 이처럼 상위 수준의 객체에서 api를 분리할 것을 요구하지는 않음
 	- lowcarb 권한 범위를 클라이언트와 리소스 서버에 추가해, 생산물 중 탄수화물이 적은 음식만 반환하도록 할 수도 있음
 	- 권한 범위가 의미하는 것은 api를 설계하는 사람에게 달려 있으며, OAuth는 그런 것을 가능하게 하는 매커니즘만 제공
-## \\exercises\\ch-4-ex-4
+## exercises/ch-4-ex-4
 ### 사용자에 따른 데이터 반환
 - 클라이언트에게 권한을 인가한 사용자에 따라 동일한 핸들러에서 반환되는 정보가 달라지도록 제작해보기
 - 사용자가 누구인지 알지 못해도, 클라이언트 애플리케이션은 단일 url만 호출하면 됨
@@ -806,32 +783,29 @@ var produce = {fruit: [], veggies: [], meats: []};
 	- 이런 접근 방식 덕분에 OAuth는 인터넷상 매우 다양한 형태의 api에 적용 가능
 	- 리소스 서버는 토큰과 권한 범위와 같은 토큰 안에 포함된 정보 이용 가능 → 해당 정보를 바탕, 인가를 직접적으로 결정할 수 있음
 	- 리소스 서버는 항상 액세스 토큰이 무엇을 의미하는지에 대한 최종 결정권을 가짐
-<callout icon="💡" color="gray_bg">
-	**정리**
-	- 인가 서버에 토큰 발급을 요청
-	- 발급받은 토큰을 이용해 보호된 리소스에 접근하는 OAuth 클라이언트 애플리케이션을 만듦
-	- 클라이언트가 접근하기 위한 보호된 리소스를 만듦
-</callout>
+> 💡 **정리**
+> - 인가 서버에 토큰 발급을 요청
+> - 발급받은 토큰을 이용해 보호된 리소스에 접근하는 OAuth 클라이언트 애플리케이션을 만듦
+> - 클라이언트가 접근하기 위한 보호된 리소스를 만듦
+
 ## 간단한 OAuth 인가 서버
 - 인가 코드 그랜트 타입을 지원하는 간단한 인가 서버 만들업기
 - 인가 서버가 하는 일: 
 	- 클라이언트 관리 
 	- OAuth의 핵심적인 위임 작업을 수행
 	- 클라이언트에게 토큰 발급
-<callout icon="💡" color="gray_bg">
-	**들어가기 전에**
-	- 등록된 OAuth 클라이언트 관리
-	- 클라이언트에 대한 사용자 인가
-	- 인가된 클라이언트에 대한 토큰 발급
-	- 리프레시 토큰 발급과 응답
-</callout>
-## \\exercises\\ch-5-ex-1
+> 💡 **들어가기 전에**
+> - 등록된 OAuth 클라이언트 관리
+> - 클라이언트에 대한 사용자 인가
+> - 인가된 클라이언트에 대한 토큰 발급
+> - 리프레시 토큰 발급과 응답
+
+## exercises/ch-5-ex-1
 - OAuth 서버가 클라이언트와 대화하기 위해, OAuth 서버는 각 클라이언트들에게 고유한 클라이언트 식별자 할당
 	- 예제) 클라이언트를 정적으로 등록, 클라이언트 정보를 서버의 변수에 저장
-<callout icon="💡" color="gray_bg">
-	**클라이언트 ID는 누가 만들까?**
-	- 일반적인 OAuth 시스템에서는 인가 서버가 클라이언트 소프트웨어에 클라이언트 ID와 시크릿을 발급함
-</callout>
+> 💡 **클라이언트 ID는 누가 만들까?**
+> - 일반적인 OAuth 시스템에서는 인가 서버가 클라이언트 소프트웨어에 클라이언트 ID와 시크릿을 발급함
+
 - 클라이언트 인가
 	- OAuth 프로토콜에서 인가 서버는 2개의 엔드포인트를 가짐
 		1. 프런트 채널을 위한 인가 엔드포인트와
@@ -858,7 +832,7 @@ var produce = {fruit: [], veggies: [], meats: []};
 		- 랜더링된 html 파일의 내용은 다음과 같은 형태로 보임
 			![](images/oauth2-39.png)
 			```javascript
-<input type=hidden value=EONVrtjt name=reqid>
+			<input type=hidden value=EONVrtjt name=reqid>
 			```
 		- 사용자가 버튼을 클릭해 HTTP 요청이 인가 서버로 전달 → 인가 서버는 지연된 인가 요청을 찾기 위해 reqid 값을 추출
 		- 만약, 지연된 인가 요청을 찾지 못한다면 교차 사이트 위조 공격일 수 있음 → 사용자에게 에러 페이지 보여줌
@@ -887,18 +861,17 @@ var produce = {fruit: [], veggies: [], meats: []};
 	- 액세스 토큰을 저장하는 방법
 		- 토큰을 저장하지 않고도, 구조화된 포맷으로 토큰 자체에 필요한 모든 정보를 저장해 보호된 리소스가 그것을 참조하는 방법
 		- 리소스 서버가 토큰 인트로스펙션을 이용해 데이터베이스를 공유하지 않고 인가 서버에서 토큰에 대한 정보를 조회하는 방법
-	<callout icon="💡" color="gray_bg">
-		**토큰 내부에 담기는 정보들**
-		- OAuth 에서 클라이언트는 토큰 내부에 무엇이 있는지 알지 못함
-		- 인가 서버와 보호된 리소스는 토큰을 처리할 수 있어야 하지만, 토큰을 통해 어떤 정보를 전달할지는 선택 사항
-		- OAuth 토큰은 내부적으로 구조화되지 않은 임의의 문자열이 될 수 있음
-		- 또는 JWT와 SAML의 경우처럼 OAuth 토큰이 구조화된 정보를 담을 수도 있음
-		- 토큰을 사이닝하거나 암호화할 수도 있음
-	</callout>
+	> 💡 **토큰 내부에 담기는 정보들**
+	> - OAuth 에서 클라이언트는 토큰 내부에 무엇이 있는지 알지 못함
+	> - 인가 서버와 보호된 리소스는 토큰을 처리할 수 있어야 하지만, 토큰을 통해 어떤 정보를 전달할지는 선택 사항
+	> - OAuth 토큰은 내부적으로 구조화되지 않은 임의의 문자열이 될 수 있음
+	> - 또는 JWT와 SAML의 경우처럼 OAuth 토큰이 구조화된 정보를 담을 수도 있음
+	> - 토큰을 사이닝하거나 암호화할 수도 있음
+
 - 액세스 토큰에 대한 만료 시간 설정 가능
 	- 서버는 만료 시간을 저장, 클라이언트에게 응답을 보낼 때 expires_in 파라미터 전달해야 함
 	- 리소스 서버가 자신에게 요청된 것을 처리하기에 앞서, 토큰의 만료 시간을 먼저 확인하도록 리소스 서버 파일에 관련 설정 필요
-## \\exercises\\ch-5-ex-2
+## exercises/ch-5-ex-2
 - 리프레시 토큰 지원
 	- 리프레시 토큰은 보호된 리소스에 접근하는 데 사용되지 않음
 	- 클라이언트가 사용자 개입 없이 새로운 액세스 토큰을 요청할 때 사용됨
@@ -908,7 +881,7 @@ var produce = {fruit: [], veggies: [], meats: []};
 	- 예제) 토큰 엔드포인트 함수 내부에서 액세스 토큰의 경우처럼 리프레시 토큰도 함께 생성하고 저장함
 	- 클라이언트 인가 → 클라이언트에게는 액세스 토큰과 리프레시 토큰이 발급됨
 		⇒ 클라이언트는 액세스 토큰이 만료되거나 폐기됐을 때, 리프레시 토큰 사용 가능
-## \\exercises\\ch-5-ex-3
+## exercises/ch-5-ex-3
 - 권한 범위 지원
 	- 클라이언트에게 어떤 접근 권한이 위임됐는지 나타냄
 	- 각 클라이언트가 서버에서 액세스할 수 있는 범위를 제한하는 것이 일반적
@@ -916,15 +889,14 @@ var produce = {fruit: [], veggies: [], meats: []};
 	- 인가 엔드포인트는 권한 범위 처리를 쉽게 하기 위해: 
 		- 전달된 권한 범위 문자열을 파싱해 배열로 변환 → `rscope`라는 변수에 저장
 		- 서버에 설정된 클라이언트의 권한 범위값도 마찬가지로 파싱 → `cscope` 변수에 저장
-	<callout icon="💡" color="gray_bg">
-		공백으로 구분된 문자열을 사용하는 이유
-		- http 폼과 질의 문자열은 배열이나 객체 같은 복잡한 구조체를 표현하는 데 적합하지 않음
-		- OAuth는 프런트 채널로 값을 전달하기 위해 질의 파라미터를 이용해야 함
-			⇒ 질의 파라미터에 뭔가를 집어넣으려면 어떤 식으로든 인코딩이 필요
-		- json 배열을 문자열로 직렬화하거나 파라미터 이름을 연속으로 사용하는 것과 같은 방법도 있음
-		- OAuth 워킹 그룹은 공백 문자로 구분된 권한 범위값을 하나의 문자열로 연결하는 것이 클라이언트 개발자에게 간단한 방법이라고 판단함 
-			⇒ uri 사이의 보다 자연스러운 구분자로서의 공백 문자 선택
-	</callout>
+	> 💡 공백으로 구분된 문자열을 사용하는 이유
+	> - http 폼과 질의 문자열은 배열이나 객체 같은 복잡한 구조체를 표현하는 데 적합하지 않음
+	> - OAuth는 프런트 채널로 값을 전달하기 위해 질의 파라미터를 이용해야 함
+	>     ⇒ 질의 파라미터에 뭔가를 집어넣으려면 어떤 식으로든 인코딩이 필요
+	> - json 배열을 문자열로 직렬화하거나 파라미터 이름을 연속으로 사용하는 것과 같은 방법도 있음
+	> - OAuth 워킹 그룹은 공백 문자로 구분된 권한 범위값을 하나의 문자열로 연결하는 것이 클라이언트 개발자에게 간단한 방법이라고 판단함
+	>     ⇒ uri 사이의 보다 자연스러운 구분자로서의 공백 문자 선택
+
 	- 이제 인가 서버는 권한 범위가 지정된 토큰을 처리 가능하게 됨
 	- 사용자는 클라이언트에게 발급되는 토큰의 권한 범위 재정의 가능
 	- 보호된 리소스는 이를 통해 접근 권한을 보다 세분화할 수 있음 
@@ -932,18 +904,16 @@ var produce = {fruit: [], veggies: [], meats: []};
 	- 리프레시 토큰을 사용, 일부 권한 범위만 가진 새로운 액세스 토큰 요청 가능
 	- 클라이언트는 자신이 요청할 수 있는 권한 범위보다 엄격하게 낮은 수준의 권한을 갚는 새로운 액세스 토큰 요청 가능
 		⇒ 최소한의 필요한 권한만 사용해야 한다는 보안 원칙에 부합
-	<callout icon="💡" color="gray_bg">
-		**리팩토링**
-		- 토큰 엔드포인트 핸들러 함수에서 refresh_token 그랜트 타입을 처리하는 부분에 축소된 권한 범위 요청을 처리하는 코드도 추가 가능
-		- 인가 서버 코드에는 리프레시 토큰에 대한 기본적인 지원 부분만 있음 ⇒ 권한 범위 정보를 올바르게 파싱하고 검증하는 부분 추가 필요
-	</callout>
+	> 💡 **리팩토링**
+	> - 토큰 엔드포인트 핸들러 함수에서 refresh_token 그랜트 타입을 처리하는 부분에 축소된 권한 범위 요청을 처리하는 코드도 추가 가능
+	> - 인가 서버 코드에는 리프레시 토큰에 대한 기본적인 지원 부분만 있음 ⇒ 권한 범위 정보를 올바르게 파싱하고 검증하는 부분 추가 필요
+
 ## 현실 세계의 OAuth 2.0
-<callout icon="💡" color="gray_bg">
-	**들어가기 전에**
-	- 다양한 환경을 위한 다양한 그랜트 타입
-	- 네이티브 웹과 브라우저 기반 애플리케이션에 대한 처리
-	- 설정할 때와 실행할 때의 시크릿 정보
-</callout>
+> 💡 **들어가기 전에**
+> - 다양한 환경을 위한 다양한 그랜트 타입
+> - 네이티브 웹과 브라우저 기반 애플리케이션에 대한 처리
+> - 설정할 때와 실행할 때의 시크릿 정보
+
 ### 인가 그랜트 타입
 - OAuth 2.0이 개발될 때
 	- OAuth 워킹 그룹은 핵심 프로토콜을 하나의 프레임워크로 취급
@@ -981,12 +951,12 @@ var produce = {fruit: [], veggies: [], meats: []};
 			⇒ response_Type 파라미터의 값이 code가 아닌 token이 사용됨
 			⇒ 토큰과 교환할 때 사용되는 인가 코드 대신 토큰을 생성하도록 인가 서버에 알리기 위함
 			```javascript
-HTTP/1.1 302 Moved Temporarily
-Location: http://localhost:9001/authorize?response_type=token&scope=foo&client_id=oauth-client-1&redirect_url=http%3A%SFAS%DS%sdf%callback&state=Lwt5sdfaeadFAERFDSF1dsf
-Vary: Accept
-Content-Type: text/html; charset=utf-8
-Content-Length: 444
-Date: Fri, 31 Aug 2024 00:00:00 GMT
+			HTTP/1.1 302 Moved Temporarily
+			Location: http://localhost:9001/authorize?response_type=token&scope=foo&client_id=oauth-client-1&redirect_url=http%3A%SFAS%DS%sdf%callback&state=Lwt5sdfaeadFAERFDSF1dsf
+			Vary: Accept
+			Content-Type: text/html; charset=utf-8
+			Content-Length: 444
+			Date: Fri, 31 Aug 2024 00:00:00 GMT
 			```
 		- 클라이언트는 이를 위해 전체 페이지를 리다이렉트시키거나 페이지 안에서 iframe 이용 가능
 		- 어떤 방법을 사용하든, 웹 브라우저는 인가 서버의 인가 엔드포인트에 요청 전송
@@ -994,19 +964,19 @@ Date: Fri, 31 Aug 2024 00:00:00 GMT
 		- 인가 코드 플로의 경우와 달리, 인가 서버는 토큰을 즉시 생성해 uri 프레그맨트에 생성한 토큰을 붙여 전달함
 		- 해당 과정은 프런트 채널로 수행, 클라이언트에 대한 응답은 클라이언트 리다이렉트 uri로 http 리다이렉트되는 형태로 전달됨
 			```javascript
-GET /callback&access_token=987erwfweafsdfsdfsaf&token_type=Bearer
-HTTP/1.1
-Host: localhost:9000
-User-Agent: Mozilla/5.0 (Macintosh; ...)
-Firefox/39.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Referer: http://localhost:9001/authorize?response_type=code&scope=foo&client_id=oauth-client-1&redirect_uri=http%d32%df434DFSAfcallback&state=Lwt5DSAFSDFfasdf
+			GET /callback&access_token=987erwfweafsdfsdfsaf&token_type=Bearer
+			HTTP/1.1
+			Host: localhost:9000
+			User-Agent: Mozilla/5.0 (Macintosh; ...)
+			Firefox/39.0
+			Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+			Referer: http://localhost:9001/authorize?response_type=code&scope=foo&client_id=oauth-client-1&redirect_uri=http%d32%df434DFSAfcallback&state=Lwt5DSAFSDFfasdf
 			```
 		- 일반적으로 uri의 프레그먼트 부분은 서버로 다시 전달되지 않음
 			⇒ 토큰 값은 웹 브라우저 내부에서만 사용 가능
 		- 웹 브라우저의 버전과 구현 방식에 따라 달라질 수 있음
 		- 위 구현 방식 예제: \\exercises\\ch-6-ex-1
-## \\exercises\\ch-6-ex-1
+## exercises/ch-6-ex-1
 - [http://localhost:9000](http://localhost:9000): 클라이언트 페이지 실행
 	- 클라이언트는 액세스 토큰을 얻어 다른 예제에서와 마찬가지로 보호된 리소스를 호출할 수 있음
 	- 인가 서버로부터 리턴될 때, 클라이언트는 리다이렉트 uri에 토큰 값이 포함돼 전달되는지 확인
@@ -1020,54 +990,53 @@ Referer: http://localhost:9001/authorize?response_type=code&scope=foo&client_id=
 	- 암시적 플로의 경우, 클라이언트가 웹 브라우저에 밀어 넣어져 그 안에서 프런트 채널 사용
 	- 이 경우, 리소스 소유자가 클라이언트에 밀어 넣어져 사용자 에이전트가 그림에서 사라지게 됨
 	- 결과적으로, 클라이언트는 백 채널 사용, 토큰 엔드 포인트에서 액세스 토큰을 얻기 위해 리소스 소유자의 역할을 함
-<callout icon="💡" color="gray_bg">
-	**OAuth의 다리**
-	- OAuth 1.0: 클라이언트, 서버, 사용자(3개의 다리) ⇒ 상호작용
-		- 사용자가 접근 권한을 위임하도록 설계됨 → 클라이언트가 자체적으로 토큰을 얻을 수 있는 메커니즘이 없음
-	- OAuth의 일부 메커니즘을 이용, API 키 대신 백엔드 서비스를 연결하는 것이 유용
-		- 리소스 소유자가 빠지게 되기 때문에, “2개의 다리로 된 OAuth” 라고 불림
-		- OAuth 토큰을 사용하지 않고, OAuth 1.0의 시그니처 매커니즘을 이용, 클라이언트가 리소스 서버에 서명된 요청 전달
-			⇒ 리소스 서버는 클라이언트가 전달한 요청의 서명을 검증하므로, 클라이언트의 시크릿을 알아야 함
-			⇒ 어떤 토큰이나 자격 증명도 교환되지 않기 때문에, “다리가 없는 OAuth”라고도 불림
-	- OAuth 2.0이 설계될 때, 워킹 그룹은 1.0의 배포 패턴에 대해 살펴봄
-		- 보호된 리소스에 접근하는 클라이언트의 패턴을 명시하기로 결정함
-		- 하지만, 3개의 다리가 각각의 역할을 수행하는 기존의 코드 메커니즘과 동일한 것을 사용하도록 함
-		- 클라이언트의 자격 증명을 여전히 인가 서버가 담당, 리소스 서버는 토큰만 처리하면 됨
-		- 토큰이 사용자로부터 위임됐든, 클라이언트에 직접 발급됐든 리소스 서버는 항상 동일한 방식으로 토큰을 처리하면 됨 ⇒ OAuth 시스템 코드, 아키텍처 간편화
-</callout>
+> 💡 **OAuth의 다리**
+> - OAuth 1.0: 클라이언트, 서버, 사용자(3개의 다리) ⇒ 상호작용
+>     - 사용자가 접근 권한을 위임하도록 설계됨 → 클라이언트가 자체적으로 토큰을 얻을 수 있는 메커니즘이 없음
+> - OAuth의 일부 메커니즘을 이용, API 키 대신 백엔드 서비스를 연결하는 것이 유용
+>     - 리소스 소유자가 빠지게 되기 때문에, “2개의 다리로 된 OAuth” 라고 불림
+>     - OAuth 토큰을 사용하지 않고, OAuth 1.0의 시그니처 매커니즘을 이용, 클라이언트가 리소스 서버에 서명된 요청 전달
+>         ⇒ 리소스 서버는 클라이언트가 전달한 요청의 서명을 검증하므로, 클라이언트의 시크릿을 알아야 함  
+>         ⇒ 어떤 토큰이나 자격 증명도 교환되지 않기 때문에, “다리가 없는 OAuth”라고도 불림
+> - OAuth 2.0이 설계될 때, 워킹 그룹은 1.0의 배포 패턴에 대해 살펴봄
+>     - 보호된 리소스에 접근하는 클라이언트의 패턴을 명시하기로 결정함
+>     - 하지만, 3개의 다리가 각각의 역할을 수행하는 기존의 코드 메커니즘과 동일한 것을 사용하도록 함
+>     - 클라이언트의 자격 증명을 여전히 인가 서버가 담당, 리소스 서버는 토큰만 처리하면 됨
+>     - 토큰이 사용자로부터 위임됐든, 클라이언트에 직접 발급됐든 리소스 서버는 항상 동일한 방식으로 토큰을 처리하면 됨 ⇒ OAuth 시스템 코드, 아키텍처 간편화
+
 - 클라이언트는 인가 코드 그랜트 타입의 경우처럼 토큰 엔드 포인트에 토큰을 요청함
 	- 차이점: grant_type 파라미터의 값으로 client_credentials를 사용 → 토큰과 교환하기 위해 인가 코드나 임시적인 자격 증명을 사용하지 않음
 	- 대신, 클라이언트는 직접 스스로 인증, 인가 서버는 적절한 액세스 토큰 발급
 	- 인가 코드 플로와 implicit 플로의 인가 엔드 포인트에서 사용되는 scope 파라미터와 유사하게, 클라이언트는 토큰을 요청할 때 scope 파라미터를 이용, 특정 권한 범위 요청 가능
 	```javascript
-POST /token
-Host: localhost:9001
-Accept: application/json
-Content-type: application/x-www-form-encoded
-Authorization: Basic bdf3sdfSDFSERSFDFSDFETR9SDFd0fadfas
+	POST /token
+	Host: localhost:9001
+	Accept: application/json
+	Content-type: application/x-www-form-encoded
+	Authorization: Basic bdf3sdfSDFSERSFDFSDFETR9SDFd0fadfas
 
-grant_type=client_credentials&scope=foo%20bar
+	grant_type=client_credentials&scope=foo%20bar
 	```
 	- 인가 서버로부터 전달되는 응답은 일반적인 OAuth 토큰 엔드포인트의 응답과 같음
 	- 토큰 정보를 포함하는 JSON 객체로 전달됨
 	- 클라이언트 자격 증명 플로에서 클라이언트는 별도의 리소스 소유자 없이 언제든지 자기자신을 위해 새로운 토큰 요청이 가능하다고 가정
 		⇒ 리프레시 토큰 필요 없음, 리프레스 토큰 발급하지 않음
 	```javascript
-HTTP 200 OK
-Date: Fri, 31 Jul 2015 21:22:22 GMT
-Content-type: application/json
+	HTTP 200 OK
+	Date: Fri, 31 Jul 2015 21:22:22 GMT
+	Content-type: application/json
 	```
 	```javascript
-{
-	"access_token": "",
-	"scope": "foo bar",
-	"token_type": "Bearer"
-}
+	{
+		"access_token": "",
+		"scope": "foo bar",
+		"token_type": "Bearer"
+	}
 	```
 	- 클라이언트는 다른 플로의 경우와 동일한 방법으로 액세스 토큰 이용
 	- 보호된 리소스는 심지어 클라이언트가 토큰을 어떻게 획득했는지 알 필요 없음
 	- 토큰 자체는 권한을 사용자가 위임했는지, 클라이언트가 직접 요청했는지에 따라 액세스 권한이 다를 수 있음 → 권한 위임 방식을 구분할 수 있는 인가 정책 엔진으로 처리 가능
-## \\exercises\\ch-6-ex-1
+## exercises/ch-6-ex-1
 ```javascript
 } else if (req.body.grant_type == 'client_credentials') {
 ```
@@ -1079,12 +1048,11 @@ Content-type: application/json
 	- 클라이언트가 폐기하려고 하는 액세스 토큰을 이미 가지고 있는지
 	⇒ 확인 가능
 	- 확인 작업 이후 액세스 토큰 발급 → 발급하는 액세스 토큰은 앞의 경우와 마찬가지로 DB에 저장함
-<callout icon="💡" color="gray_bg">
-	**권한 범위와 그랜트 타입**
-	- 클라이언트 자격 증명 그랜트 타입에서는 사용자와의 직접적인 상호 작용이 없음 → 서비스에 직접 접근하는 신뢰할 수 있는 백엔드 시스템을 위한 것
-	- 이를 이용, 보호된 리소스는 요청을 처리할 때, 요청한 클라이언트가 사용자와의 상호 작용이 있는 클라이언트인지 여부 구분 가능
-	- 클라이언트 유형별로 각기 다른 권한 범위를 인가하는 방법을 일반적으로 사용 → 인가 서버에 클라이언트를 등록하는 과정의 일부로서 관리됨
-</callout>
+> 💡 **권한 범위와 그랜트 타입**
+> - 클라이언트 자격 증명 그랜트 타입에서는 사용자와의 직접적인 상호 작용이 없음 → 서비스에 직접 접근하는 신뢰할 수 있는 백엔드 시스템을 위한 것
+> - 이를 이용, 보호된 리소스는 요청을 처리할 때, 요청한 클라이언트가 사용자와의 상호 작용이 있는 클라이언트인지 여부 구분 가능
+> - 클라이언트 유형별로 각기 다른 권한 범위를 인가하는 방법을 일반적으로 사용 → 인가 서버에 클라이언트를 등록하는 과정의 일부로서 관리됨
+
 ### client.js
 - 클라이언트 자격 증명 플로에서는 리소스 소유자에게 리다렉트하지 않고 토큰 앤드 포인트 직접 호출
 - 인가 코드 그랜트 타입에서 콜백 uri를 처리하는 기반으로 작업

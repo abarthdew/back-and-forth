@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 ## 어떤 객체를 수정해야 한다면?
 ![](images/sp2-01.png)
 - 예를 들어, B1의 알고리즘이 달라져서 코드를 수정해야 한다면?

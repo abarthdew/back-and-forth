@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 ## TODO 미리보기
 ![](images/sp4-01.png)
 - xml / annotation

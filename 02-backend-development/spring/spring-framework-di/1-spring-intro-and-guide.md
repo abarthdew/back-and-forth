@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 ## Dependency Injection
 - 스프링 프레임워크의 핵심 기능
 	![](images/di-basic-concept.png)

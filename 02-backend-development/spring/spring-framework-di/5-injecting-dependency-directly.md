@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 ## 부품 조립하는 과정 해보기
 ![](images/sp5-01.gif)
 ## Code

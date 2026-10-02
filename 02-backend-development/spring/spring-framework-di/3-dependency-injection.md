@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 ## 들어가기
 - 스프링은 객체를 생성하고 조립하는 역할을 함
 ![](images/sp3-01.png)

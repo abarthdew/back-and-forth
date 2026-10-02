@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 ### 지시서를 쓰기 → xml
 ![](images/sp6-01.png)
 ### 스프링이 제공하는 지시서 양식

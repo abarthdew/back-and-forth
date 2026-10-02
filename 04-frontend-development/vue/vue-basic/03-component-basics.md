@@ -36,7 +36,9 @@
 	```javascript
 	Vue.component(tagName, opitons)
 	```
+
 - 두번째 인자 options: 컴포넌트 설정 정보 객체
+
 	⇒ Vue 인스턴스의 설정 옵션 사용 가능(Vue 인스턴스 옵션, template, props, 생애주기 훅 포함)
 
 | data | UI 상태 및 데이터 |
@@ -65,6 +67,7 @@
 	})
 	</script>
 	```
+
 - 자식 컴포넌트와 부모 컴포넌트: 생략
 ### 3.2.2. 생성자를 사용해 컴포넌트 정의하기
 - 전역 API Vue.extend()를 사용, Vue 생성자를 상속받는 하위 생성자 생성 가능
@@ -77,6 +80,7 @@
 
 	new FruitsListTitle().$mount('#fruits-list')
 	```
+
 - 이전 방법은 Vue.component() 의 두 번째 인자로 옵션 객체 바로 전달
 - 해당 방법은 하위 생성자를 전달해 컴포넌트 등록 → 커스텀 요소 사용 가능
 	```javascript
@@ -120,7 +124,9 @@
 - Vue 인스턴스처럼 이벤트에 맞춰 실행되는 훅 함수 정의 가능
 ### 3.2.7. 컴포넌트 데이터
 - Vue 인스턴스의 data 속성은 객체 형태로 정의 → 컴포넌트의 data 속성을 객체 형태로 정의하면 모든 인스턴스가 이 data 객체를 공유
+
 	⇒ 인스턴스 간 서로 다른 데이터를 가지기 위해 객체를 반환하는 함수 정의 → 이 함수를 data 속성의 값으로 지정
+
 	```javascript
 	// data를 return 문으로 변환 
 	Vue.component('single-counter', {
@@ -132,12 +138,15 @@
 	}
 	})
 	```
+
 - data 속성값에 객체를 지정하면? ⇒ vue.js가 이 사실을 경고로 알려 줌
 	- 컴포넌트의 data 속성에 함수가 아닌 객체를 값으로 지정하면, 모든 컴포넌트 인스턴스가 같은 객체를 참조함
 	- data 속성 외 el 속성도 모든 컴포넌트가 같은 대상을 참조하므로 함수 형태로 선언해야 함
 ## 3.3. 컴포넌트 간 통신
 - vue.js의 컴포넌트는 각 독립된 유효범위를 가짐
+
 	![](images/vue03-01.png)
+
 ### 3.3.1. 부모 컴포넌트에서 자식 컴포넌트로 데이터 전달하기
 - props
 - [https://jsfiddle.net/flourscent/vqsh81wy](https://jsfiddle.net/flourscent/vqsh81wy)
@@ -175,6 +184,7 @@
 	})
 	</script>
 	```
+
 	- 자식 컴포넌트를 직접 참조하려면 ref 사용 가능
 	- 다음과 같은 방법으로 부모 → 자식 컴포넌트 참조 가능
 	```javascript
@@ -187,10 +197,13 @@
 	var child = parent.$refs.counter
 	</script>
 	```
+
 - 부모 자식 관계가 아닌 컴포넌트끼리 데이터 주고받기
 	- 형제 관계에 있는 여러 컴포넌트가 같은 값을 공유해야 하는 경우
 	- 컴포넌트 상태, 이를 관리하는 함수를 여러 컴포넌트끼리 공유해야 하는 경우
+
 	⇒ 스토어라는 객체에 상태를 저장해서 관리하는 방법이 효과적
+
 	- 상태 관리만을 목적으로 하는 별도의 대상을 만들고 여기서 상태 관리
 	- vuex 참조
 - **자식 컴포넌트가 부모 컴포넌트에서 발생하는 네이티브 DOM 이벤트의 정보를 전달받아야 할 경우 - .native 수정자**
@@ -198,7 +211,9 @@
 		```javascript
 		<my-component @click.native="someMethod"/>
 		```
+
 		⇒ 부모 요소의 DOM 이벤트 모니터링 가능
+
 - **props 값을 양방향으로 바인딩해야 하는 경우 - .sync 수정자**
 	- vue.js에서 컴포넌트 간 통신: 부모 → 자식 컴포넌트로 단방향성 전달
 	- props에 전달한 값이 수정되면 수정된값이 부모 → 자식 컴포넌트로 전달되는 형태(반대는 불가능)
@@ -239,6 +254,7 @@
 	  </page-content>
 	</div>
 	```
+
 	- 콘텐츠를 삽입하지 않았을 때
 	```javascript
 	<div id="fruits-list">
@@ -246,6 +262,7 @@
 	  <page-content class="content"></page-content>
 	</div>
 	```
+
 	- 공통 script
 	```javascript
 	<script>
@@ -273,6 +290,7 @@
 	})
 	</script>
 	```
+
 - 자주 사용하는 레이아웃을 slot 요소를 적용한 컴포넌트로 만들어 두고, 안의 콘텐츠만 바꿔 서로 다른 UI 컴포넌트 구성 가능
 ### 3.4.4. 로그인폼 컴포넌트 구현하기
 - 생략
@@ -288,6 +306,7 @@
 	$ npm install -g karma
 	$ npm install --save-dev mocha
 	```
+
 	- mocha 초기화 → 테스트 프레임워크 mocha 선택, 테스트 대상 파일과 테스트 파일의 위치를 각각 component/*.js, test/*.js로 설정
 	```javascript
 	$ karma init
@@ -295,6 +314,7 @@
 	> components/*.js
 	> test/*.js
 	```
+
 	- karma start 명령: 서버가 문제없이 시작되는지 확인
 	- webpack을 함께 사용해 브라우저에서도 require가 동작하는지 확인
 	- 테스트 위치에 테스트 대상 컴포넌트 배치
@@ -328,6 +348,7 @@
 	}
 	})
 	```
+
 	- 컴포넌트 테스트 케이스 작성
 	- 다음 내용을 test/test.js 파일에 저장
 	```javascript
@@ -356,6 +377,7 @@
 	})
 	})
 	```
+
 	- userid와 password의 초기값을 테스트
 	- 두 번째 테스트 케이스는 login() 메서드를 테스트
 	- karma를 사용해 테스트 케이스를 실행, 테스트 통과 확인

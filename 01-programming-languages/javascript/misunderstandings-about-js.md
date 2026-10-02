@@ -8,6 +8,7 @@ const obj = {
 }
 obj.hello() // this === obj
 ```
+
 - 여기서, this는 obj.hello()로 호출됐기 때문에 obj가 됨
 
 - this를 강제로 지정하는 메서드: apply, call, bind
@@ -65,6 +66,7 @@ p.toString() // Object.prototype 에서 찾음
                          └── [[Prototype]] → Object.prototype
                                                 └── [[Prototype]] → null
   ```
+
 - JS는 속성을 찾을 때:
   1. 인스턴스 자신에서 찾고
   2. 없으면 [[Prototype]] 체인을 따라 올라간다.
@@ -116,6 +118,7 @@ p.toString() // Object.prototype 에서 찾음
   console.log(3);
   // 무조건 1, 2, 3 순서로 출력
   ```
+
 - 비동기처럼 보이는 이유: 단일 스레드 + 이벤트 루프 + 비동기 api
 - JS 엔진은 한 번에 한 줄만 실행 + 타이머 / 네트워크 / 파일 io는 브라우저, Node가 백그라운드에서 처리
   ```js
@@ -127,6 +130,7 @@ p.toString() // Object.prototype 에서 찾음
   // 출력: a -> c -> b 순서
   // a 출력 -> setTImeout 등록 -> c 출력 -> b는 이벤트 큐에 들어갔다가 나중에 실행됨
   ```
+
 - async / await: 비동기를 "동기 코드처럼 보이게" 쓰는 문법 설탕 (멀티 스레드 아님)
 - 스레드를 제어하는 기능이 아니라, Promise 기반 비동기 흐름의 실행 순서를 기술하는 문법
   ```js
@@ -135,6 +139,7 @@ p.toString() // Object.prototype 에서 찾음
     console.log(res);
   }
   ```
+
 - 비동기 실행 흐름 실제 예시
   ```js
   console.log("a");
@@ -143,6 +148,7 @@ p.toString() // Object.prototype 에서 찾음
   console.log("d");
   // 출력: a -> d -> c -> b
   ```
+
   1. a (스택)
   2. setTimeout 등록 (브라우저에 위임)
   3. Promise.then 등록 (microtask queue)
@@ -160,6 +166,7 @@ p.toString() // Object.prototype 에서 찾음
   console.log("d");
   // 출력: c -> a -> d -> b
   ```
+
   1. f() 호출
   2. "a" 출력
   3. await fetch()를 만나서: f() 함수 실행 중단, 나머지는 Promise.then으로 등록, 그래도 메인 스레드는 계속됨
@@ -194,6 +201,4 @@ p.toString() // Object.prototype 에서 찾음
   console.log(x);
   x = 10;
   ```
-
-
 

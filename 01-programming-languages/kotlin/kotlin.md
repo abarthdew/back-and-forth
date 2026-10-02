@@ -1,7 +1,11 @@
 # 1. 환경변수 설정
+
 ![](images/kotlin-env-setup-1.png)
+
 ![](images/kotlin-env-setup-2.png)
+
 ![](images/kotlin-env-setup-3.png)
+
 # 2. 클래스와 프로퍼티
 ## 2.2 Person 클래스
 ### java
@@ -36,6 +40,7 @@ class PersonKotlin(
   var isMarried: Boolean // 쓸 수 있는 프로퍼티로, 코틀린은 (비공개) 필드, (공개) getter, (공개) setter를 만들어냄
 )
 ```
+
 ```java
 // kotlin 에서 사용하기
 fun main() {
@@ -48,6 +53,7 @@ fun main() {
 }
 // getter를 호출하는 대신 프로퍼티를 직접 사용함
 ```
+
 ```java
 // setter
 person.isMarried = false

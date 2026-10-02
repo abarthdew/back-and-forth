@@ -8,11 +8,13 @@
 	console.log(typeof emptyVar, typeof nullVar); // undefined, object
 	console.log(emptyVar, nullVar); // undefined, null
 	```
+
 - 숫자 타입 자바하고 다른 점: 정수, 실수 나누어져 있지 않음 → number 타입은 모두 실수로 처리됨
 	```javascript
 	var num = 5/2;
 	console.log(num); // 2.5
 	```
+
 - 타입에 따른 값 변화
 	- 기본 타입 재할당: 안 바뀜
 	- 참조 타입 재할당: 바뀜
@@ -33,6 +35,7 @@
 	console.log(a); // 100
 	console.log(objA); // {value: 200}
 	```
+
 - 배열과 객체 모두 object임
 	```javascript
 	var colorsArray = [];
@@ -45,6 +48,7 @@
 
 	// Object.prototype > Array.prototype 과 같은 포함관계라 그럼
 	```
+
 	- 배열 객체의 부모인 Array.prototype은 pop(), push() 메서드 보유 → 배열은 해당 메서드 사용 가능
 - 함수 선언문 방식
 	```javascript
@@ -54,6 +58,7 @@
 
 	console.log(add(3, 4)); // 7
 	```
+
 - 함수 표현식 방식
 	```javascript
 	var add = function(x, y) {
@@ -64,7 +69,9 @@
 	console.log(add(3, 4)); // 7
 	console.log(plus(5, 6)); // 11
 	```
+
 ![\[add와 plus 함수 변수는 두 개의 인자를 도하는 동일한 익명 함수를 참조함\]](images/js-summary-01.png)
+
 - length 프로퍼티
 	- 배열 객체: 배열의 원소 개수
 	- 함수 객체: 인자의 개수
@@ -73,7 +80,9 @@
 	- **(함수 객체일 경우만)** prototype 프로퍼티: 함수 생성
 		- contructor 프로퍼티 하나만 있음
 	- \[\[Prototype\]\] 프로퍼티: 부모 객체(부모 객체 안에 \[\[Prototype\]\]도 부모의 부모 객체)
+
 	![](images/js-summary-02.png)
+
 - 콜백 함수
 	- 익명 함수의 대표적인 함수
 	- 시스템에서 호출되는 함수
@@ -122,6 +131,7 @@
 			// user: undefined
 			// waited 0.1 sec.
 			```
+
 		- 콜백 함수로 해결[\[예제2\]](https://lion284.tistory.com/12)[\[예제3\]](https://velog.io/@jaeung5169/%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%B2%98%EB%A6%AC%EC%99%80-callback-%ED%95%A8%EC%88%98)
 			```javascript
 			function findUserAndCallBack(id, cb) {
@@ -144,6 +154,7 @@
 			// waited 0.1 sec.
 			// user: {id: 1, name: "User1", email: "1@test.com"}
 			```
+
 	- [그 외 비동기 처리 설명](https://hanamon.kr/javascript-%EC%BD%9C%EB%B0%B1-%EC%A7%80%EC%98%A5-%ED%83%88%EC%B6%9C%ED%95%98%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EB%B2%95/)
 - 내부 함수(클로저)
 	- 내부 함수는 외부 함수의 변수에 접근 가능
@@ -163,6 +174,7 @@
 	func1() // 1, 2
 	func2() // func2 is not defined
 	```
+
 	- func2() 와 같이 내부 함수는 외부에서 호출 안 되지만, 이렇게 하면 가능
 	```javascript
 	function parent() {
@@ -176,6 +188,7 @@
 	var inner = parent()
 	inner()
 	```
+
 - 함수를 리턴하는 함수
 	```javascript
 	var self = function() {
@@ -189,6 +202,7 @@
 	self = self(); // a
 	self(); // b
 	```
+
 	- 보충예제
 		- not just return, but if it is inner function, do i have to add more remark like `()`?
 		```javascript
@@ -220,6 +234,7 @@
 		self = self(); // a
 		self(); // b
 		```
+
 - 모든 객체는 자신을 생성한 생성자 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체를 자신의 부모 객체로 설정하는 \[\[Prototype\]\] 링크로 연결함
 	- **생성자 함수** ↔ **프로토타입 객체**
 	- 새로운 **객체**가 생성자 함수를 복사 ↔ **프로토타입** 객체와 링크
@@ -250,6 +265,7 @@
 	Person.prototype.name2 = 'name2';
 	console.log(foo.getName2()); // name2
 	```
+
 - 프로토타입 객체가 중간에 완전히 바뀌면 이전에 객체 복사한 객체, 나중에 복사한 객체가 각각의 버전의 프로토타입 객체와 링크됨
 	- 프로토타입 객체 생성
 	- 프로토타입 토대로 객체 a 생성 → 프로토타입 객체 = \{\} 식으로 객체 값 변경 → 이 버전을 토대로 객체 b 생성 ⇒ b와 a의 내용은 다를 수 있음
@@ -270,7 +286,9 @@
 	// this is ExContext1
 	// this is ExContext2
 	```
+
 	![](images/js5-01.png)
+
 	- 변수만 있을 때: 전역 실행 컨텍스트
 		- 그래서 호이스팅이 생김. 제일 처음 전역 실행 컨텍스트에서 변수가 먼저 정의되기 때문.
 	- 변수, 함수: 전역 실행 컨텍스트 → 함수 실행 컨텍스트
@@ -287,7 +305,9 @@
 	}
 	printFunc(); // value2
 	```
+
 	![](images/js5-10.png)
+
 - 클로저
 	```javascript
 	function outerFunc() {
@@ -299,9 +319,13 @@
 	var inner = outerFunc();
 	inner(); // 10
 	```
+
 	- outerFunc() 실행 → 리턴된 innerFunc() 가 inner 변수에 할당(outerFunc()의 스코프까지 통째로 반환) → inner() 실행
+
 		⇒ innerFunc는 outerFunc의 변수 접근 가능 
+
 		![](images/js5-13.png)
+
 ## 함수
 ### push(), slice()
 - push: 배열에 삽입
@@ -313,7 +337,9 @@
 - for in
 # In similar methods use, like for/forEach/for in, let me know about these things and compare to each of them.
 Certainly! Let's compare the different looping methods in JavaScript—`for`, `forEach`, `for...in`, and `for...of`—to see when and how to use each, as well as their key differences.
+
 ---
+
 ### 1. **for Loop**
 - **Description**: The `for` loop is a traditional loop that allows full control over the loop's starting point, ending condition, and increment/decrement.
 - **Usage**: Works for iterating over arrays or counting a set number of times.
@@ -325,6 +351,7 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	}
 
 	```
+
 - **Output**:
 	```plain text
 	10
@@ -332,9 +359,12 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	30
 
 	```
+
 - **Pros**: Complete control over the loop index and structure.
 - **Cons**: Verbose; requires managing the loop index and condition manually.
+
 ---
+
 ### 2. **forEach Loop**
 - **Description**: The `forEach` loop is a method available on arrays that executes a provided function once for each element.
 - **Usage**: Ideal for iterating over arrays when you don't need to modify the loop index or exit early.
@@ -344,6 +374,7 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	array.forEach(value => console.log(value));
 
 	```
+
 - **Output**:
 	```plain text
 	10
@@ -351,9 +382,12 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	30
 
 	```
+
 - **Pros**: Simplifies looping through arrays; no need to manage the index.
 - **Cons**: Cannot break out of the loop early (no `break` or `continue` support).
+
 ---
+
 ### 3. **for...in Loop**
 - **Description**: The `for...in` loop iterates over the keys or property names of an object (or the indices in an array).
 - **Usage**: Best for objects, but can also work on arrays to access indices.
@@ -365,6 +399,7 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	}
 
 	```
+
 - **Output**:
 	```plain text
 	a 1
@@ -372,6 +407,7 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	c 3
 
 	```
+
 - **Example with an Array**:
 	```javascript
 	const array = [10, 20, 30];
@@ -380,6 +416,7 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	}
 
 	```
+
 - **Output**:
 	```plain text
 	0 10
@@ -387,9 +424,12 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	2 30
 
 	```
+
 - **Pros**: Suitable for iterating over objects' keys.
 - **Cons**: Should be used cautiously with arrays, as it iterates over all enumerable properties (including custom properties added to arrays).
+
 ---
+
 ### 4. **for...of Loop**
 - **Description**: The `for...of` loop iterates over iterable objects like arrays, strings, and other collection types (e.g., Maps, Sets).
 - **Usage**: Ideal for arrays and other iterables, as it directly retrieves each element’s value.
@@ -401,6 +441,7 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	}
 
 	```
+
 - **Output**:
 	```plain text
 	10
@@ -408,6 +449,7 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	30
 
 	```
+
 - **Example with a String**:
 	```javascript
 	const string = "abc";
@@ -416,6 +458,7 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	}
 
 	```
+
 - **Output**:
 	```plain text
 	a
@@ -423,10 +466,14 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 	c
 
 	```
+
 - **Pros**: Simplifies syntax for working with iterables and directly provides element values.
 - **Cons**: Not suitable for non-iterable objects, such as plain objects.
+
 ---
+
 ### Summary Table
+
 | Loop Type | Suitable For | Provides | Break/Continue Support | Common Use Case |
 | --- | --- | --- | --- | --- |
 | **for** | Arrays, Counting | Index & Value | Yes | Full control over loop; manual setup |
@@ -435,9 +482,11 @@ Certainly! Let's compare the different looping methods in JavaScript—`for`, `f
 | **for...of** | Iterables | Value | Yes | Working with values in arrays/strings |
 
 ---
+
 ### Key Differences and When to Use
 - **Use ****`for`** when you need fine control over the loop (e.g., need to skip elements with `continue` or exit with `break`).
 - **Use ****`forEach`** for straightforward array loops where you need only the values, but note that you cannot break out early.
 - **Use ****`for...in`** when working with objects to access keys, although it can work with arrays (less common).
 - **Use ****`for...of`** when working with iterable values (arrays, strings) directly, as it simplifies syntax and directly provides values.
+
 Each loop has its own purpose, and picking the right one depends on the structure you're iterating over and the level of control you need. Let me know if you'd like specific examples in a particular context!

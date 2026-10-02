@@ -2,7 +2,7 @@
 
 Frontend and backend study notes. Topics are grouped in numbered directories:
 
-- `01-programming-languages/`: Java, JavaScript, and Python.
+- `01-programming-languages/`: Java, JavaScript, Kotlin, and Python.
 - `02-backend-development/`: API design, authentication, Spring, and web servers.
 - `03-projects/`: backend practice projects.
 - `04-frontend-development/`: browser behavior, Vue, and frontend tooling.

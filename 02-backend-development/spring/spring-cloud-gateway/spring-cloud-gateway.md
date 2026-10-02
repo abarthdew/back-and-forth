@@ -9,6 +9,7 @@
 - Filter(필터) : 특정 팩토리로 구성된 Spring Framework Gateway Filter의 인스턴스. 여기서는 다운스트림 요청을 보내기 전이나 보낸 후에 요청 및 응답을 수정할 수 있음.
 ## 3. 어떻게 동작하는가?
 다음 다이어그럼은 Spring Cloud Gateway의 작동 방식을 개괄적으로 보여 줌.
+
 ![](images/spring-cloud-gateway-diagram.png)
 
 > 💡 (1) 클라이언트가 Spring Cloud Gateway에 요청<br>(2) 요청이 라우트와 일치한다고 Gateway Handler Mapping이 판단,<br>요청을 Gateway Web Handler로 전송.<br>(3) 이 처리기는 요청 관련 필터 체인을 통해 요청 실행. <br>필터가 점선으로 구분되는 이유는 프록시 요청이 전송되기 전후에 필터가 로직을 실행할 수 있기 때문.<br>(4) 모든 "사전" 필터 논리가 실행.<br>(5) 프록시 요청이 수행.<br>(6) "post" 필터 논리가 실행됨.

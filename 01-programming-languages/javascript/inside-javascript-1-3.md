@@ -39,7 +39,9 @@
 - 생략
 # 3. 자바스크립트 데이터 타입과 연산자
 - 자바스크립트의 값들은 크게 기본 타입과 참조 타입으로 분류됨
+
 ![\[자바스크립트의 데이터 타입\]](images/js1-data-types.png)
+
 ## 자바스크립트 기본 타입
 - 그 자체가 하나의 값을 나타냄
 - 느슨한 타입 체크 언어: var라는 한 가지 키워드로만 변수 선언
@@ -90,6 +92,7 @@ console.log(str[0], str[1], str[2], str[3]); // t e s t
 str[0] = 'a';
 console.log(str[0]); // t
 ```
+
 - 문자열은 문자 배열처럼 인덱스를 이용해 접근 가능
 ### 불린값
 - true, false 값을 나타냄
@@ -106,6 +109,7 @@ console.log(typeof nullVar); // object
 console.log(typeof nullVar === null); // false
 console.log(nullVar === null); // true
 ```
+
 - null 값을 가지는 변수의 결과는 null이 아닌 object임
 - 때문에, null 타입 변수 확인을 위해서는 일치 연산자(===)를 사용
 ## 자바스크립트 참조 타입(객체 타입)
@@ -133,6 +137,7 @@ console.log(nullVar === null); // true
 		console.log(typeof foo); // object
 		console.log(foo); // {name: 'foo', age: 30, gender: 'male'}
 		```
+
 	2. 객체 리터럴 이용
 		1. 리터럴: 표기법
 		2. 객체 리터럴: 객체를 생성하는 표기법
@@ -150,6 +155,7 @@ console.log(nullVar === null); // true
 		console.log(typeof foo); // object
 		console.log(foo); // {name: 'foo', age: 30, gender: 'male'}
 		```
+
 	3. 생성자 함수 이용
 		1. 함수를 통해서도 객체 생성 가능 ⇒ 생성자 함수
 ### 객체 프로퍼티 읽기/쓰기/갱신
@@ -182,6 +188,7 @@ console.log(nullVar === null); // true
 	console.log(foo['full-name']); // foo bar
 	console.log(foo.full-name); // NaN
 	```
+
 	- NaN: 수치 연산을 했을 때 정상적인 값을 못해 출력 되는 값
 ### for in 문과 객체 프로퍼티 출력
 - for in: 객체에 포함된 모든 프로퍼티에 대해 루프 수행
@@ -237,9 +244,12 @@ objB.val = 50;
 console.log(objA.val); // 50
 console.log(objB.val); // 50
 ```
+
 - objA는 실제 객체를 참조하는 값을 저장할 뿐 실제 객체를 나타내지 않음
 - 즉, objA객체는 참조 변수 objA가 가리키고 있는 객체를 나타냄(그림 표기 주의)
+
 	![\[objA와 odjB 모두 동일한 객체를 참조하고 있음\]](images/js1-refA-refB.png)
+
 ### 객체 비교
 ```javascript
 var a = 100;
@@ -253,6 +263,7 @@ console.log(a==b); // true
 console.log(objA==objB); // false
 console.log(objB==objC); // true
 ```
+
 - 동등 연산자(==)
 	- 기본 타입: 서로의 값을 비교
 	- 참조 타입: 참조 값을 비교
@@ -260,10 +271,14 @@ console.log(objB==objC); // true
 - 기본 타입과 참조 타입은 함수 호출 방식이 다름
 - 기본 타입: 값에 의한 호출
 	- 함수 호출: 인자로 기본 타입 값 넘김 - 호출된 함수의 매개변수로 복사 값 전달
+
 		⇒ 함수 내부에서 매개변수를 이용해 값을 변경해도 실제 호출된 변수의 값 불변
+
 - 참조 타입: 참조에 의한 호출
 	- 함수 호출: 인자로 참조 타입 객체 전달 - 객체 프로퍼티 값이 함수의 매개변수로 복사되지 않고, 인자로 넘긴 객체 참조 값이 함수 내부로 전달됨
+
 		⇒ 함수 내부에서 참조 값을 이용해 인자로 넘긴 실제 객체 값 변경 가능
+
 ```javascript
 var a = 100;
 var objA = { value:100 };
@@ -281,7 +296,9 @@ changeArg(a, objA);
 console.log(a); // 100
 console.log(objA); // {value: 200}
 ```
+
 ![\[call by value와 call by reference 동작 차이\]](images/js1-call-by-value-reference.png)
+
 ## 프로토타입
 - 자바스크립트의 모든 객체는 자신의 부모 역할을 하는 객체와 연결됨
 - 객체지 향의 상속 개념과 같이, 부모 객체의 프로퍼티를 자신의 것처럼 사용 가능
@@ -295,16 +312,21 @@ var foo = {
 console.log(foo.toString()); // [object Object]
 console.dir(foo); // > Object
 ```
+
 - foo 객체에 toString() 메서드가 없음에도 에러가 발생하지 않은 이유:
 	- foo 객체의 프로토타입에 toString() 메서드가 정의됨
 	- foo 객체가 상속처럼 toString() 메서드 호출함
 - foo 객체 출력 결과
+
 	![\[크롬 브라우저에서의 foo 객체 출력 결과\]](images/js1-foo-object-output.png)
+
 	- **\[\[Prototype\]\]**: foo 객체의 부모인 `프로토타입 객체`이며, 안에 toString 메서드가 정의된 것을 확인 가능
 - ECMAScript 명세서에서는 자바스크립트의 모든 객체는 자신의 프로토타입을 가리키는 \[\[Prototype\]\] 라는 숨겨진 프로퍼티를 가진다고 설명함
 - 즉, 위 예와 같이 객체 리터럴 방식으로 생성된 객체의 경우, `Object.prototype 객체`가 `프로토타입 객체`가 됨
 - foo.toString()과 같이 자신의 프로토타입인 Object.prototype 객체에 포함된 다양한 메서드를 자신의 프로퍼티인 것처럼 상속 받아 사용 가능
+
 	![\[foo 객체와 Object.prototype 객체의 관계\]](images/js1-foo-object-prototype.png)
+
 - 객체 생성 시 결정된 프로토타입 객체는 임의의 다른 객체로 변경 가능
 - 즉, 부모 객체 동적으로 변경 가능
 - 자바스크립트에서는 이런 특징을 활용해 객체 상속 등의 기능 구현
@@ -319,6 +341,7 @@ var colorArr = [1, 2, 'red', 4, 5];
 console.log(colorArr[0]); // 1
 console.log(colorArr[2]); // red
 ```
+
 - 객체와의 차이(리터럴):
 	- 객체 - 프로퍼티 이름, 프로퍼티값 모두 표기
 	- 배열 리터럴 - 각 요소의 값만을 포함
@@ -335,6 +358,7 @@ emptyArr[3] = 'eight';
 console.log(emptyArr); // [100, empty × 2, 'eight']
 console.log(emptyArr.length); // 4
 ```
+
 - 대괄호만을 이용해 빈 배열 생성 가능
 - 배열 요소에 값을 동적으로 추가 가능 - 자바스크립트의 모든 데이터 타입 값 가능
 - 배열의 크기를 현재 배열의 인덱스 중 가장 큰 값을 기준으로 정함
@@ -353,6 +377,7 @@ arr[1] = 1;
 arr[100] = 100;
 console.log(arr.length); // 101 // 실제 메모리가 length 크기처럼 할당되지는 않음
 ```
+
 - 배열의 length 프로퍼티는 코드를 통해 명시적으로 값을 변경할 수도 있음
 ```javascript
 var arr = [0,1,2];
@@ -367,7 +392,9 @@ console.log(arr); // [0, 1]
 console.log(arr[2]); // undefined
 // length가 2로 바뀌며 length 프로퍼티를 벗어나는 값이 삭제됨
 ```
+
 ![](images/js1-array-length-change.png)
+
 ### 배열 표준 메서드와 length 프로퍼티
 - 자바스크립트는 배열에서 사용할 수 있는 다양한 표준 메서드 제공
 - 배열 메서드는 length 프로퍼티를 기반으로 동작
@@ -413,15 +440,22 @@ colorsArray.push('red');
 console.log(colorsArray); // ['orange', 'tellow', 'green', 'red']
 colorsObj.push('red'); // TypeError: colorsObj.push is not a function
 ```
+
 - 일반 객체와 차이: 배열 표준 메서드 호출 여부
 	- colorsObj는 배열이 아니므로 push()와 같은 표준 배열 메서드 사용 불가
+
 		⇒ 배열과 객체가 자신의 부모인 프로토타입 객체가 서로 다르기 때문
+
 - 부모 프로토타입
 	- 객체 리터럴: Object.prototype 객체
 	- 배열: Array.prototype 객체 - push(), pop() 같은 표준 메서드를 포함
+
 		⇒ 또한, Array.prototype 객체의 프로토타입은 Object.prototype 객체가 됨
+
 - 객체의 프로토타입과 배열의 프로토타입 관계도
+
 	![\[객체의 프로토타입과 배열의 프로토타입\]](images/js1-object-array-prototype.png)
+
 	```javascript
 	var emptyArray = [];
 	var emptyObj = {};
@@ -429,11 +463,15 @@ colorsObj.push('red'); // TypeError: colorsObj.push is not a function
 	console.dir(emptyArray.__proto__); // 배열의 프로토타입 출력
 	console.dir(emptyObj.__proto__); // 객체의 프로토타입 출력
 	```
+
 	![\[크롬 브라우저 실행 결과\]](images/js1-chrome-proto-1.png)
+
 	- emptyArray.__proto__는 Array 객체를 가리킴 ⇒ Array.prototype 객체를 나타냄
 	- 객체 내 push() 메서드를 비롯한 자바스크립트 표준 배열 메서드 존재
 	- Array.prototype 객체 역시 부모 프로토타입을 가지고 있으며, 이것이 Object.prototype를 가리키고 있음
+
 	![\[크롬 브라우저 실행 결과\]](images/js1-chrome-proto-2.png)
+
 ### 배열의 프로퍼티 동적 생성
 - 배열 또한 자바스크립트 객체이므로, 인덱스 배열 원소 이외에도 객체처럼 동적 프로퍼티 추가 가능
 ```javascript
@@ -449,8 +487,11 @@ console.log(arr.length); // 4
 
 console.dir(arr);
 ```
+
 - `console.dir(arr);` 실행 결과
+
 	![](images/js1-console-dir-arr.png)
+
 	- 배열의 length 프로퍼티는 배열 원소의 가장 큰 인덱스가 변했을 경우만 변경됨
 	- 배열도 객체처럼 key-value 형태로 배열 원소 및 프로퍼티 등이 있을 수 있음
 ### 배열의 프로퍼티 열거
@@ -492,6 +533,7 @@ delete arr[2];
 console.log(arr); // ['zero', 'one', empty, 'three']
 console.log(arr.length); // 4
 ```
+
 - 하지만, delete 연산자는 배열 내 원소만 비울 뿐 배열 자체를 삭제하진 못함 ⇒ splice() 배열 메서드 사용
 ```javascript
 var arr = ['zero', 'one', 'two', 'three'];
@@ -530,6 +572,7 @@ console.log(arr.length); // 3
 
 	obj.push('baz'); // TypeError: obj.push is not a function: 객체지 배열이 아니므로 에러
 	```
+
 	```javascript
 	var arr = ['bar'];
 	var obj = {
@@ -543,16 +586,21 @@ console.log(arr.length); // 3
 	Array.prototype.push.apply(obj, ['baz']);
 	console.log(obj); // {1: 'baz', name: 'foo', length: 2}
 	```
+
 	- `Array.prototype.push.apply(obj, ['baz']);`: 
 		- 유사 배열 객체인 obj에 대해 push() 메서드 호출, ‘baz’ 원소 추가
 		- 원소 값이 추가되고, length 값이 2로 증가
+
 		⇒ 유사 배열 객체도 배열 메서드를 사용하는 것이 가능
 ## 기본 타입과 표준 메서드
 - 자바스크립트는 숫자, 문자열, 불린값에 대해 각 타입별로 호출 가능한 표준 메서드 정의
 - 기본 타입은 객체가 아니지만, 메서드 호출 가능
 	- ⇒ 기본 타입 값에 메서드 호출
+
 		→ 메서드 처리 순간에 기본 값은 객체로 변환됨
+
 		→ 각 타입별 표준 메서드 호출 → 호출 종료 후 다시 가본값 복귀
+
 	```javascript
 	// 숫자 메서드 호출
 	var num = 0.5;
@@ -561,6 +609,7 @@ console.log(arr.length); // 3
 	// 문자 메서드 호출
 	console.log("test".charAt(2)); // s
 	```
+
 	- 숫자, 문자열 등 기본 타입도 객체처럼 표준 메서드를 호출할 수 있음
 ## 연산자
 ### 연산자 `+`
@@ -568,8 +617,11 @@ console.log(arr.length); // 3
 - 문자열 연결 연산
 ### 연산자 `typeof`
 - 피연산자의 타입을 문자열 형태로 리턴
+
 	![\[각 타입별 typeof 연산자 결과\]](images/js1-typeof-result-1.png)
+
 	![](images/js1-typeof-result-2.png)
+
 ### 동등 연산자 `==` 와 일치 연산자 `===`
 - == : 비교하려는 피연산자의 타입이 다른 경우 타입 변환을 거친 다음 비교
 - === : 피연산자의 타입이 다를 경우 타입을 변경하지 않고 비교

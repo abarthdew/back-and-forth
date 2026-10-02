@@ -31,8 +31,11 @@ findUserAndCallBack(1, function (user) {
   console.log("user:", user);
 });
 ```
+
 Alright, let's break this down so those sneaky functions and callbacks stop feeling like a slap in the face. Your frustration is valid—this is one of the trickiest things to wrap your head around when dealing with JavaScript's asynchronous nature. Let's make it crystal clear.
+
 ---
+
 ### **What's the Difference Between a Regular Function and a Callback Function?**
 1. **Regular Function**:
 	- A function that executes immediately when it is called and returns a value directly.
@@ -40,7 +43,9 @@ Alright, let's break this down so those sneaky functions and callbacks stop feel
 2. **Callback Function**:
 	- A function passed as an argument to another function.
 	- It's executed **later**, typically after some asynchronous operation (like `setTimeout`, database query, or an API call) is complete.
+
 ---
+
 ### **Code Walkthrough**
 ### **Example 1: Regular Function**
 ```javascript
@@ -61,7 +66,9 @@ const user = findUser(1);
 console.log("user:", user);
 
 ```
+
 ---
+
 ### **What Happens Here?**
 1. `findUser(1)` is called:
 	- A `setTimeout` is initiated, scheduling a delay of 0.1 seconds (100ms).
@@ -71,11 +78,15 @@ console.log("user:", user);
 	- JavaScript does not "pause" and wait for the `setTimeout` to finish.
 3. **Output**:
 	- `"user: undefined"` is logged because the `user` object wasn't ready when the function returned.
+
 ---
+
 ### **Why Does It Fail?**
 - The function tries to return a value (`user`) **before** the asynchronous code (`setTimeout`) finishes running.
 - In JavaScript, asynchronous code (like `setTimeout`) doesn't block the execution of subsequent code.
+
 ---
+
 ### **Example 2: Using a Callback Function**
 ```javascript
 function findUserAndCallBack(id, cb) {
@@ -95,7 +106,9 @@ findUserAndCallBack(1, function (user) {
 });
 
 ```
+
 ---
+
 ### **What Happens Here?**
 1. `findUserAndCallBack(1, callbackFunction)` is called:
 	- A `setTimeout` is initiated, scheduling a delay of 0.1 seconds (100ms).
@@ -106,12 +119,17 @@ findUserAndCallBack(1, function (user) {
 3. **Output**:
 	- `"waited 0.1 sec."` (from the inner `setTimeout` function).
 	- `"user: { id: 1, name: 'User1', email: '1@test.com' }"` (from the callback).
+
 ---
+
 ### **Why Does It Work?**
 - Instead of trying to return the value directly, the `findUserAndCallBack` function uses a callback to deliver the result **when it's ready**.
 - The callback waits for the asynchronous operation to complete, ensuring the data is available before it is used.
+
 ---
+
 ### **Key Difference**
+
 | Aspect | Regular Function | Callback Function |
 | --- | --- | --- |
 | **Return Timing** | Returns immediately, even if the result isn't ready. | Executes later, only when the result is ready. |
@@ -119,15 +137,22 @@ findUserAndCallBack(1, function (user) {
 | **Use Case** | Use when all data is available synchronously. | Use when dealing with async tasks like `setTimeout` or API calls. |
 
 ---
+
 ### **Simplified Analogy**
 Imagine calling a pizza delivery service:
+
 - **Regular Function**: You call and expect the pizza immediately. If the pizza isn't ready (which it isn't), you hang up and leave hungry.
 - **Callback Function**: You call and ask them to let you know when the pizza is ready. They call you back after it's done, and you're happy with your hot, fresh pizza.
+
 ---
+
 ### **Real Practice Tip**
 Callbacks are common, but managing them for complex workflows can lead to **callback hell**. To make your life easier, look into **Promises** or **async/await**, which streamline handling asynchronous operations.
+
 Want to level up with Promises or async/await? Just let me know—I've got you covered! 😉
+
 ---
+
 ## 2
 ```javascript
 // in this code,
@@ -150,16 +175,22 @@ findUserAndCallBack(1, function (user) {
 
 // does //2 certainly start after //1?
 ```
+
 No, **`//2`**** does not wait for ****`//1`**** to finish.** The execution of the code inside the `setTimeout` block is **asynchronous**, meaning `//2` (the timer delay) begins immediately when `setTimeout` is called, but the actual callback function (inside `setTimeout`) will only execute **after 100 milliseconds**, independently of the flow outside.
+
 Let's break it down step by step:
+
 ---
+
 ### **How ****`setTimeout`**** Works in JavaScript**
 1. **`setTimeout`**** schedules a task to be run later**:
 	- The code inside the `setTimeout` block is added to the **JavaScript event queue**.
 	- It won't execute until the current execution context (all synchronous code) is finished and at least 100ms have passed.
 2. **The callback (`cb(user)`)**:
 	- It is executed **after 100ms**, assuming the JavaScript thread is free. It doesn't block the rest of the code outside the `setTimeout`.
+
 ---
+
 ### **Execution Order in Your Code**
 ### Code:
 ```javascript
@@ -192,21 +223,32 @@ findUserAndCallBack(1, function (user) {
 	- `"waited 0.1 sec."` is logged.
 	- The `user` object is created and passed to `cb(user)` (`//1`).
 	- The provided callback function (`function (user) { console.log("user:", user); }`) runs and logs the user.
+
 ---
+
 ### **Key Points**
 - **`//2`**** does not wait for ****`//1`**:
+
 	The timer (100ms) starts immediately when `setTimeout` is called. However, the execution of the callback function (and `//1`) happens after the timer expires.
+
 - **Event Loop Behavior**:
+
 	The `setTimeout` callback runs only after:
+
 	1. The timer expires.
 	2. The current call stack is clear (i.e., all synchronous code has finished).
+
 ---
+
 ### **Output**
 Given your code, the order of execution is:
+
 1. Timer starts (`setTimeout` schedules the task for 100ms).
 2. After 100ms, `"waited 0.1 sec."` is logged.
 3. `cb(user)` runs, and `"user: { id: 1, name: 'User1', email: '1@test.com' }"` is logged.
+
 ---
+
 ### **Timeline Visualization**
 ```plain text
 Time: 0ms     --> setTimeout schedules callback (timer starts ticking)
@@ -215,6 +257,9 @@ Time: 100ms   --> setTimeout callback executes
                 --> cb(user) executes, logging the user object
 
 ```
+
 ---
+
 So, to reiterate:
+
 **`//2`**** does not depend on ****`//1`. The timer starts immediately, and ****`//1`**** executes only after the timer expires.** Let me know if you'd like a deeper dive into the event loop mechanics! 😊

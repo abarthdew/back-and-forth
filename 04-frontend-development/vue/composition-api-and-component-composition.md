@@ -84,7 +84,6 @@ Overall, the Composition API provides a more organized way of managing component
 
 > What does `Composition` mean?
 
-
 **Composition** is a programming paradigm that involves building complex structures or functionalities by combining simpler building blocks or components. In composition, the focus is on creating components that can be reused across different parts of the application rather than building large monolithic structures. Composition enables developers to create more flexible, maintainable, and scalable code by breaking down complex functionalities into smaller, reusable components.
 
 In object-oriented programming, composition is achieved by combining objects to create more complex objects, rather than inheriting behavior from parent classes. In functional programming, composition is achieved by composing smaller functions to create more complex functions. In both cases, composition involves building complex functionalities by combining simpler building blocks.

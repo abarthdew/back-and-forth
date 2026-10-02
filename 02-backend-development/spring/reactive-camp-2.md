@@ -5,7 +5,7 @@
 > - @Async
 > - Asynchornous Request Processing
 > - AsyncRestTemplate
-> 
+>
 > 📌 들어가기 전에 - 배경지식<br>
 > - `자바 비동기 개발`
 >   - 비동기와 논블록킹
@@ -37,9 +37,11 @@
 ![](./images/19.jpg)
 
 ![[동기와 비동기] - 1](./images/20.jpg)
+
 _[동기와 비동기] - 1_
 
 ![[동기와 비동기] - 2](./images/21.png)
+
 _[동기와 비동기] - 2_
 
 > 💡 동기 / 비동기를 설명할 때는<br>
@@ -75,6 +77,7 @@ String res = es.submit(() -> "Hello Async").get();
 > 💡 `es.submit : 비동기`<br>
 > - 메소드 리턴 시간과 Callable의 실행 결과를 받는 > 시간이 일치하지 않음.
 > - 블로킹/논블로킹은 고려할 대상이 아님(무언가를 > 기다릴 대상이 없음).
+>
 > `.get() : 동기/블로킹`<br>
 > - 메소드 리턴 시간과 결과를 가져오는 시간이 일치.
 > - 다른 스레드의 작업이 완료될 때까지 대기.
@@ -556,7 +559,6 @@ for (int i=0; i<100; i++) {
 ```
 
 > ⚠️ AsyncRestTemplate은 비동기/논블로킹이지만, 논블로킹 IO를 사용하지 않음. 따라서, 그냥 사용하는 건 의미가 없음.
-
 
 ```java
 // 논블로킹 IO를 지원하는 Netty4ClientHttpRequestFactory를 사용해야 함

@@ -15,7 +15,9 @@
 ### 2.1.1. 기존 UI 개발의 문제점
 - jQuery: 버튼 등 DOM 요소에 이벤트가 발생할 때 호출되는 함수(이벤트리스터)를 등록 → 이 함수가 자신 및 다른 DOM 요소를 조작하는 방식
 - 이벤트와 DOM 요소의 관계
+
 	![](images/vue02-01.png)
+
 - DOM 요소를 추가하는 경우, 각 이벤트 리스너에 해당 DOM 요소에 대한 처리를 일일이 추가해야 함
 - 이벤트 발생 시, 요소 수정 여부를 이벤트와 요소의 조합마다 정의해야 함
 - 이벤트, 요소의 수가 늘어날 수록 정의 복잡해짐
@@ -23,7 +25,9 @@
 - 애플리케이션 규모가 커질수록 유지보수 어려움
 ### 2.1.2. vue.js를 이용한 UI 개발
 - vue.js는 다음과 같이 이벤트와 요소 사이에 UI 상태(state)가 끼어드는 형태
+
 	![](images/vue02-02.png)
+
 - 이벤트와 요소 수가 늘어나는 경우 jQuery 보다 성능 면에서 좋음
 - 이벤트는 UI 상태를 수정, 수정된 UI 상태에 따라 DOM 트리/DOM 요소 수정으로 단순화 가능
 - UI 상태를 DOM 트리/요소와 완전히 분리, 자바스크립트 객체 형태로 유지 → 리액티브 단방향 데이터 바인딩 이용, UI 상태 변화에 맞춰 요소 자동 업데이트
@@ -50,6 +54,7 @@
 console.assert(typeof Vue !== 'undifined');
 </script>
 ```
+
 - vue.js의 더 정교한 환경 구축 방법
 	- SPA 등 여러 개의 파일로 구성되는 클라이언트 사이드 애플리케이션에서는 script 요소에서 라이브러리를 직접 로딩하는 방법 권장하지 않음
 	- webpack등 번들링 도구를 이용해 생성 파일 로딩 권장
@@ -69,6 +74,7 @@ console.assert(typeof Vue !== 'undifined');
 	// ...
 	})
 	```
+
 	- 생성자에 옵션 객체를 인자로 전달
 	- 옵션 객체 지정 요소
 		- 데이터: UI 상태
@@ -89,8 +95,11 @@ console.assert(typeof Vue !== 'undifined');
 	- 다만, 여러 Vue 인스턴스가 서로 커뮤니케이션할 경우를 대비해 변수에 대입
 	- 커뮤니케이션: 어떤 Vue 인스턴스의 데이터 변화 시, 다른 Vue 인스턴스에 그 데이터 전달<br>→ 각각 Vue 인스턴스를 변수에 대입 후, 해당 변수를 통해 데이터 변경 탐지 및 상태 업데이트 수행
 	- 예) 사용자의 팔로워 수를 증가시킬 때
+
 		→ $watch로 팔로우 버튼과 연결된 Vue 인스턴스 변경 탐지
+
 		→ 프로필과 연결된 Vue 인스턴스의 상태 수정
+
 		```javascript
 		followButton.$watch('followed', function(val) {
 			if (val) {
@@ -115,10 +124,13 @@ console.assert(typeof Vue !== 'undifined');
 	el: '#app',
 	})
 	```
+
 - Vue 인스턴스 마운트 → 마운트된 요소, 그 요소의 자손 노드 치환
 - Vue가 영향을 미치는 범위는 해당 요소 안으로 국한됨
 - 예로, vue.js 템플릿 문법은 마운트되는 요소와 그 요소 자손 요소에서만 사용 가능
+
 	![Vue 인스턴스 마운트와 적용 범위](images/vue02-03.png)
+
 ### 2.4.2. 메서드를 이용한 마운트($mount 메서드)
 - 메서드를 호출하는 방법으로도 Vue 인스턴스 마운트 가능
 - el 프로퍼티 정의 생략, 대신 $mount 메서드 사용
@@ -132,6 +144,7 @@ console.assert(typeof Vue !== 'undifined');
 	// UI 조작이나 통신을 마친 후 요소가 생성되면 마운트
 	vm.$mount(el)
 	```
+
 - 기존 애플리케이션에 Vue.js 도입하기
 	- 기존 웹 애플리케이션의 일부분에 vue.js를 도입할 때도 DOM 요소 생성 후 Vue 인스턴스 마운트
 	- Vue 인스턴스 마운트 → 서버 사이드에서 렌더링될 템플릿에 vue.js 문법 추가
@@ -161,14 +174,19 @@ console.assert(typeof Vue !== 'undifined');
 	// JSFiddle 콘솔에서 vm에 접근할 수 있도록 함
 	window.vm = vm
 	```
+
 	- console.log(vm) 출력결과
 		```javascript
 		- $el: div#app
 		- items: Array(3)
 		```
+
 		- $el에서 Vue 인스턴스가 마운트된 DOM 요소에 접근 가능
+
 			⇒ 인스턴스의 $로 시작하는 프로퍼티/메서드는 vue.js에서 제공됨
+
 		- data에 설정된 items가 Vue 인스턴스의 바로 아래 프로퍼티로 공개됨
+
 			⇒ data를 vm 바로 아래에서 참조 가능
 ### 2.5.2. 데이터 변경 탐지하기
 - vue.js는 데이터 입력과 참조를 모니터링 → 데이터 수정을 탐지해 화면을 업데이트
@@ -185,6 +203,7 @@ console.assert(typeof Vue !== 'undifined');
 	console.log(quantity)
 	})
 	```
+
 	- $watch 메서드의 
 		1. 첫 번째 인자: 모니터링 대상 값을 반환하는 함수
 		2. 두 번째 인자: 값이 바뀌었을 때 호출할 콜백 함수
@@ -204,6 +223,7 @@ console.assert(typeof Vue !== 'undifined');
 	```javascript
 	<p> {{ item.name }}: {{ item.price}} X {{ items.quantity }} </p>
 	```
+
 - 데이터 변경 → 자동으로 뷰 다시 렌더링/DOM 업데이트
 - 데이터를 뷰에 반영하는 일은 vue.js가 대신해 줌
 ### 2.6.2. 속성값 전개하기
@@ -211,6 +231,7 @@ console.assert(typeof Vue !== 'undifined');
 	```javascript
 	<button id="b-button" v-vind:title="loggedInButton"></button>
 	```
+
 	```javascript
 	<button id="b-button" v-vind:disabled="!canBuy"></button>
 	```
@@ -219,6 +240,7 @@ console.assert(typeof Vue !== 'undifined');
 	```javascript
 	<p> {{ item.name * items.quantity }} </p>
 	```
+
 	⇒ 이렇게 해도 되지만 계산 프로퍼티나 메서드 로직 등의 형태로 옮기는 것이 가독성에 좋음
 ## 2.7. 필터
 - 일반적인 텍스트 포매팅 기능 제공, 생성자 옵션 중 하나
@@ -232,13 +254,16 @@ console.assert(typeof Vue !== 'undifined');
 	}
 	}
 	```
+
 	```javascript
 	{{ 값 | 필터명 }}
 	```
+
 - 예시) 금액 표시에 자릿수 구분 기호 추가
 	```javascript
 	<p>{{ 1000 | numberWithDelimiter }}</p>
 	```
+
 	```javascript
 	var vm = new Vue({
 	el: '#app',
@@ -255,6 +280,7 @@ console.assert(typeof Vue !== 'undifined');
 	}
 	})
 	```
+
 - 필터 여러 개 연결하기
 	```javascript
 	{{ value | filterA | filterB }}
@@ -272,6 +298,7 @@ console.assert(typeof Vue !== 'undifined');
 	  }
 	})
 	```
+
 - 예시
 	```javascript
 	new Vue({
@@ -289,6 +316,7 @@ console.assert(typeof Vue !== 'undifined');
 	  }
 	})
 	```
+
 - 정의된 프로퍼티는 데이터와 마찬가지로 템플릿에서 전개 가능
 - 호출을 의미하는 () 사용 필요 없음
 - 함수 형태로 정의했지만, 참조할 때는 메서드가 아닌 프로퍼티로 취급
@@ -317,10 +345,13 @@ console.assert(typeof Vue !== 'undifined');
  // 참이면 화면에 표시, 거짓이면 표시하지 않음
 </p>
 ```
+
 - 둘의 차이
 	- v-if: 평가 값에 따라 DOM 요소 추가/제거
 	- v-show: 스타일에 display 프로퍼티 값을 변경하는 방식으로 동작
+
 	⇒ 그러므로, 스타일을 수정하는 쪽보다 DOM을 수정하는 쪽이 렌더링 비용이 더 큼
+
 	 ⇒ 평가값이 빈번하게 바뀌는 경우, v-show 이용 권장
 ### 2.9.2. 클래스와 스타일 연결하기
 - 특정 조건 성립 여부에 따라 UI 외관 바꾸기
@@ -328,6 +359,7 @@ console.assert(typeof Vue !== 'undifined');
 	```javascript
 	<p v-bind:class="{shark: true, mecha: flase}"></p>
 	```
+
 	```javascript
 	<p v-bind:class="{error: !canBuy}"></p>
 
@@ -339,13 +371,16 @@ console.assert(typeof Vue !== 'undifined');
 	  }
 	}
 	```
+
 2. 스타일 바인딩(v-bind:style)
 	```javascript
 	<p v-bind:style="{color: 'red'}"></p>
 	```
+
 	```javascript
 	<p v-bind:style="{border: (canBuy ? '' : '1px solid red'), color: 'red'}"></p>
 	```
+
 	```javascript
 	<p v-bind:style="errorMessageStyle"></p>
 
@@ -362,6 +397,7 @@ console.assert(typeof Vue !== 'undifined');
 ```javascript
 <li v-for="item in arr" :key="item">{{item}}</li>
 ```
+
 ```javascript
 <li v-for="(item, index) in arr" :key="item">{{index}} {{item}}</li>
 ```
@@ -370,13 +406,16 @@ console.assert(typeof Vue !== 'undifined');
 - 애플리케이션을 조작해 Vue 인스턴스 안의 개수를 수정해야 하는 경우 → v-on
 - v-on 디렉티브는 이벤트가 일어난 시점에 속성값으로 지정된 표현식을 실행 → DOM API의 addEventListener
 - input 이벤트를 통해 폼에 입력된 값을 가져와 quantity 프로퍼티를 업데이트
+
 	⇒ vue.js가 제공하는 DOM 이벤트 객체에 대한 참조인 $event를 사용해 입력된 값을 직접 quantity 프로퍼티에 입력
+
 	```javascript
 	<input type="number" 
 	v-on:input="item.quantity = $event.target.value"
 	v-bind:value="item.quantity" min="0"
 	/>
 	```
+
 - 입력 완료 후 input 요소가 포커스를 벗어난 시점에 프로퍼티를 업데이트
 	```javascript
 	<input type="number" 
@@ -384,6 +423,7 @@ console.assert(typeof Vue !== 'undifined');
 	v-bind:value="item.quantity" min="0"
 	/>
 	```
+
 - 생략 표기법
 	```javascript
 	<button :disabled="!canBuy" @click="doBuy"></button>
@@ -396,10 +436,12 @@ console.assert(typeof Vue !== 'undifined');
 	```javascript
 	<input type="number" v-model="item.quantity" min="0"/>
 	```
+
 - 수정자를 사용해 동작 제어하기: input 이벤트 대신 change 이벤트를 사용해서 @change 동작을 구현하려면 디렉티브의 동작을 제어할 수정자를 적용해야 함
 	```javascript
 	<input type="number" v-model.lazy="name" min="0"/>
 	```
+
 	- 수정자는 v-model외 v-on 디렉티브 등 일부 디렉티브에서만 사용 가능
 	- 수정자를 사용해 DOM 이벤트 중단, 키 입력 제한 등 기능 구현 가능
 ## 2.10. 생애주기 훅
@@ -422,6 +464,7 @@ console.assert(typeof Vue !== 'undifined');
 | destroyed | Vue 인스턴스가 폐기된 다음 |
 
 ![생애주기 순서도](images/vue02-04.png)
+
 ### 2.10.2. created 훅
 - 인스턴스 생성, 데이터 초기화 시점 실행
 - DOM 요소가 인스턴스와 연결된 상태가 아님
@@ -485,6 +528,7 @@ console.assert(typeof Vue !== 'undifined');
 	</body>
 	</html>
 	```
+
 	- 이 시점에서 Vue 인스턴스 직접 폐기 → 인스턴스의 $destroy 메서드 호출
 	- 개발자 도구 콘솔에서 vm.$destory() 입력
 ## 2.11 메서드
@@ -500,6 +544,7 @@ console.assert(typeof Vue !== 'undifined');
 	}
 	}
 	```
+
 - 메서드명을 속성값을 사용했을 때, 이벤트 객체가 기본 인자로 메서드에 전달 → 이벤트 객체는 표현식에서 $event라는 이름으로 참조 가능
 	```javascript
 	<button v-on:click="doBuy($event)"></button>
@@ -515,10 +560,12 @@ console.assert(typeof Vue !== 'undifined');
 	}
 	}
 	```
+
 - 이벤트 객체를 이용해 preventDefault(페이지 이동 방지), stopPropagation(이벤트 조상 요소에 전파 방지) 같은 이벤트 동작 제어 메서드 호출 가능
 	```javascript
 	<button v-on:click.prevent="doBuy"></button>
 	```
+
 - 계산 프로퍼티의 캐싱 메커니즘: 메서드, 계산 프로퍼티는 모두 함수의 형태
 	- 계산 프로퍼티
 		- 해당 프로퍼티가 의존하는 데이터가 수정되지 않는 한 앞서 계산한 결과를 캐시

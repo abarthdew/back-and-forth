@@ -1,7 +1,10 @@
 # Let me know about Vanilla js and query methods, at least 50, make an each example and outout
 Vanilla JavaScript, often referred to simply as "Vanilla JS," is just plain JavaScript without any frameworks or libraries. Vanilla JS is powerful on its own, and using it with various query methods can achieve a range of functionalities without the need for external libraries like jQuery.
+
 Here are 50 JavaScript query methods, each with examples and output:
+
 ---
+
 ### 1. **document.querySelector**
 - **Description**: Selects the first element that matches the CSS selector.
 - **Example**:
@@ -10,6 +13,7 @@ Here are 50 JavaScript query methods, each with examples and output:
 	console.log(heading.textContent);
 
 	```
+
 - **Output**: The text inside the first `<h1>` element.
 ### 2. **document.querySelectorAll**
 - **Description**: Selects all elements that match the CSS selector.
@@ -19,6 +23,7 @@ Here are 50 JavaScript query methods, each with examples and output:
 	items.forEach(item => console.log(item.textContent));
 
 	```
+
 - **Output**: Text content of each element with the class `item`.
 ### 3. **document.getElementById**
 - **Description**: Selects an element by its ID.
@@ -28,6 +33,7 @@ Here are 50 JavaScript query methods, each with examples and output:
 	console.log(element.textContent);
 
 	```
+
 - **Output**: Text inside the element with `id="uniqueId"`.
 ### 4. **document.getElementsByClassName**
 - **Description**: Selects all elements with the specified class name.
@@ -37,6 +43,7 @@ Here are 50 JavaScript query methods, each with examples and output:
 	Array.from(elements).forEach(item => console.log(item.textContent));
 
 	```
+
 - **Output**: Text content of each element with the class `item`.
 ### 5. **document.getElementsByTagName**
 - **Description**: Selects all elements with the specified tag name.
@@ -46,6 +53,7 @@ Here are 50 JavaScript query methods, each with examples and output:
 	Array.from(paragraphs).forEach(p => console.log(p.textContent));
 
 	```
+
 - **Output**: Text content of each `<p>` element.
 ### 6. **element.classList.add**
 - **Description**: Adds a class to an element's class list.
@@ -56,6 +64,7 @@ Here are 50 JavaScript query methods, each with examples and output:
 	console.log(element.classList);
 
 	```
+
 - **Output**: Class list of the `<p>` element, including the newly added "highlight" class.
 ### 7. **element.classList.remove**
 - **Description**: Removes a class from an element's class list.
@@ -66,6 +75,7 @@ Here are 50 JavaScript query methods, each with examples and output:
 	console.log(element.classList);
 
 	```
+
 - **Output**: Class list of the `<p>` element after removing "highlight".
 ### 8. **element.classList.toggle**
 - **Description**: Toggles a class on or off.
@@ -76,6 +86,7 @@ Here are 50 JavaScript query methods, each with examples and output:
 	console.log(element.classList);
 
 	```
+
 - **Output**: Class list of the `<p>` element with "highlight" toggled.
 ### 9. **element.classList.contains**
 - **Description**: Checks if an element has a specific class.
@@ -85,6 +96,7 @@ Here are 50 JavaScript query methods, each with examples and output:
 	console.log(element.classList.contains("highlight"));
 
 	```
+
 - **Output**: `true` or `false` based on whether "highlight" is in the class list.
 ### 10. **element.innerHTML**
 - **Description**: Gets or sets the HTML content of an element.
@@ -95,11 +107,17 @@ Here are 50 JavaScript query methods, each with examples and output:
 	div.innerHTML = "<p>New content</p>";
 
 	```
+
 - **Output**: Original HTML of `div`, and then new HTML content.
+
 ---
+
 For readability, I'll continue listing additional methods with examples in separate sections. Let me know if you'd like the next set of query methods, or if you need specific types of query methods for particular tasks.
+
 Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
+
 ---
+
 ### 11. **element.textContent**
 - **Description**: Gets or sets the text content of an element.
 - **Example**:
@@ -109,6 +127,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	div.textContent = "New text content";
 
 	```
+
 - **Output**: The original text of `div`, then updates to "New text content".
 ### 12. **element.setAttribute**
 - **Description**: Sets a new attribute on an element.
@@ -119,6 +138,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	console.log(link.getAttribute("href"));
 
 	```
+
 - **Output**: Sets `href` attribute to "[https://example.com](https://example.com/)" and logs it.
 ### 13. **element.getAttribute**
 - **Description**: Gets the value of an attribute on an element.
@@ -128,6 +148,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	console.log(img.getAttribute("src"));
 
 	```
+
 - **Output**: The `src` attribute of the `<img>` element.
 ### 14. **element.removeAttribute**
 - **Description**: Removes an attribute from an element.
@@ -138,6 +159,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	console.log(img.hasAttribute("alt"));
 
 	```
+
 - **Output**: `false` (as the `alt` attribute is removed).
 ### 15. **element.style**
 - **Description**: Sets inline CSS styles on an element.
@@ -148,6 +170,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	console.log(button.style.backgroundColor);
 
 	```
+
 - **Output**: The inline style of `background-color` set to "blue".
 ### 16. **element.insertAdjacentHTML**
 - **Description**: Inserts HTML at a specific position relative to the element.
@@ -157,6 +180,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	list.insertAdjacentHTML("beforeend", "<li>New item</li>");
 
 	```
+
 - **Output**: A new list item added to the end of the `<ul>` list.
 ### 17. **element.appendChild**
 - **Description**: Adds a child element to a specified element.
@@ -168,6 +192,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	div.appendChild(newParagraph);
 
 	```
+
 - **Output**: `<p>` element added inside the `div` with text "Appended paragraph".
 ### 18. **element.removeChild**
 - **Description**: Removes a child element from the specified element.
@@ -178,6 +203,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	list.removeChild(firstItem);
 
 	```
+
 - **Output**: Removes the first `<li>` element from the list.
 ### 19. **element.cloneNode**
 - **Description**: Creates a copy of an element.
@@ -188,6 +214,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	document.body.appendChild(clone);
 
 	```
+
 - **Output**: A duplicate of the button is added to the body.
 ### 20. **element.replaceChild**
 - **Description**: Replaces a child element with another element.
@@ -199,8 +226,11 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	list.replaceChild(newItem, list.firstElementChild);
 
 	```
+
 - **Output**: The first `<li>` in the list is replaced with "Replaced item".
+
 ---
+
 ### 21. **document.createElement**
 - **Description**: Creates a new HTML element.
 - **Example**:
@@ -210,6 +240,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	document.body.appendChild(newDiv);
 
 	```
+
 - **Output**: Adds a `<div>` with the text "New div" to the body.
 ### 22. **document.createTextNode**
 - **Description**: Creates a new text node.
@@ -219,6 +250,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	document.body.appendChild(textNode);
 
 	```
+
 - **Output**: Adds "Hello World" text directly to the body.
 ### 23. **element.addEventListener**
 - **Description**: Attaches an event handler to an element.
@@ -230,6 +262,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	});
 
 	```
+
 - **Output**: Logs "Button clicked" whenever the button is clicked.
 ### 24. **element.removeEventListener**
 - **Description**: Removes an event handler from an element.
@@ -242,6 +275,7 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	button.removeEventListener("click", handleClick);
 
 	```
+
 - **Output**: Button click handler removed, so "Button clicked" is not logged.
 ### 25. **element.dispatchEvent**
 - **Description**: Dispatches an event on an element.
@@ -252,6 +286,9 @@ Sure! Here are more Vanilla JavaScript query methods with examples and outputs:
 	button.dispatchEvent(new Event("click"));
 
 	```
+
 - **Output**: "Button clicked" logged by dispatching a click event.
+
 ---
+
 Would you like to continue with the remaining methods, or are there specific methods you'd like more details on?

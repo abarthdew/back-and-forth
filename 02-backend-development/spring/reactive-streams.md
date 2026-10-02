@@ -46,9 +46,13 @@
 ## 3) 요약
 
 > 💡 **리액티브 스트림은 JVM을 위한 스트림 지향 라이브러리의 표준 및 규격이며, 다음과 같은 기능을 제공함.**
+>
 > ① 무한한 수의 요소를 처리,
+>
 > ② 순서대로,
+>
 > ③ 구성 요소 간 요소를 비동기적으로 전달함,
+>
 > ④ 필수적인 논블로킹 백프레셔를 사용해서!
 
 # 3. 반응형 스트림 사양의 구성
@@ -64,9 +68,13 @@
 ---
 
 > 💡 **API는 리액티브 스트림 구현에서 제공하는 데 필요한 다음과 같은 구성 요소로 구성됨.**
+>
 > ① Publisher
+>
 > ② Subscriber
+>
 > ③ Subscription
+>
 > ④ Processor
 
 - Publisher는 잠재적으로 제한되지 않는 수의 시퀀스 요소를 제공하는 공급자며, Subscriber로부터 수신한 요구에 따라 게시(publishing)함.
@@ -86,6 +94,7 @@ onSubscribe onNext* (onError | onComplete)?
 ---
 
 > 💡 **Difference between `Calling` and `Invoking`**
+>
 > Function calling is when you call a function yourself in a program. While function invoking is when it gets called automatically.
 
 | 용어 | 설명 |

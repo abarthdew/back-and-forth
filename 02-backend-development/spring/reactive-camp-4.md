@@ -93,8 +93,11 @@
 
 > 💡 리액티브 스트림은 JVM을 위한 스트림 지향 라이브러리의 표준 및 규격이며, 다음과 같은 기능을 제공함.<br>
 > ① 무한한 수의 요소를 처리,
+>
 > ② 순서대로,
+>
 > ③ 컴포넌트 간 요소를 비동기적으로 전달함,
+>
 > ④ 필수적인 논블로킹 백프레셔를 사용해서!
 
 ### [4] API 구성요소
@@ -135,7 +138,6 @@ onSubscribe onNext* (onError | onComplete)?
 > - Subscriber = Observer = Consumer
 > - 시퀀스 = 스트림
 > - Publisher는 Subscriber에게 Event를 Push한다.
-
 
 ### [6] 사양
 
@@ -281,7 +283,9 @@ public interface Processor<T, R> extends Subscriber<T>, Publisher<R> {
 2. Publisher 는 `onSubscribe` 메소드로 Subscriber 에게 Subscription 를 전달.
 3. Subscriber 는 `Subscription.request` 을 통해, 자신에게 데이터를 흘려줄 것을 요구.
 4. Publisher 는 Subscription 를 통해 `Subscriber.onNext`로 데이터를 전달.
+
 4-1. Subscriber 내부에 Subscription를 set하였기 때문 (2번)
+
 5. 전달이 잘 끝났으면, `onComplete`, 오류났다면 `onError` 로 종료.
 
 ![](./images/29.png)

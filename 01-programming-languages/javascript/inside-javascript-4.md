@@ -168,7 +168,7 @@ console.log(add.status); // ok
 	```
 	- add() 함수 생성시, 함수 코드는 함수 객체의 \[\[Code\]\] 내부 프로퍼티에 자동 저장
 	- add() 함수에 프로퍼티 동적 생성, 접근 가능
-		![]()
+		![](images/inside-js-4-fig-04.png)
 ### 자바스크립트에서 함수는 값으로 취급된다
 - 함수도 일반 객체처럼 취급됨
 - 자바스크립트 함수가 할 수 있는 동작
@@ -312,7 +312,7 @@ console.log(func3.length); // 3
 	- 그리고 constructor 프로퍼티는 자신과 연결된 함수를 가리킴
 - 자바스크립트에서는 함수를 생성할 때, 함수 자신과 연결된 프로토타입 객체를 동시에 생성
 - 둘은 각각 prototype과 constructor라는 프로퍼티로 서로를 참조함
-	![]()
+	![](images/inside-js-4-fig-07.png)
 - 함수의 prototype 프로퍼티가 가리키는 프로토타입 객체는 일반적으로 따로 네이밍하지 않음
 - 자신과 연결된 함수의 prototype 프로퍼티값을 그대로 이용함
 - 예) add() 함수의 프로토타입 객체는 add.prototype이 됨
@@ -328,17 +328,17 @@ console.dir(myFunction.prototype.constructor); // (3)
 ```
 - 실행 결과
 	1. `console.dir(myFunction)`
-		![]()
+		![](images/inside-js-4-fig-08.png)
 	2. `console.dir(myFunction.prototype)`: myFunction() 함수의 프로토타입 객체
-		![]()
+		![](images/inside-js-4-fig-09.png)
 		- constructor, \[\[prototype\]\] 두 개의 프로퍼티 존재
 		- 이 객체는 myFunction() 함수의 프로토타입 객체이므로 constructor 프로퍼티가 있음
 		- 프로토타입 객체 역시 자바스크립트 객체이므로 예외 없이 자신의 부모 역할을 하는 \[\[Prototype\]\] 프로퍼티 존재
 	3. `console.dir(myFunction.prototype.constructor)`: 프로토타입 객체와 매핑된 함수를 알아볼 수 있음
-		![]()
+		![](images/inside-js-4-fig-10.png)
 		- 결과값을 보면 myFunction() 함수를 가리킴
 		- 이처럼 함수 객체와 프로토타입 객체는 서로 밀접하게 연결돼 있음
-			![]()
+			![](images/inside-js-4-fig-11.png)
 ## 함수의 다양한 형태
 ### 콜백 함수
 - 자바스크립트 함수 표현식에서 함수 이름은 꼭 붙이지 않아도 되는 선택 사항
@@ -351,7 +351,7 @@ console.dir(myFunction.prototype.constructor); // (3)
 - 예) 이벤트 핸들러 처리
 	- 웹 페이지 로드, 또는 키보드 입력되는 등의 DOM 이벤트 발생 시, 브라우저는 정의된 DOM 이벤트에 해당하는 이벤트 핸들러를 실행시킴
 	- 만약 이벤트 핸들러에 콜백 함수가 등록됐다면, 콜백 함수는 이벤트가 발생할 때마다 브라우저에 의해 실행됨
-		![]()
+		![](images/inside-js-4-fig-12.png)
 	```javascript
 <script>
 	// 페이지 로드 시 호출될 콜백 함수
@@ -764,7 +764,7 @@ var Person = function (name) {
 var foo = new Person('foo');
 console.log(foo.name); // foo
 	```
-	![]()
+	![](images/inside-js-4-fig-21.png)
 	1. Person() 함수가 생성자로 호출되면, 함수 코드가 실행되기 전에 빈 객체가 생성됨
 	2. 여기서 생성된 빈 객체는 Person() 생성자 함수의 prototype 프로퍼티가 가리키는 객체(Person.prototype 객체)를 \[\[Prototype\]\] 링크로 연결, 자신의 프로토타입 설정
 	3. this가 가리키는 빈 객체에 name이라는 동적 프로퍼티 생성
@@ -796,7 +796,7 @@ var baz = new Person('baz', 25, 'woman');
 console.dir(baz);
 	```
 	- `console.dir`로 자바스크립트 객체 출력한 결과
-		![]()
+		![](images/inside-js-4-fig-22.png)
 	- 객체 리터럴 방식과 생성자 함수 방식의 차이는 프로토타입 객체(\[\[Prototype\]\] 프로퍼티)에 있음
 		- 객체 리터럴 방식: 자신의 프로토타입 객체가 Object(Object.prototype)
 		- 생성자 함수 방식: 자신의 프로토타입 객체가 Person(Person.prototype) 
@@ -947,7 +947,7 @@ function Person(name, age, gender) {
 var foo = new Person('foo', 30, 'man');
 console.dir(foo);
 			```
-			![]()
+			![](images/inside-js-4-fig-23.png)
 			- `return {name:'bar', age:20, gender:'woman'};`: 생성자 함수의 리턴값을 새로 생성한 객체가 아닌, 객체 리터럴 방식의 특정 객체로 지정한 경우
 				⇒ Person() 생성자 함수를 호출해서 새로운 객체를 생성하더라도, 리턴값에서 명시적으로 넘긴 객체나 배열 리턴
 				⇒ 이 부분이 없다면, `var foo = new Person('foo', 30, 'man');`에서는 새로 생성되는 foo 객체가 리턴됨
@@ -1018,7 +1018,7 @@ myObject.sayNickName(); // Uncaught TypeError: myObject.sayNickName is not a fun
 	- 객체 리터럴로 생성한 객체는 Object() 라는 내장 생성자 함수로 생성됨
 	- Object() 생성자 함수도 함수 객체이므로 prototype 프로퍼티 속성 보유
 	- 따라서, 객체 리터럴 형태의 myObject는 Object() 함수의 prototype 프로퍼티가 가리키는 Object.prototype 객체를 자신의 프로토타입 객체로 연결함
-	![]()
+	![](images/inside-js-4-fig-30.png)
 ### 프로토타입 체이닝
 - 자바스크립트에서 특정 객체의 프로퍼티나 메서드에 접근하려고 할 때, 해당 객체(myObject)에 접근하려는 프로퍼티 또는 메서드가 없다면 \[\[Prototype\]\] 링크를 따라 자신의 부모 역할을 하는 프로토타입 객체의 프로퍼티를 차례대로 검색
 - 위 예제에서도 sayName()은 객체 내 메서드가 있어 바로 수행,

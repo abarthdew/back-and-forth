@@ -60,7 +60,7 @@ var him = new Person("him");
 	- 이와 같이 객체를 생성하여 사용하면, 별 문제 없이 작동하긴 함
 	- 하지만, 각 객체는 자기 영역에서 공통적으로 사용 가능한 setName(), getName() 함수를 따로 생성함
 		⇒ 불필요하게 중복되는 영역을 메모리에 올려놓고 사용하므로, 자원 낭비
-		![]()
+		![](images/js6-01.png)
 - 따라서, 문제 해결을 위해 다른 방식의 접근 필요
 	⇒ 자바스크립트의 특성 함수 객체의 프로토타입을 활용할 수 있음
 	```java
@@ -83,7 +83,7 @@ console.log(you.getName()); // you
 	```
 	- Person 함수 객체의 prototype 프로퍼티에 getName(), setName() 함수를 정의
 	- Person으로 객체를 생성한다면, 각 객체는 각자 따로 함수 객체를 생성할 필요 없이, setName()과 getName() 함수를 프로토타입 체인으로 접근 가능
-		![]()
+		![](images/js6-02.png)
 	- 자바스크립트에서 클래스 안의 메서드를 정의할 때는 프로토타입 객체에 정의 후, new로 생성한 객체에서 접근할 수 있게 하는 것이 좋음
 	- 더글라스 크락포트의 메서드 정의법
 		```java
@@ -138,7 +138,7 @@ function create_object(o) {
 	}
 }
 	```
-	![]()
+	![](images/js6-03.png)
 	- create_object() 함수는 인자로 들어온 객체를 부모로 하는 자식 객체를 생성하여 반환
 	- 새로운 빈 함수 객체 F를 만들고, F.prototype 프로퍼티에 인자로 들어온 객체를 참조
 	- 함수 객체 F를 생성자로 하는 새로운 객체를 만들어 반환
@@ -174,7 +174,7 @@ console.log(student.getName()); // me
 		- 클래스의 인스턴스를 따로 생성하지 않음
 		- 부모 객체에 해당하는 person 객체와 이 객체를 프로토타입 체인으로 참조할 수 있는 자식 객체 student를 만들어 사용
 		⇒ 상속 개념 구현
-		![]()
+		![](images/js6-04.png)
 - 지금까지 방법: 부모 객체의 메서드를 그대로 상속받아 사용하는 방법
 	⇒ 여기서 자식은 자신의 메서드를 재정의 혹은 추가로 기능을 더 확장시킬 수 있어야 함
 	```java
@@ -205,7 +205,7 @@ elem.extend();
 		- 두 개가 들어오는 경우, 첫 번째 객체에 두 번째 객체의 프로퍼티를 복사하겠다는 것을 뜻함
 	- `for (var i in prop) obj[i] = prop[i];`
 		- 루프를 돌며 prop의 프로퍼티를 obj로 복사
-	![]()
+	![](images/js6-05.png)
 - 위 코드의 약점
 	```javascript
 obj[i] = prop[i];
@@ -323,7 +323,7 @@ extend(student, added);
 student.setAge(25);
 console.log(student.getAge());
 	```
-	![]()
+	![](images/js6-06.png)
 	- 얕은 복사를 사용하는 extend() 함수를 사용해 student 객체를 확장시킴
 	- extend() 함수는 기능 확장 뿐 아니라, 상속에서도 자식 클래스를 확장할 때 유용하게 사용됨
 ### 2. 클래스 기반의 상속
@@ -357,7 +357,7 @@ console.log(me.getName());
 	- Student 함수 객체를 만들어, 이 함수 객체의 프로토타입으로 하여금 Person 함수 객체의 인스턴스를 참조하게 함
 	- Student 함수 객체로 생성된 객체 me의 \[\[Prototype\]\] 링크가 생성자의 프로토타입 프로퍼티 Student.prototype인 you를 가리키고, 
 	- new Person()으로 만들어진 객체의 \[\[Prototype\]\] 링크는 Person.prototype 프로퍼티에 접근할 수 있고, setName()과 getName() 호출 가능
-![]()
+![](images/js6-07.jpeg)
 - 해당 그림의 문제점: me 인스턴스를 생성할 때, 부모 클래스인 Person의 생성자를 호출하지 않음
 	```javascript
 var me = new Student("zoe");
@@ -378,7 +378,7 @@ function Student(arg) {
 ### ➡ 심화:
 - 자식 클래스의 객체가 부모 클래스의 객체를 프로토타입 체인으로 직접 접근 
 	→ 부모 클래스의 인스턴스와 자식 클래스의 인스턴스가 서로 독립
-![]()
+![](images/js6-08.jpeg)
 - 두 클래스의 프로토타입 사이에 중개자 만들기
 	```javascript
 function Person(arg) {
@@ -411,7 +411,7 @@ console.log(me.getName());
 	- 프로토타입 체인 형성 과정은 `프로토타입을 이용한 상속의 상속` 방식과 매우 유사
 	- 함수의 프로토타입을 이용한 것이니 비슷할 수밖에 없음
 	- 빈 함수 F()를 생성 → F()의 인스턴스를 Person.prototype과 Student 사이에 둠 → 인스턴스를 Student.prototype에 참조
-		![]()
+		![](images/js6-09.jpeg)
 	- 빈 함수의 객체를 중간에 둠 → Person의 인스턴스, Student의 인스턴스를 서로 독립적으로 만듦
 	- Person 함수 객체에서 this에 바인딩되는 것은 Student의 인스턴스가 접근할 수 없음
 	- 이 상속이 앞서 소개된 상속보다 좀 더 나은 코드
@@ -598,7 +598,7 @@ function subClass(obj) {
 - 자식 클래스는 child라는 이름의 함수 객체를 생성함으로써 만들어짐
 - 부모 클래스를 가리키는 parent는 this를 그대로 참조
 - 프로토타입 체인 구성은 `클래스 기반의 상속`에서 설명된 방식을 그대로 사용
-	![]()
+	![](images/js6-10.jpeg)
 	- child.parent_constructor에 부모의 생성자를 참조시킴
 	- 이유는 추후 설명(`생성자 호출` 파트)
 	- 이렇게 프로토타입 체인을 구성하여 부모를 상속받는 새로운 자식 클래스가 만들어지고 반환됨

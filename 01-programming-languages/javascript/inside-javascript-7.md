@@ -23,7 +23,7 @@ encrypted_value = get_encrypted(f2);
 encrypted_value = get_encrypted(f3);
 	```
 	- 이를 그림으로 표현
-		![]()
+		![](images/js7-01.jpeg)
 	- 여기서 `pure_value`는 작업에 필요한 데이터며, 작업이 수행되는 동안 변하지 않음
 	- `encrypted()`가 작업하는 동안 변할 수 있는 건 오로지 입력으로 들어오는 함수 뿐
 	- 반대로 이야기하면, `f1, f2, f3`는 외부(여기서는 `zoe`라는 변수)에 아무런 영향을 미치지 않는 함수라고 할 수 있음 ⇒ **순수 함수**
@@ -167,7 +167,7 @@ var multiply = function(x, y) {
 console.log(reduce(sum, arr, 0));
 console.log(reduce(multiply, arr, 1));
 	```
-	![]()
+	![](images/js7-02.jpeg)
 - 함수형 프로그래밍을 이용해 코드를 훨씬 간결하게 작성 가능
 - 다른 문제가 나오더라도 사용자가 해당 연산을 하는 함수를 작성해 `reduce()` 함수로 결과를 얻을 수 있음
 - 함수형 프로그래밍은 기존 프로그래밍 방식보다 한 단계 높은 모듈화가 가능
@@ -401,7 +401,7 @@ console.log(new_func1(2, 3)); // 5 (1 * 2 + 3 = 5)
 var new_func2 = curry(calculate, 1, 3);
 console.log(new_func2(3)); // 6 (1 * 3 + 3 = 6)
 	```
-	![]()
+	![](images/js7-03.jpeg)
 	- `calculate()` 함수는 인제 3개를 받아 연산 수행, 결과값 반환
 	- `curry()` 함수로 만든 함수:
 		- 첫 번째 인자를 1로 고정시킨 새로운 함수 `new_func1()`
@@ -447,7 +447,7 @@ function curry2(func) {
 var new_func = curry2(calculate, 1, undefined, 4);
 console.log(new_func(3)); // 7 (1 * 3 + 4 = 7)
 	```
-	![]()
+	![](images/js7-04.jpeg)
 	- `curry2()` 함수를 사용할 때 주의점:
 		-  `curry2()` 호출 시, \`calculate()\~ 함수가 원하는 인자를 전부 넣어야 함
 		- 그 중 고정시키지 않을 인자를 undefined로 넘김
@@ -493,7 +493,7 @@ name : zoe
 2 : js
 */ 
 	```
-	![]()
+	![](images/js7-05.jpeg)
 	- `myfunc()` 함수는 `myobj` 객체를 this에 바인딩시켜 `print_all()` 함수를 실행하는 새로운 함수
 	- 또한, `myfunc()` 를 실행하면, 인자도 `bind()` 함수에 모두 넘겨짐
 	- 이와 같이, 특정 함수에 원하는 객체를 바인딩시켜 새로운 함수를 사용할 때 `bind()` 함수가 사용됨
@@ -641,7 +641,7 @@ each(zoe, function(idx, value) {
 	console.log(idx + " : " + value);
 });
 	```
-	![]()
+	![](images/js7-06.jpeg)
 	- `obj`에 length가 있는 경우 (ex. 배열)와 없는 경우 (ex. 객체)로 나눔 → 루프를 돌며 각 요소를 인자로 하여 차례대로 함수 호출
 	- `each()` 함수는 다양한 언어에서 기본적으로 제공됨
 	- 자바스크립트에서도 이 방식으로 정의하여 사용할 수 있음
@@ -683,7 +683,7 @@ var new_arr = arr.map(function(value) {
 
 console.log(new_arr); // (출력) [1, 4, 9]
 	```
-	![]()
+	![](images/js7-07.jpeg)
 	- 배열 각 요소의 제곱값을 새로운 요소로 하는 배열을 반환받는 예제
 	- `map()` 함수 이용 시 각 요소의 제곱값을 반환하는 순수 함수를 넣어 실행시킨 뒤, 새로운 배열 반환 가능
 ### 5-3. reduce
@@ -711,6 +711,6 @@ var accumulated_val = arr.reduce(function(a, b) {
 
 console.log(accumulated_val); // (출력) 14 = 1 * 1 + 2 * 2 + 3 * 3
 	```
-	![]()
+	![](images/js7-08.jpeg)
 	- 배열의 각 요소를 순차적으로 제곱한 값을 더해 누적된 값을 반환받는 예제
 	- 각 요소를 사용자가 원하는 특정 연산으로 누적된 값을 반환받고자 할 때 유용하게 사용됨

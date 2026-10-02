@@ -73,7 +73,7 @@ console.log(plus(5, 6)); // 11
 	- **(함수 객체일 경우만)** prototype 프로퍼티: 함수 생성
 		- contructor 프로퍼티 하나만 있음
 	- \[\[Prototype\]\] 프로퍼티: 부모 객체(부모 객체 안에 \[\[Prototype\]\]도 부모의 부모 객체)
-	![]()
+	![](images/js-summary-02.png)
 - 콜백 함수
 	- 익명 함수의 대표적인 함수
 	- 시스템에서 호출되는 함수
@@ -270,7 +270,7 @@ ExContext2();
 // this is ExContext1
 // this is ExContext2
 	```
-	![]()
+	![](images/js5-01.png)
 	- 변수만 있을 때: 전역 실행 컨텍스트
 		- 그래서 호이스팅이 생김. 제일 처음 전역 실행 컨텍스트에서 변수가 먼저 정의되기 때문.
 	- 변수, 함수: 전역 실행 컨텍스트 → 함수 실행 컨텍스트
@@ -287,7 +287,7 @@ function printFunc() {
 }
 printFunc(); // value2
 	```
-	![]()
+	![](images/js5-10.png)
 - 클로저
 	```javascript
 function outerFunc() {
@@ -301,7 +301,7 @@ inner(); // 10
 	```
 	- outerFunc() 실행 → 리턴된 innerFunc() 가 inner 변수에 할당(outerFunc()의 스코프까지 통째로 반환) → inner() 실행
 		⇒ innerFunc는 outerFunc의 변수 접근 가능 
-		![]()
+		![](images/js5-13.png)
 ## 함수
 ### push(), slice()
 - push: 배열에 삽입

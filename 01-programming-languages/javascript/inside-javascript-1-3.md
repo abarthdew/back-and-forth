@@ -368,7 +368,7 @@ console.log(arr); // [0, 1]
 console.log(arr[2]); // undefined
 // length가 2로 바뀌며 length 프로퍼티를 벗어나는 값이 삭제됨
 ```
-![]()
+![](images/js1-array-length-change.png)
 ### 배열 표준 메서드와 length 프로퍼티
 - 자바스크립트는 배열에서 사용할 수 있는 다양한 표준 메서드 제공
 - 배열 메서드는 length 프로퍼티를 기반으로 동작
@@ -451,7 +451,7 @@ console.log(arr.length); // 4
 console.dir(arr);
 ```
 - `console.dir(arr);` 실행 결과
-	![]()
+	![](images/js1-console-dir-arr.png)
 	- 배열의 length 프로퍼티는 배열 원소의 가장 큰 인덱스가 변했을 경우만 변경됨
 	- 배열도 객체처럼 key-value 형태로 배열 원소 및 프로퍼티 등이 있을 수 있음
 ### 배열의 프로퍼티 열거

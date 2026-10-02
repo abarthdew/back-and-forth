@@ -1,8 +1,8 @@
 <table_of_contents color="gray"/>
 # 1. 환경변수 설정
-![]()
-![]()
-![]()
+![](images/kotlin-env-setup-1.png)
+![](images/kotlin-env-setup-2.png)
+![](images/kotlin-env-setup-3.png)
 # 2. 클래스와 프로퍼티
 ## 2.2 Person 클래스
 ### java

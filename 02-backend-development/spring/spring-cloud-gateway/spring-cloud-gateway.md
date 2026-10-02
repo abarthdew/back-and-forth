@@ -11,7 +11,7 @@
 다음 다이어그럼은 Spring Cloud Gateway의 작동 방식을 개괄적으로 보여 줌.
 <columns>
 	<column ratio="50">
-		![]()
+		![](images/spring-cloud-gateway-diagram.png)
 	</column>
 	<column ratio="50">
 		<empty-block/>

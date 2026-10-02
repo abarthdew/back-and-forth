@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 # 8. jQuery 소스 코드 분석
 ## jQuery 1.0 소스 코드 구조
 ### 1. jQuery 함수 객체

@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 # 1. Core Spring Security
 - 핵심 개념 및 아키텍처 이해와 실전 예제로 완성하는 스프링 시큐리티 프로그래밍
 ## 1) 강의에서 다루는 내용
@@ -42,37 +41,19 @@
 	- `/messages` : ROLE_MANAGER
 	- `/config` : ROLE_ADMIN
 	- `/admin/**` : ROLE_ADMIN
-<columns>
-	<column ratio="50">
-		![](images/img-08.png)
-	</column>
-	<column ratio="50">
-		![](images/img-09.png)
-	</column>
-</columns>
+![](images/img-08.png)
+![](images/img-09.png)
 - 가입하기: USER, MANAGER, ADMIN 총 3명의 사용자
-<columns>
-	<column ratio="56.25">
-		![](images/img-10.png)
-	</column>
-	<column ratio="43.75">
-		<empty-block/>
-		![](images/img-11.png)
-		- MANAGER 가입
-		- 기본적으로 `ROLE_USER` 권한이므로 가입 후 `MANAGER ⇒ ROLE_MANAGER`로 변경하기
-	</column>
-</columns>
+![](images/img-10.png)
+
+![](images/img-11.png)
+- MANAGER 가입
+- 기본적으로 `ROLE_USER` 권한이므로 가입 후 `MANAGER ⇒ ROLE_MANAGER`로 변경하기
 ![](images/img-12.png)
-<columns>
-	<column ratio="50">
-		- 메소드 보안 설정
-			![](images/img-13.png)
-	</column>
-	<column ratio="50">
-		- 포인트컷 보안(포인트컷을 사용, 메서드 위에서 메서드에 보안을 설정)
-			![](images/img-14.png)
-	</column>
-</columns>
+- 메소드 보안 설정
+	![](images/img-13.png)
+- 포인트컷 보안(포인트컷을 사용, 메서드 위에서 메서드에 보안을 설정)
+	![](images/img-14.png)
 # 3. 스프링 시큐리티 기본 API & Filter 이해
 ## 1) 인증 API - 프로젝트 구성 및 의존성 추가
 ```java
@@ -104,14 +85,8 @@ public class SecurityController {
 - 실행 시, 콘솔에 다음과 같이 출력되는 것을 알 수 있음
 ![](images/img-15.png)
 - `Username`: "user" / `Password`: Using generated security password
-<columns>
-	<column ratio="43.75">
-		![](images/img-16.png)
-	</column>
-	<column ratio="56.25">
-		![](images/img-17.png)
-	</column>
-</columns>
+![](images/img-16.png)
+![](images/img-17.png)
 ⇒ Username과 Password를 입력해야 /경로로 진입 가능.
 ### (1) 스프링 시큐리티의 의존성 추가 시 일어나는 일들
 - 서버가 기동되면 스프링 시큐리티의 초기화 작업 및 보안 설정이 이루어짐
@@ -414,9 +389,9 @@ http
 	→ 2. `ChangeSessionId`: 세션 고정 보호(새로운 세션, 쿠키 발급)
 	→ 3. `RegisterSession`: 사용자의 세션을 등록, 저장(세션 카운트 2)
 	→ USER1이 자원에 접근하는 경우, `ConcurrentSessionFilter`가 체크, 세션 만료시킴
-<callout icon="💡" color="gray_bg">
-	**`ConcurrentSessionFilter`****는 매순간 세션 체크함**
-</callout>
+
+> 💡 **`ConcurrentSessionFilter`는 매순간 세션 체크함**
+
 ### 🔰 실습 - `Security7`
 ![](images/img-62.png)
 - 첫 사용자 로그인 시, 세션 카운트 수 : 0
@@ -435,9 +410,9 @@ http
 	- `.hasRole("USER")`: USER 권한을 가진 사람만 허용.
 	- `.access()`: 구체적 권한 설정.
 - `anyRequest().authenticated()`: 그 외는 인증을 받은 사람만 허용.
-<callout icon="💡" color="gray_bg">
-	**`.antMatchers()`****는 위에서부터 아래로 해석하기 때문에, 먼저 오는 url 주소가 마지막 url보다 더 구체적이어야 함.**
-</callout>
+
+> 💡 **`.antMatchers()`는 위에서부터 아래로 해석하기 때문에, 먼저 오는 url 주소가 마지막 url보다 더 구체적이어야 함.**
+
 ![](images/img-67.png)
 - `anonymous()`: 인증된 사용자가 익명 사용자가 접근할 수 있는 권한에 접근할 수 없음. 예를 들어, ROLE_USER 권한을 가진 사람이 ANONYMOUS에 접근 불가. 그야말로 익명 사용자 전용 표현식.
 - `hasRole()`: role에 해당하는 prefix 사용 불가.
@@ -558,18 +533,12 @@ http
 - http.antMatcher("/admin/\*\*")이라고 했을 때, 이건 SecurityConfig1에 있는 기능이므로 이 클래스에서 작동.
 - SecurityConfig1, 2 각각의 필터가 생성됨.
 - 두 개의 설정 클래스가 동시적으로 운영될 수 있음.
-<columns>
-	<column ratio="37.5">
-		![](images/img-87.png)
-	</column>
-	<column ratio="62.5">
-		- 초기화 시, <span color="brown">**`SecurityFilterChain`**</span> 클래스의 객체 안에 개발자가 설정한 `필터`가 담김.
-		- `http.antMatcher("/admin/**")`에 담긴 정보가 <span color="blue">**`RequestMacher`**</span>라는 변수에 담기게 됨.
-		![](images/img-88.png)
-		- Filter와 RequestMacher가 담긴 클래스의 객체가 생성됨.
-		- 각각의 생성된 객체는 <span color="brown">**`FilterChainProxy`**</span>가 <span color="brown_bg">**`SecurityFilterChains라는`**</span>** **리스트 변수에 저장함. (초기화 시점에서)
-	</column>
-</columns>
+![](images/img-87.png)
+- 초기화 시, **`SecurityFilterChain`** 클래스의 객체 안에 개발자가 설정한 `필터`가 담김.
+- `http.antMatcher("/admin/**")`에 담긴 정보가 **`RequestMacher`**라는 변수에 담기게 됨.
+![](images/img-88.png)
+- Filter와 RequestMacher가 담긴 클래스의 객체가 생성됨.
+- 각각의 생성된 객체는 **`FilterChainProxy`**가 **`SecurityFilterChains라는`**** **리스트 변수에 저장함. (초기화 시점에서)
 - 사용자가 `/admin` url로 요청 → `FilterChainProxy`가 요청을 받음 → `SecurityConfig1`, `2` 중에 어떤 필터를 사용할지 판단 → 각각의 객체가 가진 `RequestMatcher`와 매칭이 되는지 확인 → `SecurityConfig1`의 필터 정보를 가져와 처리
 ### 🔰 FilterChainProxy가 요청을 처리할 필터를 선택하는 과정
 ![](images/img-89.png)
@@ -646,9 +615,9 @@ class SecurityConfig2 extends WebSecurityConfigurerAdapter {
 
 }
 ```
-<callout icon="💡" color="gray_bg">
-	✔** order는 우선순위기 때문에, 첫번째 순서인 클래스에서 인가정책이 통과되면 두번째까지 안 감. **<br>⇒ 이 예시에서 만약 서로의 순서를 바꾼다면, /admin 접속 시도 시 httpBasic이 아닌 formLogin 방식이 됨.<br>✔ **즉, 구체적인 방식이 보다 더 우선순위가 높아야 함.**
-</callout>
+
+> 💡 ✔** order는 우선순위기 때문에, 첫번째 순서인 클래스에서 인가정책이 통과되면 두번째까지 안 감. **<br>⇒ 이 예시에서 만약 서로의 순서를 바꾼다면, /admin 접속 시도 시 httpBasic이 아닌 formLogin 방식이 됨.<br>✔ **즉, 구체적인 방식이 보다 더 우선순위가 높아야 함.**
+
 - `SecurityFilterChains` 리스트 변수에 생성된 `SeucityConfig1`, `2`를 확인할 수 있음
 ![](images/img-90.png)
 - /admin으로 접속하면 httpBasic인증 방식 화면이 뜸
@@ -684,7 +653,7 @@ class SecurityConfig2 extends WebSecurityConfigurerAdapter {
 	- 스레드마다 고유하게 할당된 저장소. 스레드 간 공유가 되지 않고, 각 스레드에게만 할당됨. 
 	- get, set, remove라는 API가 있음. get 할 때 장소에 구애받지 않음.
 	- 즉, 다른 장소에서 get하면 A메소드에서 set한 데이터를 B메소드에서 쓸 수 있음.
-	<empty-block/>
+
 - `SecurityContextHolder`: SecurityContext를 감싸고 있는 클래스.
 	- `MODE_INHERITABLETHREADLOCAL`: 원래 메인 스레드, 자식 스레드 각각 자기만의 ThreadLocal이 있어서 서로 간 데이터 공유가 안 됨. `MODE_INHERITABLETHREADLOCAL`을 사용함으로써 메인 스레드와 자식 스레드 간 SecurityContext를 공유할 수 있음.
 	- `MODE_CLOBAL`: ThreadLocal 방식이 아닌 Static 변수에 SecurityContext 저장. 하나의 변수에서 SecurityContext를 참조.

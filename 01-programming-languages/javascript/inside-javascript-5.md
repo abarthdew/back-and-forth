@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 # 5. 실행 컨텍스트와 클로저
 ## 실행 컨텍스트 개념
 - 콜 스택(Call Stack): 함수를 호출할 때 해당 함수의 호출 정보가 쌓여있는 스택을 의미
@@ -19,20 +18,20 @@
 - 코드가 실행되면 실행 컨텍스트 생성 → 실행 컨텍스트는 스택 안에 하나씩 쌓임 → 제일 위에 위치하는 실행 컨텍스트가 현재 실행되고 있는 컨텍스트
 - EMCAScript에서는 실행 컨텍스트의 생성을 다음처럼 설명: **현재 실행되는 컨텍스트에서 이 컨텍스트와 관련 없는 실행 코드가 실행되면, 새로운 컨텍스트가 생성되어 스택에 들어가고 제어권이 그 컨텍스트로 이동**
 	```javascript
-console.log("this is global context"); // this is global context
+	console.log("this is global context"); // this is global context
 
-function ExContext1() {
+	function ExContext1() {
 	console.log("this is ExContext1");
-};
+	};
 
-function ExContext2() {
+	function ExContext2() {
 	ExContext1();
-  console.log("this is ExContext2");
-};
+	  console.log("this is ExContext2");
+	};
 
-ExContext2();
-// this is ExContext1
-// this is ExContext2
+	ExContext2();
+	// this is ExContext1
+	// this is ExContext2
 	```
 	![](images/js5-01.png)
 	- 전역 실행 컨텍스트가 가장 먼저 실행
@@ -99,28 +98,28 @@ execute(3, 4);
 - 즉, 전역 실행 컨텍스트에서는 변수 객체가 곧 전역 객체임
 - 따라서, 전역적으로 선언된 함수와 변수가 전역 객체의 프로퍼티가 됨
 - 전역 실행 컨텍스트 역시, this를 전역 객체의 참조로 사용함
-<callout icon="💡" color="gray_bg">
-	**브라우저에서는  최상위 코드가 곧 전역 코드지만, Node.js 에서는 다름**
-	```javascript
-var a = 10;
-b = 15;
-console.log(window.a); // 10
-console.log(window.b); // 15
-	```
-	- 브라우저에서 위 코드는 잘 실행됨
-	- var a로 정의한 변수가 전역 객체인 window의 한 프로퍼티로 들어감
-	- 하지만 Node.js에서는 다름
-	```javascript
-var a = 10;
-b = 15;
-console.log(global.a); // undefined
-console.log(global.b); // 15
-	```
-	- Node.js 에서는 최상위 코드가 브라우저와는 달리 전역 코드가 아님
-	- 따라서 var a 로 정의된 변수가 전역 객체에 들어가지 않음
-	- Node.js에서는 일반적으로 자바스크립트 파일, 이를테면 filname.js가 하나의 모듈로 동작하고, 이 파일의 최상위에 변수를 선언해도 그 모듈의 지역 변수가 됨
-	- 하지만, var를 사용하지 않을 경우 전역 객체인 global에 들어가고, 이는 전역 객체를 오염시키는 원인이 되므로 주의 필요
-</callout>
+
+> 💡 **브라우저에서는  최상위 코드가 곧 전역 코드지만, Node.js 에서는 다름**
+> ```javascript
+> var a = 10;
+> b = 15;
+> console.log(window.a); // 10
+> console.log(window.b); // 15
+> ```
+> - 브라우저에서 위 코드는 잘 실행됨
+> - var a로 정의한 변수가 전역 객체인 window의 한 프로퍼티로 들어감
+> - 하지만 Node.js에서는 다름
+> ```javascript
+> var a = 10;
+> b = 15;
+> console.log(global.a); // undefined
+> console.log(global.b); // 15
+> ```
+> - Node.js 에서는 최상위 코드가 브라우저와는 달리 전역 코드가 아님
+> - 따라서 var a 로 정의된 변수가 전역 객체에 들어가지 않음
+> - Node.js에서는 일반적으로 자바스크립트 파일, 이를테면 filname.js가 하나의 모듈로 동작하고, 이 파일의 최상위에 변수를 선언해도 그 모듈의 지역 변수가 됨
+> - 하지만, var를 사용하지 않을 경우 전역 객체인 global에 들어가고, 이는 전역 객체를 오염시키는 원인이 되므로 주의 필요
+
 ## 스코프 체인
 - 실행 컨텍스트 생성 과정에서 설명한 스코프 체인이 어떻게 만들어지는지 살펴볼 필요가 있음
 - 스코프 체인을 알아야 자바스크립트 변수에 대한 인식 메커니즘을 알 수 있고, 현재 사용되는 변수가 어디에서 선언된 변수인지 정확히 알 수 있음
@@ -128,20 +127,20 @@ console.log(global.b); // 15
 - 자바스크립트도 스코프, 즉 유효 범위가 있음
 - 이 유효 범위 안에서 변수와 함수가 존재함
 	```javascript
-void example_scope() {
+	void example_scope() {
 	int i = 0;
-  int value = 1;
-  for (i = 0; i < 10; i++) {	
-  	int a = 10;
-  }
-  printf("a: \d", a); // 컴파일 에러
-  
-  if (i == 10) {
-  	int b = 20;
-  }
-  printf("b: \d", b); // 컴파일 에러
-  printf("value: \d", value); // 1
-}
+	  int value = 1;
+	  for (i = 0; i < 10; i++) {	
+	  	int a = 10;
+	  }
+	  printf("a: \d", a); // 컴파일 에러
+
+	  if (i == 10) {
+	  	int b = 20;
+	  }
+	  printf("b: \d", b); // 컴파일 에러
+	  printf("value: \d", value); // 1
+	}
 	```
 	- C 코드를 예로 들면, \{\}로 묶여 있는 범위 엔에서 선언된 변수는 블록이 끝나는 순간 사라지므로, 밖에서는 접근 불가
 	- 함수의 \{\} 뿐만 아니라, if, for문의 \{\}이 한 블록으로 묶여, 그 안에서 선언된 변수가 밖에서는 접근이 불가능
@@ -171,23 +170,23 @@ console.log(var2); // 2
 ### 2. 함수를 호출한 경우 생성되는 실행 컨텍스트의 스코프 체인
 - 예시1)
 	```javascript
-var var1 = 1;
-var var2 = 2;
-function func() {
+	var var1 = 1;
+	var var2 = 2;
+	function func() {
 	var var1= 10;
 	var var2 = 20;
 	console.log(var1); // 10
 	console.log(var2); // 20
-}
-func();
-console.log(var1); // 1
-console.log(var2); // 2
+	}
+	func();
+	console.log(var1); // 1
+	console.log(var2); // 2
 	```
 	- 코드 실행: 전역 실행 컨텍스트 생성 → func() 함수 객체 생성
 	- 이 함수 객체의 \[\[scope\]\]: 함수 객체가 생성될 때, 그 함수 객체의 \[\[scope\]\]는 현재 실행되는 컨텍스트의 변수 객체에 있는 \[\[scope\]\]를 그대로 가짐
 	- 따라서, func 함수 객체의 \[\[scope\]\]는 전역 변수 객체가 됨
 	```javascript
-func(); // 함수 실행 단계
+	func(); // 함수 실행 단계
 	```
 	- 함수를 실행했으므로 새로운 컨텍스트가 만들어짐 ⇒ func 컨텍스트
 	- func 컨텍스트의 스코프 체인은 실행된 함수의 \[\[scope\]\] 프로퍼티를 그대로 복사한 후, 현재 생성된 변수 객체를 복사한 스코프 체인의 맨 앞에 추가
@@ -199,32 +198,32 @@ func(); // 함수 실행 단계
 	- 스코프 체인 요약: **스코프 체인 = 현재 실행 컨텍스트의 변수 객체 + 상위 컨텍스트의 스코프 체인**
 - 예시2)
 	```javascript
-var value = "value1";
+	var value = "value1";
 
-function printFunc() {
+	function printFunc() {
 	var value = "value2";
-  
-  function printValue() {
-  	return value;
-  }
-  console.log(printValue());
-}
-printFunc(); // value2
+
+	  function printValue() {
+	  	return value;
+	  }
+	  console.log(printValue());
+	}
+	printFunc(); // value2
 	```
 	![](images/js5-10.png)
 - 예시3)
 	```javascript
-var value = "value1";
+	var value = "value1";
 
-function printValue() {
+	function printValue() {
 	return value;
-}
+	}
 
-function printFunc(func) {
+	function printFunc(func) {
 	var value = "value2";
-  console.log(func());
-}
-printFunc(printValue); // value1
+	  console.log(func());
+	}
+	printFunc(printValue); // value1
 	```
 	![](images/js5-11.png)
 - 여기까지, 실행 컨텍스트가 만들어지며 스코프 체인이 어떻게 형성되는지 살펴봄
@@ -241,20 +240,20 @@ printFunc(printValue); // value1
 - 함수 선언은 with 구문의 영향을 받지 않고 함수 객체 생성
 - 함수 표현식은 안에서 with 구문과 함께 실행 가능
 	```javascript
-var y = {x:5};
+	var y = {x:5};
 
-function withExamFunc() {
+	function withExamFunc() {
 	var x = 10;
-  var z;
-  
-  with(y) {
-  	z = function() {
-    	console.log(x); // 5(y 객체의 x가 출력됨)
-    }
-  }
-  z();
-}
-withExamFunc();
+	  var z;
+
+	  with(y) {
+	  	z = function() {
+	    	console.log(x); // 5(y 객체의 x가 출력됨)
+	    }
+	  }
+	  z();
+	}
+	withExamFunc();
 	```
 	- withExamFunc() 함수가 호출되면 실행 컨텍스트는 전역 변수 객체와 현재 실행 컨텍스트의 변수 객체를 포함하는 스코프 체인이 있음
 	- 여기에 with 구문의 실행으로 전역 변수 y에 의해 참조되는 객체를 함수 표현식이 실행되는 동안 스코프 체인의 맨 앞에 추가
@@ -263,41 +262,41 @@ withExamFunc();
 ### 호이스팅
 - 실행 컨텍스트를 이해했다면 호이스팅의 원인도 이해할 수 있음
 	```javascript
-foo();
-bar();
+	foo();
+	bar();
 
-var foo = function() {
+	var foo = function() {
 	console.log(x);
-}
+	}
 
-function bar() {
+	function bar() {
 	console.log(x);
-}
+	}
 
-var x = 1;
+	var x = 1;
 
-// Uncaught TypeError: foo is not a function
+	// Uncaught TypeError: foo is not a function
 	```
 	- 이 예제는 다음과 같음
 	```javascript
-var foo;
+	var foo;
 
-function bar() {
+	function bar() {
 	console.log(x);
-}
+	}
 
-var x;
+	var x;
 
-foo();
-bar();
+	foo();
+	bar();
 
-foo = function() {
+	foo = function() {
 	console.log(x);
-}
+	}
 
-x = 1;
+	x = 1;
 
-// Uncaught TypeError: foo is not a function
+	// Uncaught TypeError: foo is not a function
 	```
 	- 함수 생성 과정에서 변수 foo, 함수 객체 bar, 변수 x를 차례로 생성
 	- foo와 x에는 undefined가 할당
@@ -306,22 +305,22 @@ x = 1;
 	- foo()에서 TypeError 발생 ⇒ foo가 선언되어 있지만 함수가 아니기 때문
 	- foo()를 커멘트 처리 후 실행하면 bar() 에서는 undefined가 출력됨 ⇒ x에 1이 할당되기 전에 실행했기 때문
 	```javascript
-var foo;
+	var foo;
 
-function bar() {
+	function bar() {
 	console.log(x); // undefined
-}
+	}
 
-var x;
+	var x;
 
-// foo();
-bar(); // 1
+	// foo();
+	bar(); // 1
 
-foo = function() {
+	foo = function() {
 	console.log(x);
-}
+	}
 
-x = 1;
+	x = 1;
 	```
 ## 클로저
 ### 클로저의 개념
@@ -352,11 +351,11 @@ inner(); // 10
 ```javascript
 function outerFunc() {
 	var x = 1; // 자유 변수
-  
+
   return function () {
   	/* x와 arguments를 활용한 로직(클로저) */
   };
-  
+
 }
 
 var new_func = outerFunc();
@@ -368,10 +367,10 @@ new_func();
 - 외부 함수의 호출이 이루어지고, 외부 함수에서 새로운 함수가 반환
 - 반환된 함수가 클로저, 이 클로저는 자유 변수를 묶고 있음
 - 반환된 클로저는 새로운 함수로 사용됨
-<callout icon="💡" color="gray_bg">
-	클로저는 자바스크립트 외 여러 언어에서 차용되고 있는 특성
-	- 특히 함수를 일급 객체로 취급하는 언어(함수형 언어)에서 주요하게 사용되는 특성
-</callout>
+
+> 💡 클로저는 자바스크립트 외 여러 언어에서 차용되고 있는 특성
+> - 특히 함수를 일급 객체로 취급하는 언어(함수형 언어)에서 주요하게 사용되는 특성
+
 ```javascript
 function outerFunc(arg1, arg2) {
 	var local = 8;
@@ -393,33 +392,33 @@ exam1(2); // 0.6
 - 따라서 exam1(2)를 호출하면, arg1, arg2, local값은 outerFunc 변수 객체에서 찾고,
 - innerArg는 innerFunc 변수 객체에서 찾음
 - 결과: ((2+4)/(2+8))
-<callout icon="💡" color="gray_bg">
-	**innerFunc()에서 접근하는 변수 대부분 스코프 체인의 첫 번째 객체가 아닌 그 이후의 객체에 존재함**
-	- 이는 성능 문제를 유발시킬 수 있는 여지가 있음
-	- 대부분의 클로저에서는 스코프 체인에서 뒤쪽에 있는 객체에 자주 접근하므로, 성능 저하의 이유로 지목되기도 함
-	- 클로저를 사용한 코드가 그렇지 않은 코드보다 메모리 부담이 많아짐
-	- 클로저를 쓰지 않는 것은 자바스크립트의 강력한 기능 하나를 무시하고 사용하는 것과 다름 없음
-	- 결론적으로 클로저를 영리하게 사용하는 지혜가 필요함
-</callout>
+
+> 💡 **innerFunc()에서 접근하는 변수 대부분 스코프 체인의 첫 번째 객체가 아닌 그 이후의 객체에 존재함**
+> - 이는 성능 문제를 유발시킬 수 있는 여지가 있음
+> - 대부분의 클로저에서는 스코프 체인에서 뒤쪽에 있는 객체에 자주 접근하므로, 성능 저하의 이유로 지목되기도 함
+> - 클로저를 사용한 코드가 그렇지 않은 코드보다 메모리 부담이 많아짐
+> - 클로저를 쓰지 않는 것은 자바스크립트의 강력한 기능 하나를 무시하고 사용하는 것과 다름 없음
+> - 결론적으로 클로저를 영리하게 사용하는 지혜가 필요함
+
 ### 클로저의 활용
 - 클로저는 성능적인 면과 자원적인 면에서 손해를 볼 수 있으므로 무차별적 사용은 지양하는 게 좋음
 1. **특정 함수에 사용자가 정의한 객체의 연결하기**
 	```javascript
-function HelloFunc(func) {
+	function HelloFunc(func) {
 	this.greeting = "hello";
-}
+	}
 
-HelloFunc.prototype.call = function(func) {
+	HelloFunc.prototype.call = function(func) {
 	func ? func(this.greeting) : this.func(this.greeting);
-}
+	}
 
-var userFunc = function(greeting) {
+	var userFunc = function(greeting) {
 	console.log(greeting);
-}
+	}
 
-var objHello = new HelloFunc();
-objHello.func = userFunc;
-objHello.call(); // hello
+	var objHello = new HelloFunc();
+	objHello.func = userFunc;
+	objHello.call(); // hello
 	```
 	- 함수 HelloFunc는 greeting 변수가 있고, func 프로퍼티로 참조되는 함수를 [call()](https://schwhitezer.tistory.com/39) 함수로 호출함
 	- 사용자는 func 프로퍼티에 자신이 정의한 함수를 참조시켜 호출 가능
@@ -429,81 +428,81 @@ objHello.call(); // hello
 		⇒ 사용자가 정의한 함수도 한 개의 인자를 받는 함수를 정의할 수밖에 없음
 2. **여기서 사용자가 원하는 인자를 더 넣어서 HelloFunc()를 이용해 호출하려면?**
 	```javascript
-function saySomething(obj, methodName, name) {
+	function saySomething(obj, methodName, name) {
 	return (function(greeting) {
-  	return obj[methodName](greeting, name);
-  });
-}
+	  	return obj[methodName](greeting, name);
+	  });
+	}
 
-function newObj(obj, name) {
+	function newObj(obj, name) {
 	obj.func = saySomething(this, "who", name);
-  return obj;
-}
+	  return obj;
+	}
 
-newObj.prototype.who = function(greeting, name) {
+	newObj.prototype.who = function(greeting, name) {
 	console.log(greeting + " " + (name || "everyone"));
-}
+	}
 	```
 	- 새로운 함수 newObj() 선언
 	- 이 함수는 HelloFunc()의 객체를 좀 더 자유롭게 활용하려고 정의한 함수
 	- 첫 번째 인자로 받는 obj는 HelloFunc()의 객체가 되고, 두 번째 인자는 사용자가 출력을 원하는 사람 이름이 됨
 	- newObj() 함수의 객체를 다음과 같이 만들어보자
 	```javascript
-var obj1 = new newObj(objHello, "zzoon");
+	var obj1 = new newObj(objHello, "zzoon");
 	```
 	- 앞 코드로 다음 코드 실행됨
 	```javascript
-obj.func = saySomething(this, "sho", name);
-return obj;
+	obj.func = saySomething(this, "sho", name);
+	return obj;
 	```
 	- 첫 번째 인자 obj의 func 프로퍼티에 saySomething() 함수에서 반환되는 함수를 참조 후 반환
 	- 결국 obj1은 인자로 넘겼던 objHello 객체에서 func 프로퍼티에 참조된 함수만 바뀐 객체가 됨
 	- 따라서, 다음과 같이 호출 가능
 	```javascript
-obj1.call();
+	obj1.call();
 	```
 	- 전체 코드
 	```javascript
-function HelloFunc(func) {
+	function HelloFunc(func) {
 	this.greeting = "hello";
-}
+	}
 
-HelloFunc.prototype.call = function(func) {
+	HelloFunc.prototype.call = function(func) {
 	func ? func(this.greeting) : this.func(this.greeting);
-}
+	}
 
-var userFunc = function(greeting) {
+	var userFunc = function(greeting) {
 	console.log(greeting);
-}
+	}
 
-var objHello = new HelloFunc();
+	var objHello = new HelloFunc();
 
-function saySomething(obj, methodName, name) {
+	function saySomething(obj, methodName, name) {
 	return (function(greeting) {
-  	return obj[methodName](greeting, name);
-  });
-}
+	  	return obj[methodName](greeting, name);
+	  });
+	}
 
-function newObj(obj, name) {
+	function newObj(obj, name) {
 	obj.func = saySomething(this, "who", name);
-  return obj;
-}
+	  return obj;
+	}
 
-newObj.prototype.who = function(greeting, name) {
+	newObj.prototype.who = function(greeting, name) {
 	console.log(greeting + " " + (name || "everyone"));
-}
+	}
 
-var obj1 = new newObj(objHello, "zzoon");
-obj1.call(); // hello zzoon
+	var obj1 = new newObj(objHello, "zzoon");
+	obj1.call(); // hello zzoon
 	```
 	- 코드 실행 결과, newObj.prototype.who 함수가 호출되어 “hello zzoon”을 출력
 	- saySomthing() 함수 안에서는 해당 작업 수행됨
 		```javascript
-function saySonthing(obj, methodName, name) {
-	return (function(greeting) {
-  	return obj[methodName](greeting, name);
-  });
-}
+		function saySonthing(obj, methodName, name) {
+			return (function(greeting) {
+		  	return obj[methodName](greeting, name);
+		  });
+		}
 		```
 		- 첫 번째 인자: newObj 객체 - obj1
 		- 두 번째 인자: 사용자가 정의한 메서드 이름 - “who”
@@ -521,51 +520,51 @@ function saySonthing(obj, methodName, name) {
 ### 함수의 캡슐화
 - 사용자의 입력을 받은 후, 이 전역 변수에 접근하여 완성된 문장을 출력하는 방식으로 작성한 함수
 	```javascript
-var buffAr = [
+	var buffAr = [
 	'i am ',
-  '',
-  '. i live in ',
-  '',
-  ' i\'am',
-  '',
-  ' years old.',
-];
+	  '',
+	  '. i live in ',
+	  '',
+	  ' i\'am',
+	  '',
+	  ' years old.',
+	];
 
-function getCompletedStr(name, city, age) {
+	function getCompletedStr(name, city, age) {
 	buffAr[1] = name;
-  buffAr[3] = city;
- 	buffAr[5] = age;
-  return buffAr.join('');
-}
+	  buffAr[3] = city;
+	 	buffAr[5] = age;
+	  return buffAr.join('');
+	}
 
-var str = getCompletedStr('zzoon', 'seoul', 16);
-console.log(str); // i am zzoon. i live in seoul i'am16 years old.
+	var str = getCompletedStr('zzoon', 'seoul', 16);
+	console.log(str); // i am zzoon. i live in seoul i'am16 years old.
 	```
 	- 위 코드의 단점: buffAr라는 배열은 전역 변수로서, 외부에 노출되어 있음
 	- 다른 함수에서 이 배열에 쉽게 접근해 값을 바꿀 수도 있고, 실수로 같은 이름의 변수를 만들어 버그가 생길 수도 있음
 	- 다른 코드와의 통합 혹은 이 코드를 라이브러리로 만드려고 할 때, 까다로운 문제를 발생시킬 가능성이 있음
 - 클로저를 활용해 buffAr를 추가적인 스코프에 넣고 사용한 경우
 	```javascript
-var getCompletedStr = (function() {
+	var getCompletedStr = (function() {
 	var buffAr = [
-    'i am ',
-    '',
-    '. i live in ',
-    '',
-    'i\'am',
-    '',
-    ' years old.',
-  ];
-  return (function(name, city, age) {
-    buffAr[1] = name;
-    buffAr[3] = city;
-    buffAr[5] = age;
-  	return buffAr.join('');
-  });
-})();
+	    'i am ',
+	    '',
+	    '. i live in ',
+	    '',
+	    'i\'am',
+	    '',
+	    ' years old.',
+	  ];
+	  return (function(name, city, age) {
+	    buffAr[1] = name;
+	    buffAr[3] = city;
+	    buffAr[5] = age;
+	  	return buffAr.join('');
+	  });
+	})();
 
-var str = getCompletedStr('zzoon', 'seoul', 16);
-console.log(str); // i am zzoon. i live in seouli'am16 years old.
+	var str = getCompletedStr('zzoon', 'seoul', 16);
+	console.log(str); // i am zzoon. i live in seouli'am16 years old.
 	```
 	- 변수 
 	- 반환되는 함수가 클로저가 되고, 클로저는 자유 변수 buffAr을 스코프 체인에서 참조할 수 있음
@@ -577,64 +576,64 @@ console.log(str); // i am zzoon. i live in seouli'am16 years old.
 - setTimeout()으로 자신의 코드를 호출하고 싶다면, 첫 번째 인자로 해당 함수 객체의 참조를 넘겨주면 되지만, 이걸로는 실제 실행될 때 함수에 인자를 줄 수 없음
 - 그렇다면 정의한 함수에 인자를 넣어줄 수 있게 하려면 어떻게 해야 할 까? ⇒  클로저로 해결
 	```javascript
-function callLater(obj, a, b) {
+	function callLater(obj, a, b) {
 	return (function() {
-  	obj['sum'] = a + b;
-    console.log(obj['sum']);
-  });
-}
+	  	obj['sum'] = a + b;
+	    console.log(obj['sum']);
+	  });
+	}
 
-var sumObj = {
+	var sumObj = {
 	sum: 0
-}
+	}
 
-var func = callLater(sumObj, 1, 2);
-setTimeout(func, 500); // 3
+	var func = callLater(sumObj, 1, 2);
+	setTimeout(func, 500); // 3
 	```
 	- 사용자가 정의한 함수 callLater를 setTimeout 함수로 호출하려면, 변수 func에 함수를 반환받아 setTimeout() 함수의 첫 번째 인자로 넣어주면 됨
 	- 반환받는 함수는 클로저고, 사용자가 원하는 인자에 접근 가능
 ### 클로저를 활용할 때 주의사항
 1. 클로저의 프로퍼티값이 쓰기 가능하므로 그 값이 여러 번 호출로 항상 변할 수 있음에 유의
 	```javascript
-function outerFunc(argNum) {
+	function outerFunc(argNum) {
 	var num = argNum;
-  return function(x) {
-  	num += x;
-    console.log('num: ', num);
-  }
-}
+	  return function(x) {
+	  	num += x;
+	    console.log('num: ', num);
+	  }
+	}
 
-var exam = outerFunc(40);
-exam(5); // num:  45
-exam(-10); // 위 결과값인 45에서 -10 = num:  35 (원래 argNum값인 40 - 10 = 30 ---[x])
+	var exam = outerFunc(40);
+	exam(5); // num:  45
+	exam(-10); // 위 결과값인 45에서 -10 = num:  35 (원래 argNum값인 40 - 10 = 30 ---[x])
 	```
 	- exam 값을 호출할 때마다, 자유 변수 num의 값은 계속해서 변화됨
 2. 하나의 클로저가 여러 함수 객체의 스코프 체인에 들어가 있는 경우도 있음
 	```javascript
-function func() {
+	function func() {
 	var x = 1;
-  return {
-  	func1: function() { console.log(++x); },
-    func2: function() { console.log(-x); }
-  };
-};
+	  return {
+	  	func1: function() { console.log(++x); },
+	    func2: function() { console.log(-x); }
+	  };
+	};
 
-var exam = func();
-exam.func1(); // 2
-exam.func2(); // 위 결과값인 2에 -를 붙임 = -2 (원래 x값인 1 * -1 = -1 ---[x])
+	var exam = func();
+	exam.func1(); // 2
+	exam.func2(); // 위 결과값인 2에 -를 붙임 = -2 (원래 x값인 1 * -1 = -1 ---[x])
 	```
 	- 반환되는 객체에 두 개의 함수가 정의되어 있는데, 두 함수 모두 자유 변수 x를 참조함
 	- 각각의 함수가 호출될 때마다 x의 값이 변함
 3. 루프 안에서 클로저를 활용할 때는 주의가 필요
 	```javascript
-function countSeconds(howMany) {	
+	function countSeconds(howMany) {	
 	for(var i = 0; i <= howMany; i++) {
-  	setTimeout(function() {
-    	console.log(i);
-    }, i * 1000);
-  }
-};
-countSeconds(3);
+	  	setTimeout(function() {
+	    	console.log(i);
+	    }, i * 1000);
+	  }
+	};
+	countSeconds(3);
 	```
 	- 의도: 1, 2, 3을 1초 간격으로 출력하는 의도로 만든 예
 	- **결과: 4가 연속 3번 1초 간격으로 출력됨**
@@ -643,15 +642,15 @@ countSeconds(3);
 	- 그러므로, setTimeout()로 실행되는 함수는 모두 4를 출력하게 됨
 4. 의도대로 수정된 3. 의 코드
 	```javascript
-function countSeconds(howMany) {	
+	function countSeconds(howMany) {	
 	for(var i = 0; i <= howMany; i++) {
-  	(function (currentI) {
-    	setTimeout(function() {
-      	console.log(currentI);
-      }, currentI * 1000);
-    }(i));
-  }
-};
-countSeconds(3);
+	  	(function (currentI) {
+	    	setTimeout(function() {
+	      	console.log(currentI);
+	      }, currentI * 1000);
+	    }(i));
+	  }
+	};
+	countSeconds(3);
 	```
 	- 즉시 실행 함수를 실행시켜 루프

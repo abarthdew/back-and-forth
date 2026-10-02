@@ -1,4 +1,3 @@
-<table_of_contents color="gray"/>
 # 1. 개별 다운로드
 - 프로그램 : TemperMonkey
 - 출처 : [https://yellowstone.tistory.com/754](https://yellowstone.tistory.com/754)

